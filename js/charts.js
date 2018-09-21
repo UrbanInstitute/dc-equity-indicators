@@ -1,7 +1,7 @@
 var PCTFORMAT = d3.format(".0%");
 var COMMAFORMAT = d3.format(",.0f");
 
-var categories = ["yes", "no"];
+var categories = ["yes", "diff", "no"];
 
 var width = 600,
     height = 50,
@@ -43,7 +43,7 @@ d3.csv("data/equity_data.csv", function(d) {
     // makeDropdown(data);
     makeBarChart("Ward 7", "Adults with a postsecondary degree", ".baseLocation", "baseBar", width, height);
     makeBarChart("Washington, D.C.", "Adults with a postsecondary degree", ".comparisonLocation", "comparisonBar", width, height);
-    // makeBarChart("Ward 7", "Adults with a postsecondary degree", "baseBar", width, height);
+    makeBarChart("Ward 7|Washington, D.C.", "Adults with a postsecondary degree", ".withEquity", "withEquityBar", width, height);
 
 });
 
@@ -51,22 +51,43 @@ d3.csv("data/equity_data.csv", function(d) {
 //     updateBars(PHA, "raceChart");
 // }
 
-function getData(geo, indicator) {
-    var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
-    return [{
-        indicator: data[0].indicator,
-        geo: data[0].geo,
-        yes: data[0].value,
-        no: 1 - data[0].value,
-        year: data[0].year,
-        numerator: data[0].numerator,
-        denom: data[0].denom,
-        unit: data[0].unit
-    }];
+function getData(geo, indicator, parentClass) {
+    if(parentClass === ".withEquity") {
+        var base = geo.split("|")[0];
+        var compare = geo.split("|")[1];
+
+        var baseData = equityData.filter(function(d) { return d.geo === base && d.indicator === indicator; });
+        var compareData = equityData.filter(function(d) { return d.geo === compare && d.indicator === indicator; });
+
+        return [{
+            indicator: baseData[0].indicator,
+            geo: baseData[0].geo,
+            yes: baseData[0].value,
+            diff: compareData[0].value - baseData[0].value,
+            no: 1 - compareData[0].value,
+            year: baseData[0].year,
+            numerator: baseData[0].numerator,
+            denom: baseData[0].denom,
+            unit: baseData[0].unit
+        }];
+    }
+    else {
+        var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
+        return [{
+            indicator: data[0].indicator,
+            geo: data[0].geo,
+            yes: data[0].value,
+            no: 1 - data[0].value,
+            year: data[0].year,
+            numerator: data[0].numerator,
+            denom: data[0].denom,
+            unit: data[0].unit
+        }];
+    }
 }
 
 function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
-    var chartData = getData(geo, indicator);
+    var chartData = getData(geo, indicator, parentClass);
 
     var svg = d3.select("#" + chartID)
         .append("svg")
@@ -76,8 +97,8 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    drawBars(svg, chartData, colorScaleMore);
     labelBars(parentClass, chartData);
+    drawBars(svg, chartData, colorScaleMore);
 }
 
 function drawBars(svg, data, colorScale) {
@@ -100,5 +121,10 @@ function drawBars(svg, data, colorScale) {
 }
 
 function labelBars(parentClass, data) {
-    d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+    if(parentClass === ".withEquity") {
+        d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
+    }
+    else {
+        d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+    }
 }
