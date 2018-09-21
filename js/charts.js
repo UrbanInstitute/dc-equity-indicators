@@ -41,7 +41,10 @@ d3.csv("data/equity_data.csv", function(d) {
     equityData = data;
 
     // makeDropdown(data);
-    makeBarChart("Ward 7", "Adults with a postsecondary degree", "baseBar", width, height);
+    makeBarChart("Ward 7", "Adults with a postsecondary degree", ".baseLocation", "baseBar", width, height);
+    makeBarChart("Washington, D.C.", "Adults with a postsecondary degree", ".comparisonLocation", "comparisonBar", width, height);
+    // makeBarChart("Ward 7", "Adults with a postsecondary degree", "baseBar", width, height);
+
 });
 
 // function updateChart(geo, indicator) {
@@ -62,9 +65,9 @@ function getData(geo, indicator) {
     }];
 }
 
-function makeBarChart(geo, indicator, chartID, width, height) {
+function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
     var chartData = getData(geo, indicator);
-    console.log(chartData)
+
     var svg = d3.select("#" + chartID)
         .append("svg")
         // .attr("id", svgID)
@@ -74,10 +77,10 @@ function makeBarChart(geo, indicator, chartID, width, height) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     drawBars(svg, chartData, colorScaleMore);
+    labelBars(parentClass, chartData);
 }
 
 function drawBars(svg, data, colorScale) {
-    console.log(stack.keys(categories)(data));
     var slices = svg.selectAll(".serie")
         .data(stack.keys(categories)(data))
         .enter()
@@ -94,4 +97,8 @@ function drawBars(svg, data, colorScale) {
         .attr("y", 0)
         .attr("height", height)
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+}
+
+function labelBars(parentClass, data) {
+    d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
 }
