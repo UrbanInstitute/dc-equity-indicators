@@ -62,6 +62,7 @@ function getData(geo, indicator, parentClass) {
         return [{
             indicator: baseData[0].indicator,
             geo: baseData[0].geo,
+            compareGeo: compareData[0].geo,
             yes: baseData[0].value,
             diff: compareData[0].value - baseData[0].value,
             no: 1 - compareData[0].value,
@@ -98,6 +99,10 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
 
     labelBars(parentClass, chartData);
     drawBars(svg, chartData, colorScaleMore);
+
+    if(parentClass === ".withEquity") {
+        populateEquityStatement(chartData);
+    }
 }
 
 function drawBars(svg, data, colorScale) {
@@ -139,4 +144,11 @@ function labelBars(parentClass, data) {
     else {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
     }
+}
+
+function populateEquityStatement(data) {
+    var diffNumber = data[0].diff * data[0].denom;
+    d3.select("#equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
+    d3.select("#equitySentence span.baseGeography").text(data[0].geo);
+    d3.select("#equitySentence span.compareGeography").text(data[0].compareGeo);
 }
