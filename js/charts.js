@@ -4,7 +4,7 @@ var COMMAFORMAT = d3.format(",.0f");
 var categories = ["yes", "diff", "no"];
 
 var width = 600,
-    height = 50,
+    height = 35,
     margin = {top: 0, right: 20, bottom: 40, left: 0};
 
 var xScale = d3.scaleLinear()
@@ -91,7 +91,6 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
 
     var svg = d3.select("#" + chartID)
         .append("svg")
-        // .attr("id", svgID)
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -102,12 +101,14 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
 }
 
 function drawBars(svg, data, colorScale) {
+    console.log(stack.keys(categories)(data));
     var slices = svg.selectAll(".serie")
-        .data(stack.keys(categories)(data))
+        .data(stack.keys(categories)(data).filter(function(d) {return !isNaN(d[0][1])}))
         .enter()
         .append("g")
-        .attr("class", "serie")
-        .attr("fill", function(d) { return colorScaleMore(d.key); });
+        .attr("class", function(d) { return "serie " + d.key; })
+        .attr("fill", function(d) { return colorScaleMore(d.key); })
+        .attr("stroke", function(d) { return colorScaleMore(d.key); });
 
     slices.selectAll("rect")
         .data(function(d) { return d; })
@@ -117,7 +118,18 @@ function drawBars(svg, data, colorScale) {
         .attr("x", function(d) { return xScale(d[0]); })
         .attr("y", 0)
         .attr("height", height)
-        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
+        .style("stroke-width", 0);
+
+    slices.selectAll("line")
+        .data(function(d) { return d; })
+        .enter()
+        .append("line")
+        .attr("class", "barLabel")
+        .attr("x1", function(d) { return xScale(d[1]) - 1; })
+        .attr("x2", function(d) { return xScale(d[1]) - 1; })
+        .attr("y1", height)
+        .attr("y2", height + 5);
 }
 
 function labelBars(parentClass, data) {
