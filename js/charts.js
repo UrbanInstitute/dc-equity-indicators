@@ -97,8 +97,8 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    labelBars(parentClass, chartData);
     drawBars(svg, chartData, colorScaleMore);
+    labelBars(parentClass, chartID, chartData);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartData);
@@ -106,14 +106,13 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
 }
 
 function drawBars(svg, data, colorScale) {
-    console.log(stack.keys(categories)(data));
     var slices = svg.selectAll(".serie")
         .data(stack.keys(categories)(data).filter(function(d) {return !isNaN(d[0][1])}))
         .enter()
         .append("g")
         .attr("class", function(d) { return "serie " + d.key; })
-        .attr("fill", function(d) { return colorScaleMore(d.key); })
-        .attr("stroke", function(d) { return colorScaleMore(d.key); });
+        .style("fill", function(d) { return colorScaleMore(d.key); })
+        .style("stroke", function(d) { return colorScaleMore(d.key); });
 
     slices.selectAll("rect")
         .data(function(d) { return d; })
@@ -135,19 +134,38 @@ function drawBars(svg, data, colorScale) {
         .attr("x2", function(d) { return xScale(d[1]) - 1; })
         .attr("y1", height)
         .attr("y2", height + 5);
+
+    slices.selectAll("text")
+        .data(function(d) { return d; })
+        .enter()
+        .append("text")
+        .attr("class", "barLabel")
+        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("y", height + 15)
+        .text("test");
 }
 
-function labelBars(parentClass, data) {
+function labelBars(parentClass, chartID, data) {
+    console.log(chartID, data);
     if(parentClass === ".withEquity") {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
+        d3.selectAll("#" + chartID + " g.yes text.barLabel").text(COMMAFORMAT(data[0].numerator));
+        d3.selectAll("#" + chartID + " g.no text.barLabel").text(COMMAFORMAT(data[0].denom));
+        d3.selectAll("#" + chartID + " g.diff text.barLabel").text(COMMAFORMAT(data[0].numerator * data[0].diff));
     }
     else {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+        d3.selectAll("#" + chartID + " g.yes text.barLabel").text(COMMAFORMAT(data[0].numerator));
+        d3.selectAll("#" + chartID + " g.no text.barLabel").text(COMMAFORMAT(data[0].denom));
     }
 }
 
 function populateEquityStatement(data) {
     var diffNumber = data[0].diff * data[0].denom;
+
+    // handle case where there is no equity gap
+
+    // populate sentence if there is equity gap
     d3.select("#equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
     d3.select("#equitySentence span.baseGeography").text(data[0].geo);
     d3.select("#equitySentence span.compareGeography").text(data[0].compareGeo);

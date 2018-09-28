@@ -77,6 +77,12 @@ section.introduction {
     float: left;
 }
 
+text.barLabel {
+    text-anchor: middle;
+    fill: #000;
+    stroke: none;
+    font-size: 12px;
+}
 /************ SUBNAV ***************/
 
 .subnav {
