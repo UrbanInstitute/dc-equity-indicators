@@ -5,7 +5,7 @@ var categories = ["yes", "diff", "no"];
 
 var width = 600,
     height = 35,
-    margin = {top: 0, right: 20, bottom: 40, left: 0};
+    margin = {top: 0, right: 40, bottom: 40, left: 0};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1])
@@ -98,7 +98,7 @@ function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     drawBars(svg, chartData, colorScaleMore);
-    labelBars(parentClass, chartID, chartData);
+    labelBars(parentClass, chartData);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartData);
@@ -125,6 +125,7 @@ function drawBars(svg, data, colorScale) {
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
         .style("stroke-width", 0);
 
+    // add in labels for each segment
     slices.selectAll("line")
         .data(function(d) { return d; })
         .enter()
@@ -135,28 +136,38 @@ function drawBars(svg, data, colorScale) {
         .attr("y1", height)
         .attr("y2", height + 5);
 
-    slices.selectAll("text")
+    slices.selectAll(".barLabel.line1")
         .data(function(d) { return d; })
         .enter()
         .append("text")
-        .attr("class", "barLabel")
+        .attr("class", "barLabel line1")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", height + 15)
         .text("test");
+
+    slices.selectAll(".barLabel.line2")
+        .data(function(d) { return d; })
+        .enter()
+        .append("text")
+        .attr("class", "barLabel line2")
+        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("y", height + 30)
+        .text("test");
 }
 
-function labelBars(parentClass, chartID, data) {
-    console.log(chartID, data);
+function labelBars(parentClass, data) {
+    d3.selectAll(parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+    d3.selectAll(parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
+    d3.selectAll(parentClass + " text.barLabel.line2").text(data[0].unit);
+
     if(parentClass === ".withEquity") {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
-        d3.selectAll("#" + chartID + " g.yes text.barLabel").text(COMMAFORMAT(data[0].numerator));
-        d3.selectAll("#" + chartID + " g.no text.barLabel").text(COMMAFORMAT(data[0].denom));
-        d3.selectAll("#" + chartID + " g.diff text.barLabel").text(COMMAFORMAT(data[0].numerator * data[0].diff));
+
+        d3.selectAll(parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
+        d3.selectAll(parentClass + " g.diff text.barLabel.line2").text("more");
     }
     else {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
-        d3.selectAll("#" + chartID + " g.yes text.barLabel").text(COMMAFORMAT(data[0].numerator));
-        d3.selectAll("#" + chartID + " g.no text.barLabel").text(COMMAFORMAT(data[0].denom));
     }
 }
 
