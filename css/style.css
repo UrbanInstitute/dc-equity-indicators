@@ -43,6 +43,12 @@ section.introduction {
     margin: 0 auto;
 }
 
+section.toolDropdownSelector {
+    width: 100%;
+    height: 100px;
+    background-color: #d2d2d2;
+}
+
 .chart {
     width: 100%;
     min-height: 400px;
@@ -83,6 +89,61 @@ text.barLabel {
     stroke: none;
     font-size: 12px;
 }
+
+
+
+
+/************ STYLES FOR SELECTOR MENUS **************/
+
+.selectorGroup {
+    display: inline-block;
+    width: 25%;
+    /*background-color: #1696d2;*/
+    margin: 10px;
+}
+
+.selectorLabel {
+    float: left;
+    width: 100%;
+}
+
+.selectorBox {
+    float: left;
+    width: 80%;
+    height: 30px;
+    background-color: #fff;
+    line-height: 30px;
+}
+
+.selectorButton {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: #1696d2;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.selectorMenuModal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.closed {
+    display: none;
+}
+
+
+
 /************ SUBNAV ***************/
 
 .subnav {
@@ -157,7 +218,7 @@ ul#menu li:hover ul a {
 /*********** STRUCTURE ***********/
 
 .wrapper {
-    width: 960px;
+    /*width: 960px;*/
     margin:0 auto;
     padding-top: 80px;
     border-top: 1px solid #eee;
