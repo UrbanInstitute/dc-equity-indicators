@@ -142,7 +142,33 @@ text.barLabel {
     display: none;
 }
 
+.closeButton {
+    position: absolute;
 
+    /* don't need to go crazy with z-index here, just sits over .modal-guts */
+    z-index: 1;
+
+    /*top: 1001px;*/
+
+    /* needs to look OK with or without scrollbar */
+    right: 20px;
+
+    border: 0;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.dcEquityIndicators.menuItem {
+    cursor: pointer;
+    list-style: none;
+}
+
+.dcEquityIndicators.menuItem:hover {
+    text-decoration: underline;
+}
 
 /************ SUBNAV ***************/
 
