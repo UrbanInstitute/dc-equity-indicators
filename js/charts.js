@@ -43,31 +43,56 @@ d3.csv("data/equity_data.csv", function(d) {
 
     equityData = data;
 
-    makeEquityBarChart("Adults with a postsecondary degree", "Ward 7", "Washington, D.C.");
+    makeEquityBarChart("#exampleEquityChart", "Adults with a postsecondary degree", "Ward 7", "Washington, D.C.");
+    makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial");
 });
 
-function makeEquityBarChart(indicator, baseGeo, compareGeo, chartDivID) {
-    populateTitle(indicator, "#exampleEquityChart");
-    populateBarTitles(baseGeo, compareGeo, "#exampleEquityChart");
-    makeBarChart(baseGeo, indicator, ".baseLocation", "baseBar", width, height);
-    makeBarChart(compareGeo, indicator, ".comparisonLocation", "comparisonBar", width, height);
-    makeBarChart(baseGeo + "|" + compareGeo, indicator, ".withEquity", "withEquityBar", width, height);
+function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
+    populateChartTitle(chartDivID, indicator);
+    populateBarTitles(chartDivID, baseGeo, compareGeo);
+    makeBarChart(chartDivID, ".baseLocation", "baseBar", baseGeo, indicator, width, height);
+    makeBarChart(chartDivID, ".comparisonLocation", "comparisonBar", compareGeo, indicator, width, height);
+    makeBarChart(chartDivID, ".withEquity", "withEquityBar", baseGeo + "|" + compareGeo, indicator, width, height);
 }
-// function updateChart(geo, indicator) {
-//     updateBars(PHA, "raceChart");
-// }
-function populateTitle(title, chartDivID) {
-    var year = equityData.filter(function(d) { return d.indicator == title})[0].year;
+
+function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
+    populateChartTitle(chartDivID, indicator);
+    populateBarTitles(chartDivID, baseGeo, compareGeo);
+    updateBars(chartDivID, ".baseLocation", baseGeo, indicator);
+    updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
+    updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
+}
+
+function populateChartTitle(chartDivID, title) {
+    var year = equityData.filter(function(d) { return d.indicator === title})[0].year;
     d3.select(chartDivID + " h2.chartTitle").text(title + ", " + year);
 }
 
-function populateBarTitles(baseGeo, compareGeo, chartDivID) {
+function populateBarTitles(chartDivID, baseGeo, compareGeo) {
     d3.select(chartDivID + " h4.baseGeographyName").text(baseGeo);
     d3.select(chartDivID + " h4.comparisonGeographyName").text(compareGeo);
     d3.select(chartDivID + " span.baseGeographyName").text(baseGeo);
 }
 
-function getData(geo, indicator, parentClass) {
+function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, width, height) {
+    var chartData = getData(parentClass, geo, indicator);
+
+    var svg = d3.select(chartDivID + " ." + chartID)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    drawBars(svg, chartData, colorScaleMore);
+    labelBars(chartDivID, parentClass, chartData);
+
+    if(parentClass === ".withEquity") {
+        populateEquityStatement(chartData);
+    }
+}
+
+function getData(parentClass, geo, indicator) {
     if(parentClass === ".withEquity") {
         var base = geo.split("|")[0];
         var compare = geo.split("|")[1];
@@ -92,6 +117,7 @@ function getData(geo, indicator, parentClass) {
     }
     else {
         var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
+
         return [{
             indicator: data[0].indicator,
             geo: data[0].geo,
@@ -106,27 +132,9 @@ function getData(geo, indicator, parentClass) {
     }
 }
 
-function makeBarChart(geo, indicator, parentClass, chartID, width, height) {
-    var chartData = getData(geo, indicator, parentClass);
-
-    var svg = d3.select("#" + chartID)
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    drawBars(svg, chartData, colorScaleMore);
-    labelBars(parentClass, chartData);
-
-    if(parentClass === ".withEquity") {
-        populateEquityStatement(chartData);
-    }
-}
-
 function drawBars(svg, data, colorScale) {
     var slices = svg.selectAll(".serie")
-        .data(stack.keys(categories)(data).filter(function(d) {return !isNaN(d[0][1])}))
+        .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
         .enter()
         .append("g")
         .attr("class", function(d) { return "serie " + d.key; })
@@ -174,21 +182,64 @@ function drawBars(svg, data, colorScale) {
         .text("test");
 }
 
-function labelBars(parentClass, data) {
-    d3.selectAll(parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
-    d3.selectAll(parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
-    d3.selectAll(parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
-    d3.selectAll(parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
+function labelBars(chartDivID, parentClass, data) {
+    d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+    d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
+    d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
+    d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
 
     if(parentClass === ".withEquity") {
-        d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
+        d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
 
-        d3.selectAll(parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
-        d3.selectAll(parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
+        d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
     }
     else {
-        d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+        d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
     }
+}
+
+function updateBars(chartDivID, parentClass, geo, indicator) {
+    var data = getData(parentClass, geo, indicator);
+
+    // first update labels
+    labelBars(chartDivID, parentClass, data);
+
+    // then transition bars and label positions
+    var slices = d3.selectAll(chartDivID + " " + parentClass + " .serie")
+        .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }));
+
+    slices.selectAll("rect")
+        .data(function(d) { return d; })
+        .transition()
+        .attr("x", function(d) { return xScale(d[0]); })
+        .attr("y", 0)
+        .attr("height", height)
+        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
+        .style("stroke-width", 0);
+
+    slices.selectAll("line")
+        .data(function(d) { return d; })
+        .transition()
+        .attr("class", "barLabel")
+        .attr("x1", function(d) { return xScale(d[1]) - 1; })
+        .attr("x2", function(d) { return xScale(d[1]) - 1; })
+        .attr("y1", height)
+        .attr("y2", height + 5);
+
+    slices.selectAll(".barLabel.line1")
+        .data(function(d) { return d; })
+        .transition()
+        .attr("class", "barLabel line1")
+        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("y", height + 15);
+
+    slices.selectAll(".barLabel.line2")
+        .data(function(d) { return d; })
+        .transition()
+        .attr("class", "barLabel line2")
+        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("y", height + 30);
 }
 
 function populateEquityStatement(data) {
@@ -197,7 +248,7 @@ function populateEquityStatement(data) {
     // handle case where there is no equity gap
 
     // populate sentence if there is equity gap
-    d3.select("#equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
-    d3.select("#equitySentence span.baseGeography").text(data[0].geo);
-    d3.select("#equitySentence span.compareGeography").text(data[0].compareGeo);
+    d3.select(".equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
+    d3.select(".equitySentence span.baseGeography").text(data[0].geo);
+    d3.select(".equitySentence span.compareGeography").text(data[0].compareGeo);
 }
