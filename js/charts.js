@@ -27,12 +27,15 @@ var equityData;
 d3.csv("data/equity_data.csv", function(d) {
     return {
         indicator: d.indicator,
+        indicator_short: d.indicator,
         year: d.year,
         geo: d.geo,
         numerator: +d.numerator,
         denom: +d.denom,
         value: +d.value,
-        unit: d.unit
+        blue_bar_label: d.blue_bar_label,
+        diff_bar_label: d.diff_bar_label,
+        grey_bar_label: d.grey_bar_label
     };
 }, function(error, data) {
 
@@ -40,7 +43,6 @@ d3.csv("data/equity_data.csv", function(d) {
 
     equityData = data;
 
-    // makeDropdown(data);
     makeBarChart("Ward 7", "Adults with a postsecondary degree", ".baseLocation", "baseBar", width, height);
     makeBarChart("Washington, D.C.", "Adults with a postsecondary degree", ".comparisonLocation", "comparisonBar", width, height);
     makeBarChart("Ward 7|Washington, D.C.", "Adults with a postsecondary degree", ".withEquity", "withEquityBar", width, height);
@@ -69,7 +71,9 @@ function getData(geo, indicator, parentClass) {
             year: baseData[0].year,
             numerator: baseData[0].numerator,
             denom: baseData[0].denom,
-            unit: baseData[0].unit
+            blue_bar_label: baseData[0].blue_bar_label,
+            grey_bar_label: baseData[0].grey_bar_label,
+            diff_bar_label: baseData[0].diff_bar_label
         }];
     }
     else {
@@ -82,7 +86,8 @@ function getData(geo, indicator, parentClass) {
             year: data[0].year,
             numerator: data[0].numerator,
             denom: data[0].denom,
-            unit: data[0].unit
+            blue_bar_label: data[0].blue_bar_label,
+            grey_bar_label: data[0].grey_bar_label
         }];
     }
 }
@@ -157,14 +162,15 @@ function drawBars(svg, data, colorScale) {
 
 function labelBars(parentClass, data) {
     d3.selectAll(parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+    d3.selectAll(parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
     d3.selectAll(parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
-    d3.selectAll(parentClass + " text.barLabel.line2").text(data[0].unit);
+    d3.selectAll(parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
 
     if(parentClass === ".withEquity") {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
 
         d3.selectAll(parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
-        d3.selectAll(parentClass + " g.diff text.barLabel.line2").text("more");
+        d3.selectAll(parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
     }
     else {
         d3.select(parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
