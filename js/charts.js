@@ -43,6 +43,7 @@ d3.csv("data/equity_data.csv", function(d) {
 
     equityData = data;
 
+    populateTitle("Adults with a postsecondary degree", "example");
     makeBarChart("Ward 7", "Adults with a postsecondary degree", ".baseLocation", "baseBar", width, height);
     makeBarChart("Washington, D.C.", "Adults with a postsecondary degree", ".comparisonLocation", "comparisonBar", width, height);
     makeBarChart("Ward 7|Washington, D.C.", "Adults with a postsecondary degree", ".withEquity", "withEquityBar", width, height);
@@ -52,6 +53,10 @@ d3.csv("data/equity_data.csv", function(d) {
 // function updateChart(geo, indicator) {
 //     updateBars(PHA, "raceChart");
 // }
+function populateTitle(title, chartType) {
+    var year = equityData.filter(function(d) { return d.indicator_short == title})[0].year;
+    chartType == "example" ? d3.select("#exampleEquityChartTitle").text(title + ", " + year) : d3.select("#toolEquityChartTitle").text(title + ", " + year);
+}
 
 function getData(geo, indicator, parentClass) {
     if(parentClass === ".withEquity") {
