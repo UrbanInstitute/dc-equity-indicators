@@ -43,19 +43,28 @@ d3.csv("data/equity_data.csv", function(d) {
 
     equityData = data;
 
-    populateTitle("Adults with a postsecondary degree", "example");
-    makeBarChart("Ward 7", "Adults with a postsecondary degree", ".baseLocation", "baseBar", width, height);
-    makeBarChart("Washington, D.C.", "Adults with a postsecondary degree", ".comparisonLocation", "comparisonBar", width, height);
-    makeBarChart("Ward 7|Washington, D.C.", "Adults with a postsecondary degree", ".withEquity", "withEquityBar", width, height);
-
+    makeEquityBarChart("Adults with a postsecondary degree", "Ward 7", "Washington, D.C.");
 });
 
+function makeEquityBarChart(indicator, baseGeo, compareGeo, chartDivID) {
+    populateTitle(indicator, "#exampleEquityChart");
+    populateBarTitles(baseGeo, compareGeo, "#exampleEquityChart");
+    makeBarChart(baseGeo, indicator, ".baseLocation", "baseBar", width, height);
+    makeBarChart(compareGeo, indicator, ".comparisonLocation", "comparisonBar", width, height);
+    makeBarChart(baseGeo + "|" + compareGeo, indicator, ".withEquity", "withEquityBar", width, height);
+}
 // function updateChart(geo, indicator) {
 //     updateBars(PHA, "raceChart");
 // }
-function populateTitle(title, chartType) {
+function populateTitle(title, chartDivID) {
     var year = equityData.filter(function(d) { return d.indicator == title})[0].year;
-    chartType == "example" ? d3.select("#exampleEquityChartTitle").text(title + ", " + year) : d3.select("#toolEquityChartTitle").text(title + ", " + year);
+    d3.select(chartDivID + " h2.chartTitle").text(title + ", " + year);
+}
+
+function populateBarTitles(baseGeo, compareGeo, chartDivID) {
+    d3.select(chartDivID + " h4.baseGeographyName").text(baseGeo);
+    d3.select(chartDivID + " h4.comparisonGeographyName").text(compareGeo);
+    d3.select(chartDivID + " span.baseGeographyName").text(baseGeo);
 }
 
 function getData(geo, indicator, parentClass) {
