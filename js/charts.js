@@ -54,7 +54,7 @@ d3.csv("data/equity_data.csv", function(d) {
 //     updateBars(PHA, "raceChart");
 // }
 function populateTitle(title, chartType) {
-    var year = equityData.filter(function(d) { return d.indicator_short == title})[0].year;
+    var year = equityData.filter(function(d) { return d.indicator == title})[0].year;
     chartType == "example" ? d3.select("#exampleEquityChartTitle").text(title + ", " + year) : d3.select("#toolEquityChartTitle").text(title + ", " + year);
 }
 
