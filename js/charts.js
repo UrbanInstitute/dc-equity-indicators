@@ -11,7 +11,7 @@ var xScale = d3.scaleLinear()
     .domain([0, 1])
     .rangeRound([0, width]);
 
-var colorScaleMore = d3.scaleOrdinal()
+var colorScale = d3.scaleOrdinal()
     .domain(["yes", "no", "diff"])
     .range(["#1696d2", "#d2d2d2", "#fdbf11"]);
 
@@ -84,7 +84,7 @@ function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, width, h
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    drawBars(svg, chartData, colorScaleMore);
+    drawBars(svg, chartData, colorScale);
     labelBars(chartDivID, parentClass, chartData);
 
     if(parentClass === ".withEquity") {
@@ -100,35 +100,109 @@ function getData(parentClass, geo, indicator) {
         var baseData = equityData.filter(function(d) { return d.geo === base && d.indicator === indicator; });
         var compareData = equityData.filter(function(d) { return d.geo === compare && d.indicator === indicator; });
 
-        return [{
-            indicator: baseData[0].indicator,
-            geo: baseData[0].geo,
-            compareGeo: compareData[0].geo,
-            yes: baseData[0].value,
-            diff: compareData[0].value - baseData[0].value,
-            no: 1 - compareData[0].value,
-            year: baseData[0].year,
-            numerator: baseData[0].numerator,
-            denom: baseData[0].denom,
-            blue_bar_label: baseData[0].blue_bar_label,
-            grey_bar_label: baseData[0].grey_bar_label,
-            diff_bar_label: baseData[0].diff_bar_label
-        }];
+        // non-binary indicators that we want more of
+        if(indicator === "Small-business lending per employee") {
+            // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
+            return [{
+                    indicator: baseData[0].indicator,
+                    geo: baseData[0].geo,
+                    compareGeo: compareData[0].geo,
+                    yes: baseData[0].value,
+                    diff: compareData[0].value - baseData[0].value,
+                    no: 0,
+                    year: baseData[0].year,
+                    numerator: "",
+                    denom: "",
+                    blue_bar_label: "",
+                    grey_bar_label: "",
+                    diff_bar_label: baseData[0].diff_bar_label
+                }];
+        }
+        // non-binary indicators that we want less of
+        else if(indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+            // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
+            return [{
+                    indicator: baseData[0].indicator,
+                    geo: baseData[0].geo,
+                    compareGeo: compareData[0].geo,
+                    yes: compareData[0].value,
+                    diff: baseData[0].value - compareData[0].value,
+                    no: 0,
+                    year: baseData[0].year,
+                    numerator: "",
+                    denom: "",
+                    blue_bar_label: "",
+                    grey_bar_label: "",
+                    diff_bar_label: baseData[0].diff_bar_label
+                }];
+        }
+        // binary indicators that we want less of
+        else if(indicator === "Unemployment rate" || indicator === "Households with a housing cost burden") {
+            // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
+            return [{
+                    indicator: baseData[0].indicator,
+                    geo: baseData[0].geo,
+                    compareGeo: compareData[0].geo,
+                    yes: compareData[0].value,
+                    diff: baseData[0].value - compareData[0].value,
+                    no: 1 - baseData[0].value,
+                    year: baseData[0].year,
+                    numerator: baseData[0].numerator,
+                    denom: baseData[0].denom,
+                    blue_bar_label: baseData[0].blue_bar_label,
+                    grey_bar_label: baseData[0].grey_bar_label,
+                    diff_bar_label: baseData[0].diff_bar_label
+                }];
+        }
+        // binary indicators that we want more of
+        else {
+            return [{
+                indicator: baseData[0].indicator,
+                geo: baseData[0].geo,
+                compareGeo: compareData[0].geo,
+                yes: baseData[0].value,
+                diff: compareData[0].value - baseData[0].value,
+                no: 1 - compareData[0].value,
+                year: baseData[0].year,
+                numerator: baseData[0].numerator,
+                denom: baseData[0].denom,
+                blue_bar_label: baseData[0].blue_bar_label,
+                grey_bar_label: baseData[0].grey_bar_label,
+                diff_bar_label: baseData[0].diff_bar_label
+            }];
+        }
     }
     else {
         var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
 
-        return [{
-            indicator: data[0].indicator,
-            geo: data[0].geo,
-            yes: data[0].value,
-            no: 1 - data[0].value,
-            year: data[0].year,
-            numerator: data[0].numerator,
-            denom: data[0].denom,
-            blue_bar_label: data[0].blue_bar_label,
-            grey_bar_label: data[0].grey_bar_label
-        }];
+        // non-binary indicators
+        if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+            return [{
+                indicator: data[0].indicator,
+                geo: data[0].geo,
+                yes: data[0].value,
+                no: 0,
+                year: data[0].year,
+                numerator: "",
+                denom: "",
+                blue_bar_label: "",
+                grey_bar_label: ""
+            }];
+        }
+        // binary indicators
+        else {
+            return [{
+                indicator: data[0].indicator,
+                geo: data[0].geo,
+                yes: data[0].value,
+                no: 1 - data[0].value,
+                year: data[0].year,
+                numerator: data[0].numerator,
+                denom: data[0].denom,
+                blue_bar_label: data[0].blue_bar_label,
+                grey_bar_label: data[0].grey_bar_label
+            }];
+        }
     }
 }
 
@@ -138,8 +212,8 @@ function drawBars(svg, data, colorScale) {
         .enter()
         .append("g")
         .attr("class", function(d) { return "serie " + d.key; })
-        .style("fill", function(d) { return colorScaleMore(d.key); })
-        .style("stroke", function(d) { return colorScaleMore(d.key); });
+        .style("fill", function(d) { return colorScale(d.key); })
+        .style("stroke", function(d) { return colorScale(d.key); });
 
     slices.selectAll("rect")
         .data(function(d) { return d; })
@@ -183,31 +257,71 @@ function drawBars(svg, data, colorScale) {
 }
 
 function labelBars(chartDivID, parentClass, data) {
-    d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
-    d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
-    d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
-    d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
+    console.log(data);
+    var indicator = data[0].indicator;
 
-    if(parentClass === ".withEquity") {
-        d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
+    // labelling for non-binary indicators
+    if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text("");
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text("");
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
-        d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
-        d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        if(parentClass === ".withEquity") {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes + data[0].diff));
+
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        }
+        else {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+        }
     }
+    // labelling for binary indicators
     else {
-        d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
+
+        if(parentClass === ".withEquity") {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
+
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        }
+        else {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+        }
     }
 }
 
 function updateBars(chartDivID, parentClass, geo, indicator) {
     var data = getData(parentClass, geo, indicator);
 
+    // update scales
+    if(indicator === "Unemployment rate" || indicator === "Households with a housing cost burden" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+        colorScale.range(["#1696d2", "#d2d2d2", "#ec008b"]);
+    }
+    else {
+        colorScale.range(["#1696d2", "#d2d2d2", "#fdbf11"]);
+    }
+
+    if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+        xScale.domain([0, d3.max(equityData, function(d) { return d.indicator === indicator && d.value; })]);
+    }
+    else {
+        xScale.domain([0, 1]);
+    }
+
     // first update labels
     labelBars(chartDivID, parentClass, data);
 
     // then transition bars and label positions
     var slices = d3.selectAll(chartDivID + " " + parentClass + " .serie")
-        .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }));
+        .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
+        .style("fill", function(d) { return colorScale(d.key); })
+        .style("stroke", function(d) { return colorScale(d.key); });
 
     slices.selectAll("rect")
         .data(function(d) { return d; })
