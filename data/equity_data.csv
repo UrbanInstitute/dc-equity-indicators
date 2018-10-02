@@ -203,11 +203,8 @@ People above poverty,People above poverty,2012-16,"Cluster 38 (Douglas, Shipley 
 People above poverty,People above poverty,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",19028.315321,30539.920097,0.6230636904,above poverty,more,adults,NA
 People above poverty,People above poverty,2012-16,Cluster 40 (Walter Reed),269.89802322,339.51678695,0.7949475066,above poverty,more,adults,NA
 People above poverty,People above poverty,2012-16,Cluster 41 (Rock Creek Park),891.18329538,979.10144678,0.9102052686,above poverty,more,adults,NA
-People above poverty,People above poverty,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,above poverty,more,adults,NA
 People above poverty,People above poverty,2012-16,Cluster 43 (Saint Elizabeths),535.81044009,770.59759969,0.6953180756,above poverty,more,adults,NA
 People above poverty,People above poverty,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),5050.9487216,6079.86201,0.8307669999,above poverty,more,adults,NA
-People above poverty,People above poverty,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,above poverty,more,adults,NA
-People above poverty,People above poverty,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,above poverty,more,adults,NA
 Children above poverty,Children above poverty,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",1469.077532,1474.8360253,0.9960955026,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",5606.9821772,7792.8592198,0.7195025624,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",777.02267028,1112.2361507,0.6986130327,above poverty,more,children,NA
@@ -249,11 +246,8 @@ Children above poverty,Children above poverty,2012-16,"Cluster 38 (Douglas, Ship
 Children above poverty,Children above poverty,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",4345.0588038,8727.2122776,0.4978747698,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,Cluster 40 (Walter Reed),38.318167556,58.256981487,0.6577437859,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,Cluster 41 (Rock Creek Park),148.9273379,157.7218575,0.9442403245,above poverty,more,children,NA
-Children above poverty,Children above poverty,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,Cluster 43 (Saint Elizabeths),133.63772871,219.44414614,0.6089828827,above poverty,more,children,NA
 Children above poverty,Children above poverty,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),1979.0458299,2329.4853657,0.8495635384,above poverty,more,children,NA
-Children above poverty,Children above poverty,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,above poverty,more,children,NA
-Children above poverty,Children above poverty,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,above poverty,more,children,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",2774.5603708,3237.3388122,0.8570497349,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",3741.7864013,8131.7171377,0.4601471421,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",1247.0774453,1724.1046695,0.7233188723,over $75K,more,families,NA
@@ -295,11 +289,8 @@ Children above poverty,Children above poverty,2012-16,"Cluster 46 (Arboretum, An
 "Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",1323.585379,6486.0197387,0.20406743,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,Cluster 40 (Walter Reed),35.533417007,79.086915595,0.4492957746,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,Cluster 41 (Rock Creek Park),142.82600805,201.70160974,0.7081054446,over $75K,more,families,NA
-"Family income over $75,000 per year","Family income over $75,000",2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,Cluster 43 (Saint Elizabeths),41.735505238,142.29890263,0.2932946387,over $75K,more,families,NA
 "Family income over $75,000 per year","Family income over $75,000",2012-16,Cluster 44 (Joint Base Anacostia-Bolling),690.46793448,1474.6887907,0.4682126418,over $75K,more,families,NA
-"Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,over $75K,more,families,NA
-"Family income over $75,000 per year","Family income over $75,000",2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,over $75K,more,families,NA
 Unemployment rate,Unemployment,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",635.43216213,15152.549085,0.041935661,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",2341.0799912,34267.491219,0.0683178111,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",542.59827327,9321.2528103,0.058210874,unemployed,fewer,adults,NA
@@ -341,11 +332,8 @@ Unemployment rate,Unemployment,2012-16,"Cluster 38 (Douglas, Shipley Terrace)",9
 Unemployment rate,Unemployment,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",3815.0809534,13806.20857,0.2763308213,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,Cluster 40 (Walter Reed),26.176655162,198.2742391,0.1320224719,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,Cluster 41 (Rock Creek Park),29.79139844,598.50911458,0.0497760146,unemployed,fewer,adults,NA
-Unemployment rate,Unemployment,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,Cluster 43 (Saint Elizabeths),82.90314677,351.96199652,0.2355457339,unemployed,fewer,adults,NA
 Unemployment rate,Unemployment,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),243.95594133,1875.8221867,0.1300528073,unemployed,fewer,adults,NA
-Unemployment rate,Unemployment,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,unemployed,fewer,adults,NA
-Unemployment rate,Unemployment,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,unemployed,fewer,adults,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",10766.997969,11831.170277,0.9100535042,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",18652.544368,23798.326936,0.7837754485,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",5982.1041165,6693.9030852,0.8936645841,over $35K,more,full-time workers,NA
@@ -387,11 +375,8 @@ Unemployment rate,Unemployment,2012-16,"Cluster 46 (Arboretum, Anacostia River)"
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",4191.4651916,7007.941233,0.5981022175,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,Cluster 40 (Walter Reed),85.101976781,131.77439598,0.6458157227,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,Cluster 41 (Rock Creek Park),344.78109095,427.38750298,0.8067177644,over $35K,more,full-time workers,NA
-"Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,Cluster 43 (Saint Elizabeths),115.43669189,182.09586694,0.6339336188,over $35K,more,full-time workers,NA
 "Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,Cluster 44 (Joint Base Anacostia-Bolling),1378.6065721,2535.4473914,0.5437330614,over $35K,more,full-time workers,NA
-"Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,over $35K,more,full-time workers,NA
-"Full-time workers earning over $35,000 per year","Full-time workers earning over $35,000",2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,over $35K,more,full-time workers,NA
 Homeownership rate,Homeownership,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",3930.0777626,10818.898559,0.3632604318,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",6453.3061313,20154.65191,0.3201894114,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",2469.6751956,5385.2714707,0.4585980872,homeowners,more,households,NA
@@ -433,11 +418,8 @@ Homeownership rate,Homeownership,2012-16,"Cluster 38 (Douglas, Shipley Terrace)"
 Homeownership rate,Homeownership,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",2493.894514,11570.207257,0.2155444979,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,Cluster 40 (Walter Reed),69.061813618,137.12111704,0.5036555646,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,Cluster 41 (Rock Creek Park),202.31309217,425.47234788,0.4755023286,homeowners,more,households,NA
-Homeownership rate,Homeownership,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,Cluster 43 (Saint Elizabeths),78.832624246,271.57148701,0.290283141,homeowners,more,households,NA
 Homeownership rate,Homeownership,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),85.183393996,1901.5004981,0.0447979867,homeowners,more,households,NA
-Homeownership rate,Homeownership,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,homeowners,more,households,NA
-Homeownership rate,Homeownership,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,homeowners,more,households,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",10421.949846,14257.207614,0.730995166,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",22860.573353,31571.860767,0.7240806464,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",6835.9252761,8662.3727445,0.789151596,commute under 45 minutes,more,workers,NA
@@ -479,11 +461,8 @@ Workers with less than a 45-minute commute to work,Less than a 45-minute commute
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",5385.0206492,9873.4348396,0.5454049919,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,Cluster 40 (Walter Reed),93.790398494,174.21399435,0.5383631714,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,Cluster 41 (Rock Creek Park),416.22784264,562.87592847,0.739466411,commute under 45 minutes,more,workers,NA
-Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,Cluster 43 (Saint Elizabeths),154.9990677,262.21295391,0.5911190328,commute under 45 minutes,more,workers,NA
 Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),1651.2525281,2994.2603808,0.5514725903,commute under 45 minutes,more,workers,NA
-Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,commute under 45 minutes,more,workers,NA
-Workers with less than a 45-minute commute to work,Less than a 45-minute commute,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,commute under 45 minutes,more,workers,NA
 Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",3085.3689175,10683.417987,0.2887997943,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",7847.5241925,19683.321356,0.3986890246,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",1708.5339843,5259.4690628,0.3248491367,with cost burden,fewer,households,NA
@@ -525,11 +504,8 @@ Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 38 (D
 Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",5855.606791,10850.692064,0.5396528402,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,Cluster 40 (Walter Reed),55.249450894,132.55412614,0.4168067227,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,Cluster 41 (Rock Creek Park),160.15628123,416.47265815,0.3845541312,with cost burden,fewer,households,NA
-Households with a housing cost burden,Housing cost burden,2012-16,Cluster 42 (Observatory Circle),NA,NA,NA,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,Cluster 43 (Saint Elizabeths),111.26303575,256.25287597,0.4341923396,with cost burden,fewer,households,NA
 Households with a housing cost burden,Housing cost burden,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),1064.983644,1642.9643407,0.6482086175,with cost burden,fewer,households,NA
-Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,with cost burden,fewer,households,NA
-Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,with cost burden,fewer,households,NA
 "Violent crimes per 1,000 population",Violent crime,2017,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",62,18220,3.4028540066,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",255,46275,5.510534846,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",129,11647,11.075813514,n/a,fewer,n/a,NA
@@ -571,11 +547,8 @@ Households with a housing cost burden,Housing cost burden,2012-16,"Cluster 46 (A
 "Violent crimes per 1,000 population",Violent crime,2017,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",337,27989,12.04044446,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,Cluster 40 (Walter Reed),6,355,16.901408451000002,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,Cluster 41 (Rock Creek Park),2,839,2.3837902265,n/a,fewer,n/a,NA
-"Violent crimes per 1,000 population",Violent crime,2017,Cluster 42 (Observatory Circle),NA,NA,NA,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,Cluster 43 (Saint Elizabeths),18,766,23.498694517,n/a,fewer,n/a,NA
 "Violent crimes per 1,000 population",Violent crime,2017,Cluster 44 (Joint Base Anacostia-Bolling),8,4748,1.6849199663,n/a,fewer,n/a,NA
-"Violent crimes per 1,000 population",Violent crime,2017,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,n/a,fewer,n/a,NA
-"Violent crimes per 1,000 population",Violent crime,2017,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,n/a,fewer,n/a,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",163,215,0.7581395349,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",437,739,0.5913396482,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",102,143,0.7132867133,received adequate prenatal care,more,births,NA
@@ -617,11 +590,8 @@ Births to mothers who received adequate prenatal care,Adequate prenatal care,201
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",215,568,0.3785211268,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,Cluster 40 (Walter Reed),NA,NA,NA,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,Cluster 41 (Rock Creek Park),11,12,0.9166666667,received adequate prenatal care,more,births,NA
-Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,Cluster 42 (Observatory Circle),NA,NA,NA,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,Cluster 43 (Saint Elizabeths),NA,NA,NA,received adequate prenatal care,more,births,NA
 Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,Cluster 44 (Joint Base Anacostia-Bolling),81,122,0.6639344262,received adequate prenatal care,more,births,NA
-Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,received adequate prenatal care,more,births,NA
-Births to mothers who received adequate prenatal care,Adequate prenatal care,2016,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,received adequate prenatal care,more,births,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",28,267,0.1048689139,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",26,454,0.0572687225,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",6,188,0.0319148936,affordable homes sold,more,homes sold,NA
@@ -663,11 +633,8 @@ Homes sales affordable to median-income households,Affordable home sales,2017,"C
 Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",45,123,0.3658536585,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,Cluster 40 (Walter Reed),NA,NA,NA,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,Cluster 41 (Rock Creek Park),NA,NA,NA,affordable homes sold,more,homes sold,NA
-Homes sales affordable to median-income households,Affordable home sales,2017,Cluster 42 (Observatory Circle),NA,NA,NA,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,Cluster 43 (Saint Elizabeths),NA,NA,NA,affordable homes sold,more,homes sold,NA
 Homes sales affordable to median-income households,Affordable home sales,2017,Cluster 44 (Joint Base Anacostia-Bolling),NA,NA,NA,affordable homes sold,more,homes sold,NA
-Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 45 (National Mall, Potomac River)",NA,NA,NA,affordable homes sold,more,homes sold,NA
-Homes sales affordable to median-income households,Affordable home sales,2017,"Cluster 46 (Arboretum, Anacostia River)",NA,NA,NA,affordable homes sold,more,homes sold,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",15118.132854,17310.649317,0.8733429103,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",21995.992728,37054.691533,0.5936088473,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",7265.8639321,9344.2512236,0.7775758333,with degree,more,adults,NA
@@ -709,11 +676,8 @@ Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 38 (Dou
 Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",2968.0185726,18424.414231,0.1610916111,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,Cluster 40 (Walter Reed),147.81455915,280.48007531,0.52700556,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,Cluster 41 (Rock Creek Park),535.36762565,763.44664841,0.701250869,with degree,more,adults,NA
-Adults with a postsecondary degree,Postsecondary degree,2012-16,Cluster 42 (Observatory Circle),4.181443299,5.2082474227,0.8028503563,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,Cluster 43 (Saint Elizabeths),106.84944093,517.26383655,0.2065666172,with degree,more,adults,NA
 Adults with a postsecondary degree,Postsecondary degree,2012-16,Cluster 44 (Joint Base Anacostia-Bolling),1723.4924757,3152.8657337,0.5466431562,with degree,more,adults,NA
-Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 45 (National Mall, Potomac River)",62.060286444,64.822977762,0.9573809872,with degree,more,adults,NA
-Adults with a postsecondary degree,Postsecondary degree,2012-16,"Cluster 46 (Arboretum, Anacostia River)",91.163613912,241.88104548,0.3768944099,with degree,more,adults,NA
 Small-business lending per employee,Small-business lending,2014-2016,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",11852090.173,3025.7074624,21507.704722,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",11535448.171,2414.3190566,63518.229776,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",10540404.921,2291.5574455,22485.15434,n/a,more,n/a,NA
@@ -755,11 +719,8 @@ Small-business lending per employee,Small-business lending,2014-2016,"Cluster 38
 Small-business lending per employee,Small-business lending,2014-2016,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",2583668.436,690.58794604,23798.274252,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,Cluster 40 (Walter Reed),116254.05524,20.272983997,638.75852079,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,Cluster 41 (Rock Creek Park),441711.25543,74.714059454,2126.3163609,n/a,more,n/a,NA
-Small-business lending per employee,Small-business lending,2014-2016,Cluster 42 (Observatory Circle),12043.986598,2.0288659794,24.479647229,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,Cluster 43 (Saint Elizabeths),193901.17732,42.294996245,705.09519079,n/a,more,n/a,NA
 Small-business lending per employee,Small-business lending,2014-2016,Cluster 44 (Joint Base Anacostia-Bolling),371784.69939,131.33451051,4689.3954702,n/a,more,n/a,NA
-Small-business lending per employee,Small-business lending,2014-2016,"Cluster 45 (National Mall, Potomac River)",1484683.1703,1281.2009852,999.01321432,n/a,more,n/a,NA
-Small-business lending per employee,Small-business lending,2014-2016,"Cluster 46 (Arboretum, Anacostia River)",600045.27681,70.731426219,509.80908093,n/a,more,n/a,NA
 Home mortgage applications approved,Mortgage applications,2017,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",21.915474539,1027.6651366,0.0213255016,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",94.894629761,1881.3574182,0.0504394481,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",31.383720077,723.76201601,0.043361933,approved,more,applications,NA
@@ -801,11 +762,8 @@ Home mortgage applications approved,Mortgage applications,2017,"Cluster 38 (Doug
 Home mortgage applications approved,Mortgage applications,2017,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",97.058097343,644.03502058,0.1507031361,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,Cluster 40 (Walter Reed),0.6683401318,11.584562284,0.0576923077,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,Cluster 41 (Rock Creek Park),1.2629973036,28.874027679,0.0437416393,approved,more,applications,NA
-Home mortgage applications approved,Mortgage applications,2017,Cluster 42 (Observatory Circle),0.024742268,0.1567010309,0.1578947368,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,Cluster 43 (Saint Elizabeths),2.9846700097,20.962159169,0.1423837108,approved,more,applications,NA
 Home mortgage applications approved,Mortgage applications,2017,Cluster 44 (Joint Base Anacostia-Bolling),4.9510792526,24.656304627,0.2008037834,approved,more,applications,NA
-Home mortgage applications approved,Mortgage applications,2017,"Cluster 45 (National Mall, Potomac River)",1.8257733641,3.969270264,0.4599770846,approved,more,applications,NA
-Home mortgage applications approved,Mortgage applications,2017,"Cluster 46 (Arboretum, Anacostia River)",0.8413253756,12.139123276,0.0693069307,approved,more,applications,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",19609.42297,19609.423036,0.9999999966,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",50843.542412,50843.542652,0.9999999953,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",14459.157298,14459.157133,1.0000000114,near a grocery store,more,people,NA
@@ -847,11 +805,8 @@ People who live within one mile of a major grocery store,Grocery stores,2018,"Cl
 People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",7023.4438648,31674.834162,0.2217357739,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,Cluster 40 (Walter Reed),309.82502774,309.82502651,1.000000004,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,Cluster 41 (Rock Creek Park),971.45419801,1020.5338072,0.9519079046,near a grocery store,more,people,NA
-People who live within one mile of a major grocery store,Grocery stores,2018,Cluster 42 (Observatory Circle),7.8801498197,7.8801498127,1.0000000009,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,Cluster 43 (Saint Elizabeths),423.30785508,804.14633048,0.5264064997,near a grocery store,more,people,NA
 People who live within one mile of a major grocery store,Grocery stores,2018,Cluster 44 (Joint Base Anacostia-Bolling),231.19846592,6460.5420298,0.0357862335,near a grocery store,more,people,NA
-People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 45 (National Mall, Potomac River)",79.549406055,107.65081768,0.7389577503,near a grocery store,more,people,NA
-People who live within one mile of a major grocery store,Grocery stores,2018,"Cluster 46 (Arboretum, Anacostia River)",269.1170404,276.16156953,0.9744912765,near a grocery store,more,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",19600.429703,19609.423036,0.999541377,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",50714.10554,50843.542652,0.9974542074,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",12696.512263,14459.157133,0.8780949087,near a location,fewer,people,NA
@@ -893,11 +848,8 @@ People who live within one mile of a check-cashing location,Check-cashing locati
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",29732.198373,31674.834162,0.9386694251,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,Cluster 40 (Walter Reed),309.4485684,309.82502651,0.9987849332,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,Cluster 41 (Rock Creek Park),686.50175426,1020.5338072,0.6726888903,near a location,fewer,people,NA
-People who live within one mile of a check-cashing location,Check-cashing locations,2018,Cluster 42 (Observatory Circle),1.3483146067,7.8801498127,0.1711026616,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,Cluster 43 (Saint Elizabeths),803.92798125,804.14633048,0.9997284708,near a location,fewer,people,NA
 People who live within one mile of a check-cashing location,Check-cashing locations,2018,Cluster 44 (Joint Base Anacostia-Bolling),1600.396168,6460.5420298,0.2477185599,near a location,fewer,people,NA
-People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 45 (National Mall, Potomac River)",8.6363636364,107.65081768,0.0802257133,near a location,fewer,people,NA
-People who live within one mile of a check-cashing location,Check-cashing locations,2018,"Cluster 46 (Arboretum, Anacostia River)",106.65666474,276.16156953,0.3862111043,near a location,fewer,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",19603.564604,19609.423036,0.999701244,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",50828.984398,50843.542652,0.9997136656,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",14456.52145,14459.157133,0.9998177153,near a branch,more,people,NA
@@ -939,11 +891,8 @@ People who live within one mile of a retail bank branch,Retail bank branches,201
 People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",29920.03663,31674.834162,0.94459963,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,Cluster 40 (Walter Reed),309.4485684,309.82502651,0.9987849332,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,Cluster 41 (Rock Creek Park),1004.5112863,1020.5338072,0.9842998628,near a branch,more,people,NA
-People who live within one mile of a retail bank branch,Retail bank branches,2018,Cluster 42 (Observatory Circle),7.8801498127,7.8801498127,1,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,Cluster 43 (Saint Elizabeths),550.54077557,804.14633048,0.6846276041,near a branch,more,people,NA
 People who live within one mile of a retail bank branch,Retail bank branches,2018,Cluster 44 (Joint Base Anacostia-Bolling),2143.8430148,6460.5420298,0.3318364009,near a branch,more,people,NA
-People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 45 (National Mall, Potomac River)",81.251916314,107.65081768,0.7547728672,near a branch,more,people,NA
-People who live within one mile of a retail bank branch,Retail bank branches,2018,"Cluster 46 (Arboretum, Anacostia River)",256.61627236,276.16156953,0.9292251373,near a branch,more,people,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 01 (Kalorama Heights, Adams Morgan, Lanier Heights)",130.24936627,53018.485541,2.5534463978,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 02 (Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View)",449.67059901,134616.98093,4.3755797727,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 03 (Howard University, Le Droit Park, Cardozo/Shaw)",99.180570845,34069.939954,4.6790347476,n/a,fewer,n/a,NA
@@ -985,9 +934,6 @@ People who live within one mile of a retail bank branch,Retail bank branches,201
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 39 (Congress Heights, Bellevue, Washington Highlands)",653.44752935,81356.591381,8.4144435365,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,Cluster 40 (Walter Reed),6.23784123,995.49262629,5.4204847721,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,Cluster 41 (Rock Creek Park),7.5774311868,2336.2692122,2.6401273703,n/a,fewer,n/a,NA
-"Premature deaths per 1,000 population",Premature mortality,2014 -2016,Cluster 42 (Observatory Circle),NA,16.67628866,NA,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,Cluster 43 (Saint Elizabeths),19.774062423,2236.691002,8.4350362435,n/a,fewer,n/a,NA
 "Premature deaths per 1,000 population",Premature mortality,2014 -2016,Cluster 44 (Joint Base Anacostia-Bolling),49.048054467,14124.865451,6.8249118586,n/a,fewer,n/a,NA
-"Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 45 (National Mall, Potomac River)",NA,213.7688426,NA,n/a,fewer,n/a,NA
-"Premature deaths per 1,000 population",Premature mortality,2014 -2016,"Cluster 46 (Arboretum, Anacostia River)",6.1296563079,771.61555876,6.3251191051,n/a,fewer,n/a,NA
 Initial,Initial,,Initial,,,0,,,,NA

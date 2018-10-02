@@ -17,7 +17,8 @@ dat <- bind_rows(city_dat, ward_dat, cluster_dat) %>%
   select(indicator = text_name, indicator_short = `Abberviated label for menu`,
          year = `Year`, geo, numerator, denom, value = equityvariable,
          blue_bar_label = `Blue bar label`, diff_bar_label = `Yellow/pink bar label`,
-         grey_bar_label = `Gray bar label`, summary_sentence = `Summary sentence`)
+         grey_bar_label = `Gray bar label`, summary_sentence = `Summary sentence`) %>%
+  filter(!(geo %in% c("Cluster 42 (Observatory Circle)", "Cluster 45 (National Mall, Potomac River)", "Cluster 46 (Arboretum, Anacostia River)")))
 
 # add a row with data to initialize the bar chart with
 dat <- add_row(dat, indicator = "Initial",
