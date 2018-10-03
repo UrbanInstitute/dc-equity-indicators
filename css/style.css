@@ -113,15 +113,17 @@ text.barLabel {
     height: 30px;
     background-color: #fff;
     line-height: 30px;
+    overflow: hidden;
 }
 
 .selectorButton {
     float: left;
     width: 30px;
     height: 30px;
+    border: none;
     background-color: #1696d2;
     text-align: center;
-    line-height: 30px;
+    /*line-height: 30px;*/
     cursor: pointer;
 }
 
