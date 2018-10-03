@@ -88,7 +88,7 @@ function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, width, h
     labelBars(chartDivID, parentClass, chartData);
 
     if(parentClass === ".withEquity") {
-        populateEquityStatement(chartData);
+        populateEquityStatement(chartDivID, chartData);
     }
 }
 
@@ -257,7 +257,6 @@ function drawBars(svg, data, colorScale) {
 }
 
 function labelBars(chartDivID, parentClass, data) {
-    console.log(data);
     var indicator = data[0].indicator;
 
     // labelling for non-binary indicators
@@ -354,15 +353,18 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .attr("class", "barLabel line2")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", height + 30);
+
+    populateEquityStatement(chartDivID, data);
 }
 
-function populateEquityStatement(data) {
+function populateEquityStatement(chartDivID, data) {
+    console.log(data);
     var diffNumber = data[0].diff * data[0].denom;
 
     // handle case where there is no equity gap
 
     // populate sentence if there is equity gap
-    d3.select(".equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
-    d3.select(".equitySentence span.baseGeography").text(data[0].geo);
-    d3.select(".equitySentence span.compareGeography").text(data[0].compareGeo);
+    d3.select(chartDivID + " .equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
+    d3.select(chartDivID + " .equitySentence span.baseGeography").text(data[0].geo);
+    d3.select(chartDivID + " .equitySentence span.compareGeography").text(data[0].compareGeo);
 }
