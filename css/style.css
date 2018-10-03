@@ -90,6 +90,9 @@ text.barLabel {
     font-size: 12px;
 }
 
+.noEquityGap div.equityBarGroup {
+    display: none;
+}
 
 
 

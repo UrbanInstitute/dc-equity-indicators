@@ -374,6 +374,14 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", height + 30);
 
+    // if there is no equity gap, hide the third bar chart
+    if(parentClass === ".withEquity" && data[0].diff <=0) {
+        d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
+    }
+    else {
+        d3.select(chartDivID + " .withEquity").classed("noEquityGap", false);
+    }
+
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, data);
     }
@@ -381,7 +389,7 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
 function populateEquityStatement(chartDivID, indicator, data) {
     var diffNumber = data[0].diff * data[0].denom;
-    console.log(data);
+    // console.log(data);
 
     if(data[0].diff <= 0) {
         d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
