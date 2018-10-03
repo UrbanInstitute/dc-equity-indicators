@@ -120,10 +120,17 @@
             </section>
 
             <section class="toolDropdownSelector">
-                <div class="selectorGroup indicatorSelector">
-                    <div class="selectorLabel">Indicator</div>
-                    <div class="selectorBox">Select an indicator</div>
-                    <button class="selectorButton">+</button>
+                <div class="indicatorSelectorMenus">
+                    <div class="selectorGroup indicatorSelector">
+                        <div class="selectorLabel">Indicator</div>
+                        <div class="selectorBox">Select an indicator</div>
+                        <button class="selectorButton">+</button>
+                    </div>
+                    <div class="selectorGroup baseGeographySelector">
+                        <div class="selectorLabel">Indicator</div>
+                        <div class="selectorBox">Select a location</div>
+                        <button class="selectorButton">+</button>
+                    </div>
                 </div>
             </section>
 
@@ -133,6 +140,7 @@
                         <h2 class="chartTitle"></h2>
                         <div class="baseLocation chartRow">
                             <h4 class="barTitle baseGeographyName"></h4>
+                            <div class="viewDemoInfo">See demographic info</div>
                             <div class="equityBarGroup">
                                 <div class="baseNumber equityNumber"></div>
                                 <div class="baseBar equityBar"></div>
@@ -140,6 +148,7 @@
                         </div>
                         <div class="comparisonLocation chartRow">
                             <h4 class="barTitle comparisonGeographyName"></h4>
+                            <div class="viewDemoInfo">See demographic info</div>
                             <div class="equityBarGroup">
                                 <div class="comparisonNumber equityNumber"></div>
                                 <div class="comparisonBar equityBar"></div>
@@ -151,13 +160,11 @@
                                 <div class="withEquityNumber equityNumber"></div>
                                 <div class="withEquityBar equityBar"></div>
                             </div>
-                        </div>
-                        <div class="equityStatement">
                             <p class="equitySentence"></p>
                         </div>
                     </div>
                 </div>
-                <p>Descriptive text</p>
+                <p class="indicatorDescriptiveText">Descriptive text</p>
             </section>
         </main>
 

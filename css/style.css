@@ -1,3 +1,5 @@
+/* tooltip arrows from: http://www.cssarrowplease.com/ */
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     border: 0px none;
     margin: 0px;
@@ -12,8 +14,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body, html {
     color: #000;
     font-family: "Lato",sans-serif;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 18px;
+    /*line-height: 16px;*/
     margin: 0px;
     padding: 0px;
     text-align: left;
@@ -34,19 +36,70 @@ a:hover {
 }
 
 p {
-    margin-bottom: 10px;
-    line-height: 1.3;
+    margin-bottom: 24px;
+    line-height: 1.56;
+    max-width: 700px;
 }
 
 section.introduction {
-    max-width: 760px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 section.toolDropdownSelector {
     width: 100%;
-    height: 100px;
-    background-color: #d2d2d2;
+    height: 151px;
+    background-color: #0a4c6a;
+    position: relative;
+    margin-bottom: 44px;
+}
+
+section.toolDropdownSelector:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #0a4c6a;
+    border-width: 20px;
+    margin-left: -20px;
+}
+
+#equityChart {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+section.tool .indicatorDescriptiveText {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+h1.title {
+    font-size: 36px;
+    font-weight: normal;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 24px;
+    font-weight: normal;
+    margin-bottom: 24px;
+}
+
+.tool h2 {
+    margin-bottom: 35px;
+}
+
+h4.barTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 7px;
 }
 
 .chart {
@@ -61,12 +114,43 @@ section.toolDropdownSelector {
 
 .chartRow {
     width: 100%;
-    margin: 20px 0;
+    /*margin: 20px 0;*/
 }
 
 .chartRow h4 {
     width: 100%;
     display: inline-block;
+}
+
+#equityChart .withEquity.chartRow {
+    border: 1px solid #d8d8d8;
+    padding: 17px 10px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+#equityChart .withEquity.chartRow :after, #equityChart .withEquity.chartRow :before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+#equityChart .withEquity.chartRow :after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 20px;
+    margin-left: -20px;
+}
+#equityChart .withEquity.chartRow :before {
+    border-color: rgba(216, 216, 216, 0);
+    border-top-color: #d8d8d8;
+    border-width: 21px;
+    margin-left: -21px;
 }
 
 .equityBarGroup {
@@ -76,31 +160,76 @@ section.toolDropdownSelector {
 
 .equityNumber {
     float: left;
-    width: 100px;
+    width: 150px;
+    font-size: 32px;
+    font-weight: lighter;
+}
+
+#exampleEquityChart .equityNumber {
+    width: 70px;
+}
+
+.viewDemoInfo {
+    font-size: 14px;
+    line-height: 20px;
+    color: #0096d2;
+    text-decoration: underline;
 }
 
 .equityBar {
     float: left;
 }
 
+line.barLabel {
+    stroke-width: 2px;
+}
+
 text.barLabel {
     text-anchor: middle;
     fill: #000;
     stroke: none;
-    font-size: 12px;
+}
+
+text.barLabel.line1 {
+    font-size: 14px;
+}
+
+text.barLabel.line2 {
+    font-size: 11px;
+}
+
+.withEquity .withEquityBar g.diff text.barLabel {
+    font-weight: bold;
 }
 
 .noEquityGap div.equityBarGroup {
     display: none;
 }
 
+.equitySentence {
+    margin-top: 33px;
+    max-width: 700px;
+    font-size: 18px;
+}
 
+.equitySentence span.equitySentenceFirstPart {
+    font-weight: bold;
+}
 
+.tool .equitySentence {
+    margin-left: 150px;
+}
 /************ STYLES FOR SELECTOR MENUS **************/
+
+.indicatorSelectorMenus {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 .selectorGroup {
     display: inline-block;
-    width: 25%;
+    width: 325px;
     /*background-color: #1696d2;*/
     margin: 10px;
 }
@@ -108,25 +237,38 @@ text.barLabel {
 .selectorLabel {
     float: left;
     width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
 }
 
 .selectorBox {
     float: left;
-    width: 80%;
-    height: 30px;
+    width: 271px;
+    height: 45px;
     background-color: #fff;
-    line-height: 30px;
+    line-height: 45px;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    padding-left: 10px;
+    border: none;
 }
 
 .selectorButton {
     float: left;
-    width: 30px;
-    height: 30px;
+    padding: 0;
+    width: 51px;
+    height: 45px;
     border: none;
     background-color: #1696d2;
+    color: #fff;
     text-align: center;
-    /*line-height: 30px;*/
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 45px;
     cursor: pointer;
 }
 

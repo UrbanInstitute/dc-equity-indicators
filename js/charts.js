@@ -7,21 +7,23 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 
 var categories = ["yes", "diff", "no"];
 
-var width = 600,
-    height = 35,
-    margin = {top: 0, right: 40, bottom: 40, left: 0};
+var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
+var toolChartDimensions = {width: 880, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
+// var width = 500,
+//     height = 34,
+//     margin = ;
 
 var xScale = d3.scaleLinear()
-    .domain([0, 1])
-    .rangeRound([0, width]);
+    .domain([0, 1]);
+    // .rangeRound([0, width]);
 
 var colorScale = d3.scaleOrdinal()
     .domain(["yes", "no", "diff"])
-    .range(["#1696d2", "#d2d2d2", "#fdbf11"]);
+    .range(["#1696d2", "#e3e3e3", "#fdbf11"]);
 
 var colorScaleLess = d3.scaleOrdinal()
     .domain(["yes", "no", "diff"])
-    .range(["#1696d2", "#d2d2d2", "#ec008b"]);
+    .range(["#1696d2", "#e3e3e3", "#ec008b"]);
 
 var stack = d3.stack();
 
@@ -47,16 +49,19 @@ d3.csv("data/equity_data.csv", function(d) {
 
     equityData = data;
 
-    makeEquityBarChart("#exampleEquityChart", "Adults with a postsecondary degree", "Ward 7", "Washington, D.C.");
-    makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial");
+    // render example chart
+    makeEquityBarChart("#exampleEquityChart", "Adults with a postsecondary degree", "Ward 7", "Washington, D.C.", exampleChartDimensions);
+
+    // initialize bottom chart as grey rectangles
+    makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial", toolChartDimensions);
 });
 
-function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
+function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo, dimensions) {
     populateChartTitle(chartDivID, indicator);
     populateBarTitles(chartDivID, baseGeo, compareGeo);
-    makeBarChart(chartDivID, ".baseLocation", "baseBar", baseGeo, indicator, width, height);
-    makeBarChart(chartDivID, ".comparisonLocation", "comparisonBar", compareGeo, indicator, width, height);
-    makeBarChart(chartDivID, ".withEquity", "withEquityBar", baseGeo + "|" + compareGeo, indicator, width, height);
+    makeBarChart(chartDivID, ".baseLocation", "baseBar", baseGeo, indicator, dimensions);
+    makeBarChart(chartDivID, ".comparisonLocation", "comparisonBar", compareGeo, indicator, dimensions);
+    makeBarChart(chartDivID, ".withEquity", "withEquityBar", baseGeo + "|" + compareGeo, indicator, dimensions);
 }
 
 function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
@@ -78,17 +83,19 @@ function populateBarTitles(chartDivID, baseGeo, compareGeo) {
     d3.select(chartDivID + " span.baseGeographyName").text(baseGeo);
 }
 
-function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, width, height) {
+function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, dimensions) {
     var chartData = getData(parentClass, geo, indicator);
+
+    xScale.range([0, dimensions.width]);
 
     var svg = d3.select(chartDivID + " ." + chartID)
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", dimensions.width + dimensions.margin.left + dimensions.margin.right)
+        .attr("height", dimensions.height + dimensions.margin.top + dimensions.margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + dimensions.margin.left + "," + dimensions.margin.top + ")");
 
-    drawBars(svg, chartData, colorScale);
+    drawBars(svg, chartData, colorScale, dimensions.height);
     labelBars(chartDivID, parentClass, chartData);
 
     if(parentClass === ".withEquity") {
@@ -225,7 +232,9 @@ function getData(parentClass, geo, indicator) {
     }
 }
 
-function drawBars(svg, data, colorScale) {
+function drawBars(svg, data, colorScale, barHeight) {
+
+
 
     var slices = svg.selectAll(".serie")
         .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
@@ -242,7 +251,7 @@ function drawBars(svg, data, colorScale) {
         .attr("class", "slice")
         .attr("x", function(d) { return xScale(d[0]); })
         .attr("y", 0)
-        .attr("height", height)
+        .attr("height", barHeight)
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
         .style("stroke-width", 0);
 
@@ -254,8 +263,8 @@ function drawBars(svg, data, colorScale) {
         .attr("class", "barLabel")
         .attr("x1", function(d) { return xScale(d[1]) - 1; })
         .attr("x2", function(d) { return xScale(d[1]) - 1; })
-        .attr("y1", height)
-        .attr("y2", height + 5);
+        .attr("y1", barHeight)
+        .attr("y2", barHeight + 4);
 
     slices.selectAll(".barLabel.line1")
         .data(function(d) { return d; })
@@ -263,7 +272,7 @@ function drawBars(svg, data, colorScale) {
         .append("text")
         .attr("class", "barLabel line1")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
-        .attr("y", height + 15)
+        .attr("y", barHeight + 19)
         .text("test");
 
     slices.selectAll(".barLabel.line2")
@@ -272,7 +281,7 @@ function drawBars(svg, data, colorScale) {
         .append("text")
         .attr("class", "barLabel line2")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
-        .attr("y", height + 30)
+        .attr("y", barHeight + 33)
         .text("test");
 }
 
@@ -346,33 +355,26 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .data(function(d) { return d; })
         .transition()
         .attr("x", function(d) { return xScale(d[0]); })
-        .attr("y", 0)
-        .attr("height", height)
-        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
-        .style("stroke-width", 0);
+        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
 
     slices.selectAll("line")
         .data(function(d) { return d; })
         .transition()
         .attr("class", "barLabel")
         .attr("x1", function(d) { return xScale(d[1]) - 1; })
-        .attr("x2", function(d) { return xScale(d[1]) - 1; })
-        .attr("y1", height)
-        .attr("y2", height + 5);
+        .attr("x2", function(d) { return xScale(d[1]) - 1; });
 
     slices.selectAll(".barLabel.line1")
         .data(function(d) { return d; })
         .transition()
         .attr("class", "barLabel line1")
-        .attr("x", function(d) { return xScale(d[1]) - 1; })
-        .attr("y", height + 15);
+        .attr("x", function(d) { return xScale(d[1]) - 1; });
 
     slices.selectAll(".barLabel.line2")
         .data(function(d) { return d; })
         .transition()
         .attr("class", "barLabel line2")
-        .attr("x", function(d) { return xScale(d[1]) - 1; })
-        .attr("y", height + 30);
+        .attr("x", function(d) { return xScale(d[1]) - 1; });
 
     // if there is no equity gap, hide the third bar chart
     if(parentClass === ".withEquity" && data[0].diff <=0) {
@@ -394,7 +396,7 @@ function populateEquityStatement(chartDivID, indicator, data) {
     if(data[0].diff <= 0) {
         d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
     }
-    else {
-        d3.select(chartDivID + " .equitySentence").text(COMMAFORMAT(diffNumber) + " more adults in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
+    else {  // TODO: figure out how to bold first part of this sentence for all equity sentences
+        d3.select(chartDivID + " .equitySentence").html("<span class='equitySentenceFirstPart'>" + COMMAFORMAT(diffNumber) + " more adults</span> in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
     }
 }
