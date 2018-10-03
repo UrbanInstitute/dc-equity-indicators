@@ -92,7 +92,7 @@ function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, width, h
     labelBars(chartDivID, parentClass, chartData);
 
     if(parentClass === ".withEquity") {
-        populateEquityStatement(chartDivID, chartData);
+        populateEquityStatement(chartDivID, indicator, chartData);
     }
 }
 
@@ -291,7 +291,7 @@ function labelBars(chartDivID, parentClass, data) {
         if(parentClass === ".withEquity") {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes + data[0].diff));
 
-            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].numerator * data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].denom * data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
@@ -359,16 +359,19 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", height + 30);
 
-    populateEquityStatement(chartDivID, data);
+    if(parentClass === ".withEquity") {
+        populateEquityStatement(chartDivID, indicator, data);
+    }
 }
 
-function populateEquityStatement(chartDivID, data) {
+function populateEquityStatement(chartDivID, indicator, data) {
     var diffNumber = data[0].diff * data[0].denom;
+    console.log(data);
 
-    // if() {
-    //     d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
-    // }
-    // else {
-    //     d3.select(chartDivID + " .equitySentence").text(COMMAFORMAT(diffNumber) + " more adults in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
-    // }
+    if(data[0].diff <= 0) {
+        d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
+    }
+    else {
+        d3.select(chartDivID + " .equitySentence").text(COMMAFORMAT(diffNumber) + " more adults in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
+    }
 }
