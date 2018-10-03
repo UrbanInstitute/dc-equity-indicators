@@ -104,10 +104,12 @@ function getData(parentClass, geo, indicator) {
         var baseData = equityData.filter(function(d) { return d.geo === base && d.indicator === indicator; });
         var compareData = equityData.filter(function(d) { return d.geo === compare && d.indicator === indicator; });
 
+        var data;
+
         // non-binary indicators that we want more of
         if(indicator === "Small-business lending per employee") {
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
-            return [{
+            data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
@@ -125,7 +127,7 @@ function getData(parentClass, geo, indicator) {
         // non-binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
-            return [{
+            data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
@@ -143,7 +145,7 @@ function getData(parentClass, geo, indicator) {
         // binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
-            return [{
+            data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
@@ -160,7 +162,7 @@ function getData(parentClass, geo, indicator) {
         }
         // binary indicators that we want more of
         else {
-            return [{
+            data = [{
                 indicator: baseData[0].indicator,
                 geo: baseData[0].geo,
                 compareGeo: compareData[0].geo,
@@ -175,6 +177,19 @@ function getData(parentClass, geo, indicator) {
                 diff_bar_label: baseData[0].diff_bar_label
             }];
         }
+
+        // if there's no equity gap, then set diff = 0 so d3 doesn't complain when trying to draw the bars (which will be hidden anyways)
+        if(data[0].diff < 0) {
+            data[0].diff = 0;
+            if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
+                data[0].no = 1 - compareData[0].value;
+            }
+            else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) === -1) {
+                data[0].no = 1 - baseData[0].value;
+            }
+        }
+
+        return data;
     }
     else {
         var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
