@@ -1,6 +1,10 @@
 var PCTFORMAT = d3.format(".0%");
 var COMMAFORMAT = d3.format(",.0f");
 
+var nonbinaryIndicators = ["Small-business lending per employee", "Violent crimes per 1,000 population", "Premature deaths per 1,000 population"];
+// var positiveIndicators = [];
+var negativeIndicators = ["Unemployment rate", "Households with a housing cost burden", "Violent crimes per 1,000 population", "Premature deaths per 1,000 population"];
+
 var categories = ["yes", "diff", "no"];
 
 var width = 600,
@@ -119,7 +123,7 @@ function getData(parentClass, geo, indicator) {
                 }];
         }
         // non-binary indicators that we want less of
-        else if(indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+        else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             return [{
                     indicator: baseData[0].indicator,
@@ -137,7 +141,7 @@ function getData(parentClass, geo, indicator) {
                 }];
         }
         // binary indicators that we want less of
-        else if(indicator === "Unemployment rate" || indicator === "Households with a housing cost burden") {
+        else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             return [{
                     indicator: baseData[0].indicator,
@@ -176,7 +180,7 @@ function getData(parentClass, geo, indicator) {
         var data = equityData.filter(function(d) { return d.geo === geo && d.indicator === indicator; });
 
         // non-binary indicators
-        if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+        if(nonbinaryIndicators.indexOf(indicator) > -1) {
             return [{
                 indicator: data[0].indicator,
                 geo: data[0].geo,
@@ -207,6 +211,7 @@ function getData(parentClass, geo, indicator) {
 }
 
 function drawBars(svg, data, colorScale) {
+
     var slices = svg.selectAll(".serie")
         .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
         .enter()
@@ -260,7 +265,7 @@ function labelBars(chartDivID, parentClass, data) {
     var indicator = data[0].indicator;
 
     // labelling for non-binary indicators
-    if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+    if(nonbinaryIndicators.indexOf(indicator) > -1) {
         d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
         d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text("");
         d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text("");
@@ -299,14 +304,14 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     var data = getData(parentClass, geo, indicator);
 
     // update scales
-    if(indicator === "Unemployment rate" || indicator === "Households with a housing cost burden" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+    if(negativeIndicators.indexOf(indicator) > -1) {
         colorScale.range(["#1696d2", "#d2d2d2", "#ec008b"]);
     }
     else {
         colorScale.range(["#1696d2", "#d2d2d2", "#fdbf11"]);
     }
 
-    if(indicator === "Small-business lending per employee" || indicator === "Violent crimes per 1,000 population" || indicator === "Premature deaths per 1,000 population") {
+    if(nonbinaryIndicators.indexOf(indicator) > -1) {
         xScale.domain([0, d3.max(equityData, function(d) { return d.indicator === indicator && d.value; })]);
     }
     else {
@@ -358,13 +363,12 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 }
 
 function populateEquityStatement(chartDivID, data) {
-    console.log(data);
     var diffNumber = data[0].diff * data[0].denom;
 
-    // handle case where there is no equity gap
-
-    // populate sentence if there is equity gap
-    d3.select(chartDivID + " .equitySentence span.diffNumber").text(COMMAFORMAT(diffNumber));
-    d3.select(chartDivID + " .equitySentence span.baseGeography").text(data[0].geo);
-    d3.select(chartDivID + " .equitySentence span.compareGeography").text(data[0].compareGeo);
+    // if() {
+    //     d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
+    // }
+    // else {
+    //     d3.select(chartDivID + " .equitySentence").text(COMMAFORMAT(diffNumber) + " more adults in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
+    // }
 }
