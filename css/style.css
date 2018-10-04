@@ -175,13 +175,20 @@ h4.barTitle {
 
 .equityNumber {
     float: left;
-    width: 150px;
     font-size: 32px;
     font-weight: lighter;
 }
 
 #exampleEquityChart .equityNumber {
     width: 70px;
+}
+
+#equityChart .equityNumber {
+    text-align: right;
+    margin-right: 7px;
+    font-size: 54px;
+    line-height: 54px;
+    width: 230px;
 }
 
 .viewDemoInfo {
@@ -230,6 +237,7 @@ text.barLabel.line2 {
     margin-top: 33px;
     max-width: 700px;
     font-size: 18px;
+    font-weight: normal;
 }
 
 .equitySentence span.equitySentenceFirstPart {
@@ -238,6 +246,34 @@ text.barLabel.line2 {
 
 .tool .equitySentence {
     margin-left: 150px;
+}
+
+.tool .equitySentence.noGap {
+    margin-left: 0;
+    font-size: 32px;
+    font-weight: lighter;
+}
+
+.adjustTargetBtns {
+    display: inline-block;
+    float: left;
+    width: 23px;
+    margin: 2px 4px;
+}
+
+.adjustTargetBtns button {
+    height: 18px;
+    width: 21px;
+    border: none;
+    margin: 4px 0;
+}
+
+button.upArrowBtn {
+    background-image: url('../img/up-arrow.svg');
+}
+
+button.downArrowBtn {
+    background-image: url('../img/down-arrow.svg');
 }
 /************ STYLES FOR SELECTOR MENUS **************/
 

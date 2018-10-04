@@ -8,7 +8,7 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
-var toolChartDimensions = {width: 880, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
+var toolChartDimensions = {width: 770, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
 // var width = 500,
 //     height = 34,
 //     margin = ;
@@ -395,8 +395,10 @@ function populateEquityStatement(chartDivID, indicator, data) {
 
     if(data[0].diff <= 0) {
         d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
+        d3.select(chartDivID + " .equitySentence").classed("noGap", true);
     }
     else {  // TODO: figure out how to bold first part of this sentence for all equity sentences
         d3.select(chartDivID + " .equitySentence").html("<span class='equitySentenceFirstPart'>" + COMMAFORMAT(diffNumber) + " more adults</span> in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
+        d3.select(chartDivID + " .equitySentence").classed("noGap", false);
     }
 }
