@@ -275,6 +275,10 @@ button.upArrowBtn {
 button.downArrowBtn {
     background-image: url('../img/down-arrow.svg');
 }
+
+
+
+
 /************ STYLES FOR SELECTOR MENUS **************/
 
 .indicatorSelectorMenus {
@@ -423,6 +427,8 @@ button.downArrowBtn {
     bottom: 0;
     height: 22px;
     width: 22px;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .sliderButton:before {
@@ -440,6 +446,8 @@ button.downArrowBtn {
     -webkit-transform: translateX(58px);
     -ms-transform: translateX(58px);
     transform: translateX(58px);
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 input#customTarget {
