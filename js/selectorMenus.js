@@ -16,7 +16,9 @@ function closeMenu(menuElementID) {
 
 // event listeners to handle selection of indicator or geography
 d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
-    .on("click", function() { showSelectionInMenu(d3.select(this).node().innerText); });
+    .on("click", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("selected", false);
+                              d3.select(this).classed("selected", true);
+                              showSelectionInMenu(d3.select(this).node().innerText); });
 
 
 function showSelectionInMenu(selectedItemName) {

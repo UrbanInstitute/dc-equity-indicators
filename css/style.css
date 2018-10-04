@@ -305,7 +305,7 @@ button.downArrowBtn {
     padding: 17px 0;
 }
 
-/************ STYLES FOR SELECTOR MENUS **************/
+/************ STYLES FOR SELECTORs **************/
 
 .indicatorSelectorMenus {
     position: absolute;
@@ -364,50 +364,6 @@ button.downArrowBtn {
     cursor: pointer;
 }
 
-.selectorMenuModal {
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: #fff;
-    z-index: 1000;
-}
-
-.closed {
-    display: none;
-}
-
-.closeButton {
-    position: absolute;
-
-    /* don't need to go crazy with z-index here, just sits over .modal-guts */
-    z-index: 1;
-
-    /*top: 1001px;*/
-
-    /* needs to look OK with or without scrollbar */
-    right: 20px;
-
-    border: 0;
-    background: black;
-    color: white;
-    padding: 5px 10px;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.dcEquityIndicators.menuItem {
-    cursor: pointer;
-    list-style: none;
-}
-
-.dcEquityIndicators.menuItem:hover {
-    text-decoration: underline;
-}
 
 .dividerImage {
     display: inline-block;
@@ -481,6 +437,86 @@ input#customTarget {
     height: 45px;
     font-size: 18px;
 }
+
+
+
+
+/************ STYLES FOR MODALS **************/
+
+.selectorMenuModal {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    z-index: 1000;
+    padding: 47px 150px 0 190px;
+}
+
+.selectorMenuModal.closed {
+    display: none;
+}
+
+.selectorMenuModal .closeButton {
+    position: absolute;
+    z-index: 1;
+    right: 15%;
+    border: 0;
+    height: 18px;
+    width: 18px;
+    background-image: url('../img/close-button.png');
+    cursor: pointer;
+}
+
+h2.modalTitle {
+    font-size: 36px;
+    font-weight: normal;
+}
+
+h3.modalGroupTitle {
+    font-size: 25px;
+    font-weight: normal;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.selectorMenuModal ul {
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.modalGroup.twoColumns {
+    columns: 2;
+}
+
+.dcEquityIndicators.menuItem {
+    cursor: pointer;
+    list-style: none;
+    font-size: 15px;
+    color: #1696d2;
+    line-height: 32px;
+    width: 380px;
+}
+
+.dcEquityIndicators.menuItem:hover {
+    text-decoration: underline;
+}
+
+.dcEquityIndicators.menuItem.selected {
+    background-color: #fdbf11;
+    color: #000;
+    cursor: auto;
+}
+
+.dcEquityIndicators.menuItem.selected:hover {
+    text-decoration: none;
+}
+
+
 /************ SUBNAV ***************/
 
 .subnav {
