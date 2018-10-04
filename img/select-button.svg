@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="51" height="45" viewBox="0 0 51 45">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#0096D2" d="M.394 0h50v45h-50z"/>
+        <text fill="#FFF" font-family="LucidaGrande, Lucida Grande" font-size="28" transform="translate(.394)">
+            <tspan x="14.098" y="31">+</tspan>
+        </text>
+    </g>
+</svg>
