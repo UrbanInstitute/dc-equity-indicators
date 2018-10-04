@@ -239,7 +239,8 @@ text.barLabel.line2 {
 .indicatorSelectorMenus {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-60%);
+    margin-left: 3%;
 }
 
 .selectorGroup {
@@ -256,6 +257,10 @@ text.barLabel.line2 {
     font-weight: bold;
     color: #fff;
     margin-bottom: 8px;
+}
+
+.comparisonToggle .selectorLabel {
+    margin-bottom: 6px;
 }
 
 .selectorBox {
@@ -337,10 +342,35 @@ text.barLabel.line2 {
 }
 
 .comparisonToggle {
-    width: 90px;
+    width: 120px;
     display: inline-block;
+    margin: 10px 15px;
+    overflow: auto;
 }
 
+.toggleLabel {
+    font-size: 12px;
+    color: #fff;
+}
+
+.toggleLabel:first-child {
+    margin-right: 22px;
+}
+
+.toggleLabel.selected {
+    color: #fdbf11;
+}
+
+.switch {
+    background-color: #d8d8d8;
+    width: 79px;
+    height: 22px;
+    border-radius: 11px;
+    margin-left: 12px;
+    margin-top: 3px;
+    cursor: pointer;
+    position: relative;
+}
 /************ SUBNAV ***************/
 
 .subnav {
