@@ -124,12 +124,12 @@
                     <div class="selectorGroup indicatorSelector">
                         <div class="selectorLabel">Indicator</div>
                         <div class="selectorBox">Select an indicator</div>
-                        <button class="selectorButton">+</button>
+                        <button class="selectorButton"></button>
                     </div>
                     <div class="selectorGroup baseGeographySelector">
                         <div class="selectorLabel">Location</div>
                         <div class="selectorBox">Select a location</div>
-                        <button class="selectorButton">+</button>
+                        <button class="selectorButton"></button>
                     </div>
                     <div class="dividerImage">
                         <img src="img/arrow-divider.svg">
@@ -137,15 +137,21 @@
                     <div class="comparisonToggle">
                         <div class="selectorLabel">For comparison</div>
                         <div class="toggleLabels">
-                            <span class="toggleLabel selected">Location</span>
-                            <span class="toggleLabel">Target</span>
+                            <span class="toggleLabel location selected">Location</span>
+                            <span class="toggleLabel target">Target</span>
                         </div>
-                        <div class="button_toggle switch"></div>
+                        <div class="switch">
+                            <span class="sliderButton"></span>
+                        </div>
                     </div>
                     <div class="selectorGroup comparisonGeographySelector">
                         <div class="selectorLabel">Select a location</div>
                         <div class="selectorBox">DC</div>
-                        <button class="selectorButton">+</button>
+                        <button class="selectorButton"></button>
+                    </div>
+                    <div class="selectorGroup customTargetTextbox hidden">
+                        <div class="selectorLabel">Enter your own target</div>
+                            <input type="number" id="customTarget" name="customTarget" min="0" step="1">
                     </div>
                 </div>
             </section>

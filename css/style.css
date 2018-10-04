@@ -248,6 +248,11 @@ text.barLabel.line2 {
     width: 325px;
     /*background-color: #1696d2;*/
     margin: 10px;
+    overflow: auto;
+}
+
+.selectorGroup.hidden {
+    display: none;
 }
 
 .selectorLabel {
@@ -280,15 +285,11 @@ text.barLabel.line2 {
 .selectorButton {
     float: left;
     padding: 0;
-    width: 51px;
+    width: 50px;
     height: 45px;
     border: none;
+    background-image: url('../img/select-button.svg');
     background-color: #1696d2;
-    color: #fff;
-    text-align: center;
-    font-size: 32px;
-    font-weight: normal;
-    line-height: 45px;
     cursor: pointer;
 }
 
@@ -370,6 +371,40 @@ text.barLabel.line2 {
     margin-top: 3px;
     cursor: pointer;
     position: relative;
+}
+
+.sliderButton {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22px;
+    width: 22px;
+}
+
+.sliderButton:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 0px;
+    bottom: 0px;
+    background-color: #1696d2;
+    border-radius: 50%;
+}
+
+.sliderButton.off {
+    -webkit-transform: translateX(58px);
+    -ms-transform: translateX(58px);
+    transform: translateX(58px);
+}
+
+input#customTarget {
+    width: 271px;
+    height: 45px;
+    font-size: 18px;
 }
 /************ SUBNAV ***************/
 

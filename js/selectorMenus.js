@@ -24,3 +24,24 @@ function showSelectionInMenu(selectedItemName) {
     closeMenu("#equityIndicatorMenu");
     updateEquityBarChart("#equityChart", selectedItemName, "Ward 7", "Washington, D.C.");
 }
+
+
+// event listeners to toggle between using a comparison geography and a custom target
+d3.select(".comparisonToggle .switch")
+    .on("click", function() { toggleMenu(); });
+
+function toggleMenu() {
+    d3.select(".toggleLabel.location").classed("selected", !d3.select(".toggleLabel.location").classed("selected"));
+    d3.select(".toggleLabel.target").classed("selected", !d3.select(".toggleLabel.target").classed("selected"));
+
+    if(d3.select(".toggleLabel.location").classed("selected")) {
+        d3.select(".sliderButton").classed("off", false);
+        d3.select(".comparisonGeographySelector").classed("hidden", false);
+        d3.select(".customTargetTextbox").classed("hidden", true);
+    }
+    else if(d3.select(".toggleLabel.target").classed("selected")) {
+        d3.select(".sliderButton").classed("off", true);
+        d3.select(".comparisonGeographySelector").classed("hidden", true);
+        d3.select(".customTargetTextbox").classed("hidden", false);
+    }
+}
