@@ -234,8 +234,6 @@ function getData(parentClass, geo, indicator) {
 
 function drawBars(svg, data, colorScale, barHeight) {
 
-
-
     var slices = svg.selectAll(".serie")
         .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
         .enter()
@@ -393,7 +391,10 @@ function populateEquityStatement(chartDivID, indicator, data) {
     var diffNumber = data[0].diff * data[0].denom;
     // console.log(data);
 
-    if(data[0].diff <= 0) {
+    if(indicator === "Initial") {
+        d3.select(chartDivID + " .equitySentence").text();
+    }
+    else if(data[0].diff <= 0) {
         d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
         d3.select(chartDivID + " .equitySentence").classed("noGap", true);
     }

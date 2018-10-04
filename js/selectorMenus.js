@@ -22,6 +22,7 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
 function showSelectionInMenu(selectedItemName) {
     d3.select(".indicatorSelector .selectorBox").text(selectedItemName);
     closeMenu("#equityIndicatorMenu");
+    d3.select("#equityChart").classed("initialize", false);
     updateEquityBarChart("#equityChart", selectedItemName, "Ward 7", "Washington, D.C.");
 }
 
