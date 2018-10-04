@@ -191,6 +191,11 @@ h4.barTitle {
     text-decoration: underline;
 }
 
+.infoIcon {
+    margin-right: 4px;
+    vertical-align: text-bottom;
+}
+
 .equityBar {
     float: left;
 }
