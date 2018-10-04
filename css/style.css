@@ -96,10 +96,25 @@ h2 {
     margin-bottom: 35px;
 }
 
+#equityChart h2 {
+    display: inline-block;
+    width: 80%;
+}
+
 h4.barTitle {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 7px;
+}
+
+.saveImageBtn {
+    border: none;
+    width: 153px;
+    height: 48px;
+    background-color: #1696d2;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 .chart {
@@ -315,6 +330,15 @@ text.barLabel.line2 {
 
 .dcEquityIndicators.menuItem:hover {
     text-decoration: underline;
+}
+
+.dividerImage {
+    display: inline-block;
+}
+
+.comparisonToggle {
+    width: 90px;
+    display: inline-block;
 }
 
 /************ SUBNAV ***************/
