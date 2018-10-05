@@ -8,7 +8,7 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
-var toolChartDimensions = {width: 770, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
+var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
 // var width = 500,
 //     height = 34,
 //     margin = ;

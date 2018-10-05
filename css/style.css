@@ -112,6 +112,10 @@ h4.barTitle {
     margin-bottom: 7px;
 }
 
+#equityChart .withEquity h4.barTitle {
+    padding: 10px;
+}
+
 .saveImageBtn {
     border: none;
     width: 153px;
@@ -144,7 +148,7 @@ h4.barTitle {
 
 #equityChart .withEquity.chartRow {
     border: 1px solid #d8d8d8;
-    padding: 17px 10px;
+    /*padding: 17px 10px;*/
     position: relative;
     margin-bottom: 50px;
 }
@@ -178,6 +182,12 @@ h4.barTitle {
     display: inline-block;
 }
 
+.barLeft {
+    width: 270px;
+    display: inline-block;
+    float: left;
+}
+
 .equityNumber {
     float: left;
     font-size: 32px;
@@ -193,6 +203,10 @@ h4.barTitle {
     margin-right: 7px;
     font-size: 54px;
     line-height: 54px;
+    width: 255px;
+}
+
+#equityChart .withEquity .equityNumber {
     width: 230px;
 }
 
