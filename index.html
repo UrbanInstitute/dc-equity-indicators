@@ -233,45 +233,244 @@
 
             <h3 class="modalGroupTitle">Economic</h3>
             <ul class="modalGroup twoColumns">
-                <li class="dcEquityIndicators menuItem">People above poverty</li>
-                <li class="dcEquityIndicators menuItem">Children above poverty</li>
-                <li class="dcEquityIndicators menuItem">Full-time workers earning over $35,000 per year</li>
-                <li class="dcEquityIndicators menuItem">Family income over $75,000 per year</li>
-                <li class="dcEquityIndicators menuItem">Unemployment rate</li>
-                <li class="dcEquityIndicators menuItem">Workers with less than a 45-minute commute to work</li>
-                <li class="dcEquityIndicators menuItem">Small-business lending per employee</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">People above poverty</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Children above poverty</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Full-time workers earning over $35,000 per year</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Family income over $75,000 per year</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Unemployment rate</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Workers with less than a 45-minute commute to work</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Small-business lending per employee</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Education</h3>
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem">Adults with a postsecondary degree</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Adults with a postsecondary degree</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Finance</h3>
             <ul class="modalGroup">
                 <!-- <li class="dcEquityIndicators menuItem">Home mortgage applications approved</li> -->
-                <li class="dcEquityIndicators menuItem">People who live within one mile of a retail bank branch</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">People who live within one mile of a retail bank branch</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Health</h3>
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem">Premature deaths per 1,000 population</li>
-                <li class="dcEquityIndicators menuItem">Births to mothers who received adequate prenatal care</li>
-                <li class="dcEquityIndicators menuItem">People who live within one mile of a major grocery store</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Premature deaths per 1,000 population</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Births to mothers who received adequate prenatal care</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">People who live within one mile of a major grocery store</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Housing</h3>
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem">Homeownership rate</li>
-                <li class="dcEquityIndicators menuItem">Households with a housing cost burden</li>
-                <li class="dcEquityIndicators menuItem">Homes sales affordable to median-income households</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Homeownership rate</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Households with a housing cost burden</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Homes sales affordable to median-income households</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Security</h3>
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem">Violent crimes per 1,000 population</li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Violent crimes per 1,000 population</span></li>
             </ul>
         </div>
+
+        <div id="baseGeographyMenu" class="selectorMenuModal closed">
+            <button class="closeButton"></button>
+            <h2 class="modalTitle">Select a ward or neighborhood cluster</h2>
+
+            <h3 class="modalGroupTitle">Wards</h3>
+            <div class="dcWards map"></div>
+            <ul class="modalGroup twoColumns">
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 1</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 2</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 3</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 4</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 5</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 6</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 7</span></li>
+                <li class="dcEquityIndicators menuItem"><span class="menuItemLink">Ward 8</span></li>
+            </ul>
+
+            <h3 class="modalGroupTitle">Neighborhood clusters</h3>
+            <p>The DC government uses neighborhood clusters for budgeting, planning, and service delivery purposes.</p>
+
+            <div class="dcClusters map"></div>
+            <ul class="modalGroup threeColumns">
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 1</span><br>
+                    <span class="menuItemLink">Kalorama Heights, Adams Morgan, Lanier Heights</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 2</span><br>
+                    <span class="menuItemLink">Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 3</span><br>
+                    <span class="menuItemLink">Howard University, Le Droit Park, Cardozo/Shaw</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 4</span><br>
+                    <span class="menuItemLink">Georgetown, Burleith/Hillandale</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 5</span><br>
+                    <span class="menuItemLink">West End, Foggy Bottom, GWU</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 6</span><br>
+                    <span class="menuItemLink">Dupont Circle, Connecticut Avenue/K Street</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 7</span><br>
+                    <span class="menuItemLink">Shaw, Logan Circle</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 8</span><br>
+                    <span class="menuItemLink">Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 9</span><br>
+                    <span class="menuItemLink">Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 10</span><br>
+                    <span class="menuItemLink">Hawthorne, Barnaby Woods, Chevy Chase</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 11</span><br>
+                    <span class="menuItemLink">Friendship Heights, American University Park, Tenleytown</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 12</span><br>
+                    <span class="menuItemLink">North Cleveland Park, Forest Hills, Van Ness</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 13</span><br>
+                    <span class="menuItemLink">Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 14</span><br>
+                    <span class="menuItemLink">Cathedral Heights, McLean Gardens, Glover Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 15</span><br>
+                    <span class="menuItemLink">Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 16</span><br>
+                    <span class="menuItemLink">Colonial Village, Shepherd Park, North Portal Estates</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 17</span><br>
+                    <span class="menuItemLink">Takoma, Brightwood, Manor Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 18</span><br>
+                    <span class="menuItemLink">Brightwood Park, Crestwood, Petworth</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 19</span><br>
+                    <span class="menuItemLink">Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 20</span><br>
+                    <span class="menuItemLink">North Michigan Park, Michigan Park, University Heights</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 21</span><br>
+                    <span class="menuItemLink">Edgewood, Bloomingdale, Truxton Circle, Eckington</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 22</span><br>
+                    <span class="menuItemLink">Brookland, Brentwood, Langdon</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 23</span><br>
+                    <span class="menuItemLink">Ivy City, Arboretum, Trinidad, Carver Langston</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 24</span><br>
+                    <span class="menuItemLink">Woodridge, Fort Lincoln, Gateway</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 25</span><br>
+                    <span class="menuItemLink">Union Station, Stanton Park, Kingman Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 26</span><br>
+                    <span class="menuItemLink">Capitol Hill, Lincoln Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 27</span><br>
+                    <span class="menuItemLink">Near Southeast, Navy Yard</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 28</span><br>
+                    <span class="menuItemLink">Historic Anacostia</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 29</span><br>
+                    <span class="menuItemLink">Eastland Gardens, Kenilworth</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 30</span><br>
+                    <span class="menuItemLink">Mayfair, Hillbrook, Mahaning Heights</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 31</span><br>
+                    <span class="menuItemLink">Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 32</span><br>
+                    <span class="menuItemLink">River Terrace, Benning, Greenway, Dupont Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 33</span><br>
+                    <span class="menuItemLink">Capitol View, Marshall Heights, Benning Heights</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 34</span><br>
+                    <span class="menuItemLink">Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 35</span><br>
+                    <span class="menuItemLink">Fairfax Village, Naylor Gardens, Hillcrest, Summit Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 36</span><br>
+                    <span class="menuItemLink">Woodland/Fort Stanton, Garfield Heights, Knox Hill</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 37</span><br>
+                    <span class="menuItemLink">Sheridan, Barry Farm, Buena Vista</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 38</span><br>
+                    <span class="menuItemLink">Douglas, Shipley Terrace</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 39</span><br>
+                    <span class="menuItemLink">Congress Heights, Bellevue, Washington Highlands</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 40</span><br>
+                    <span class="menuItemLink">Walter Reed</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 41</span><br>
+                    <span class="menuItemLink">Rock Creek Park</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 43</span><br>
+                    <span class="menuItemLink">Saint Elizabeths</span>
+                </li>
+                <li class="dcEquityIndicators menuItem">
+                    <span class="clusterNumber">Cluster 44</span><br>
+                    <span class="menuItemLink">Joint Base Anacostia-Bolling</span>
+                </li>
+            </ul>
+        </div>
+
+
 
         <script type="text/javascript" src="js/jquery.2.1.4.min.js"></script>
     	<script type="text/javascript" src="js/d3.v4.min.js"></script>
