@@ -272,9 +272,10 @@ text.barLabel.line2 {
 }
 
 .tool .equitySentence.noGap {
-    margin-left: 0;
+    margin-left: 10px;
     font-size: 32px;
     font-weight: lighter;
+    max-width: 100%;
 }
 
 .adjustTargetBtns {

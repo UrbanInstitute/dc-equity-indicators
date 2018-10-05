@@ -5,6 +5,13 @@ d3.select(".indicatorSelector .selectorButton")
 d3.select("#equityIndicatorMenu .closeButton")
     .on("click", function() { closeMenu("#equityIndicatorMenu"); });
 
+d3.select(".baseGeographySelector .selectorButton")
+    .on("click", function() { showMenu("#baseGeographyMenu"); });
+
+d3.select("#baseGeographyMenu .closeButton")
+    .on("click", function() { closeMenu("#baseGeographyMenu"); });
+
+
 function showMenu(menuElementID) {
     d3.select(menuElementID).classed("closed", false);
 }
@@ -18,14 +25,22 @@ function closeMenu(menuElementID) {
 d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
     .on("click", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("selected", false);
                               d3.select(this).classed("selected", true);
-                              showSelectionInMenu(d3.select(this).node().innerText); });
+                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector", d3.select(this).node().innerText); });
 
+d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
+    .on("click", function() { d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("selected", false);
+                              d3.select(this).classed("selected", true);
+                              showSelectionInMenu("#baseGeographyMenu", ".baseGeographySelector", d3.select(this).node().innerText); });
 
-function showSelectionInMenu(selectedItemName) {
-    d3.select(".indicatorSelector .selectorBox").text(selectedItemName);
-    closeMenu("#equityIndicatorMenu");
-    d3.select("#equityChart").classed("initialize", false);
-    updateEquityBarChart("#equityChart", selectedItemName, "Ward 7", "Washington, D.C.");
+function showSelectionInMenu(menuElementID, selectorBoxClass, selectedItemName) {
+    d3.select(selectorBoxClass + " .selectorBox").text(selectedItemName);
+    closeMenu(menuElementID);
+
+    var indicator = getIndicatorSelected();
+    var baseGeo = getBaseGeography();
+    // only show graph if an indicator and a base geography have been selected
+    indicator !== "Select an indicator" && baseGeo!== "Select a location" && d3.select("#equityChart").classed("initialize", false);
+    baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, "Washington, D.C.");
 }
 
 
@@ -47,4 +62,14 @@ function toggleMenu() {
         d3.select(".comparisonGeographySelector").classed("hidden", true);
         d3.select(".customTargetTextbox").classed("hidden", false);
     }
+}
+
+
+// get selection values
+function getIndicatorSelected() {
+    return d3.select("#equityIndicatorMenu .dcEquityIndicators.menuItem.selected").text();
+}
+
+function getBaseGeography() {
+    return d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
 }
