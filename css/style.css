@@ -98,7 +98,7 @@ h2 {
 
 #equityChart h2 {
     display: inline-block;
-    width: 80%;
+    width: 85%;
 }
 
 h2.chartTitle.initialize {
@@ -210,6 +210,10 @@ h4.barTitle {
 
 .equityBar {
     float: left;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 line.barLabel {
@@ -475,6 +479,7 @@ input#customTarget {
 h2.modalTitle {
     font-size: 36px;
     font-weight: normal;
+    padding-left: 5px;
 }
 
 h3.modalGroupTitle {
@@ -482,6 +487,7 @@ h3.modalGroupTitle {
     font-weight: normal;
     margin-top: 40px;
     margin-bottom: 10px;
+    padding-left: 5px;
 }
 
 .selectorMenuModal ul {
@@ -500,6 +506,7 @@ h3.modalGroupTitle {
     color: #1696d2;
     line-height: 32px;
     width: 380px;
+    padding-left: 5px;
 }
 
 .dcEquityIndicators.menuItem:hover {

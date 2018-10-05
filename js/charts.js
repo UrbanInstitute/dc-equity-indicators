@@ -287,15 +287,13 @@ function labelBars(chartDivID, parentClass, data) {
     var indicator = data[0].indicator;
 
     // labelling for non-binary indicators
-    if(nonbinaryIndicators.indexOf(indicator) > -1) {
-        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
-        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text("");
-        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text("");
-        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
+    if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) === -1) {
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", true);
 
         if(parentClass === ".withEquity") {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes + data[0].diff));
 
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
@@ -303,8 +301,46 @@ function labelBars(chartDivID, parentClass, data) {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
         }
     }
-    // labelling for binary indicators
+    // labelling for negative non-binary indicators
+    else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", true);
+
+        if(parentClass === ".withEquity") {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        }
+        else {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+        }
+    }
+    // labeling for negative binary indicators
+    else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", false);
+
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+        d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
+        d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
+
+        if(parentClass === ".withEquity") {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].denom * data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
+        }
+        else {
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+        }
+    }
+    // labelling for positive binary indicators
     else {
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", false);
+
         d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
         d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
         d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text(COMMAFORMAT(data[0].denom));
@@ -343,7 +379,7 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     // first update labels
     labelBars(chartDivID, parentClass, data);
 
-    // then transition bars and label positions
+    // then transition bars
     var slices = d3.selectAll(chartDivID + " " + parentClass + " .serie")
         .data(stack.keys(categories)(data).filter(function(d) { return !isNaN(d[0][1]); }))
         .style("fill", function(d) { return colorScale(d.key); })
@@ -355,24 +391,73 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .attr("x", function(d) { return xScale(d[0]); })
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
 
-    slices.selectAll("line")
-        .data(function(d) { return d; })
-        .transition()
-        .attr("class", "barLabel")
-        .attr("x1", function(d) { return xScale(d[1]) - 1; })
-        .attr("x2", function(d) { return xScale(d[1]) - 1; });
+    // finally, adjust label positions based on type of indicator:
+    // postive indicators will have all labels be at the end of the bar
+    // negative binary indicators should have the blue label be positioned where the base geo's value is, the pink label should be at the start of the pink bar,
+    //      and the grey label should be at the end
+    // negative non-binary indicators only need to have a label for the pink bar at the start of the pink bar so can transition all of the labels
+    //      to be at the start of the bars since the others will be hidden anyways
+    if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
+        if(nonbinaryIndicators.indexOf(indicator) > -1) {
+            slices.selectAll("line")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x1", function(d) { return xScale(d[0]); })
+                .attr("x2", function(d) { return xScale(d[0]); });
 
-    slices.selectAll(".barLabel.line1")
-        .data(function(d) { return d; })
-        .transition()
-        .attr("class", "barLabel line1")
-        .attr("x", function(d) { return xScale(d[1]) - 1; });
+            slices.selectAll(".barLabel.line1")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x", function(d) { return xScale(d[0]); });
 
-    slices.selectAll(".barLabel.line2")
-        .data(function(d) { return d; })
-        .transition()
-        .attr("class", "barLabel line2")
-        .attr("x", function(d) { return xScale(d[1]) - 1; });
+            slices.selectAll(".barLabel.line2")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x", function(d) { return xScale(d[0]); });
+        }
+        else {
+            slices.selectAll("line")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x1", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
+                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
+                                          else { return xScale(d[0]); } })
+                .attr("x2", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
+                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
+                                          else { return xScale(d[0]); } });
+
+            slices.selectAll(".barLabel.line1")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
+                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
+                                          else { return xScale(d[0]); } });
+
+            slices.selectAll(".barLabel.line2")
+                .data(function(d) { return d; })
+                .transition()
+                .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
+                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
+                                          else { return xScale(d[0]); } });
+        }
+    }
+    else {
+        slices.selectAll("line")
+            .data(function(d) { return d; })
+            .transition()
+            .attr("x1", function(d) { return xScale(d[1]) - 1; })
+            .attr("x2", function(d) { return xScale(d[1]) - 1; });
+
+        slices.selectAll(".barLabel.line1")
+            .data(function(d) { return d; })
+            .transition()
+            .attr("x", function(d) { return xScale(d[1]) - 1; });
+
+        slices.selectAll(".barLabel.line2")
+            .data(function(d) { return d; })
+            .transition()
+            .attr("x", function(d) { return xScale(d[1]) - 1; });
+    }
 
     // if there is no equity gap, hide the third bar chart
     if(parentClass === ".withEquity" && data[0].diff <=0) {
