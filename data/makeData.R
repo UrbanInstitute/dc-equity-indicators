@@ -4,11 +4,17 @@ library(readxl)
 name_mapping <- read_excel("Indicator_name_mapping.xlsx", sheet = "mapping")
 labels <- read_excel("source/DC equity text spreadsheet.xlsx")
 
-data_sheets <- excel_sheets("source/Updated data for equity feature.xlsx")
+data_sheets <- excel_sheets("source/Updated data for equity feature_10.5.xlsx")
 
-city_dat <- read_excel("source/Updated data for equity feature.xlsx", sheet = data_sheets[1])
-ward_dat <- read_excel("source/Updated data for equity feature.xlsx", sheet = data_sheets[2])
-cluster_dat <- read_excel("source/Updated data for equity feature.xlsx", sheet = data_sheets[3])
+city_dat <- read_excel("source/Updated data for equity feature_10.5.xlsx", sheet = data_sheets[1])
+ward_dat <- read_excel("source/Updated data for equity feature_10.5.xlsx", sheet = data_sheets[2])
+cluster_dat <- read_excel("source/Updated data for equity feature_10.5.xlsx", sheet = data_sheets[3])
+
+# clean cluster names by getting rid of "Cluster X" from each name
+cluster_dat <- cluster_dat %>%
+  mutate(geo2 = str_split(geo, "\\(")[[1]][2]) %>%
+  mutate(geo3 = str_sub(geo2, end = -2)) %>%
+  select(indicator, year, "geo" = geo3, numerator, denom, equityvariable)
 
 dat <- bind_rows(city_dat, ward_dat, cluster_dat) %>%
   select(-year) %>%
