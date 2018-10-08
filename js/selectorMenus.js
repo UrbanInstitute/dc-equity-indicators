@@ -42,6 +42,8 @@ function makeMap(menuElementID, mapClassName, width, height, data){
                                    showSelectionInMenu(menuElementID, menuElementID === "#baseGeographyMenu" ? ".baseGeographySelector" : ".comparisonGeographySelector"); });
         // .on("mouseover", function(d) { })
         // .on("mouseout", function(d) {});
+
+    (mapClassName === ".dcClusters") && d3.selectAll(".dcClusters .cluster_42,.cluster_45,.cluster_46").classed("disabled", true);
 }
 
 // event listeners to open and close menu modals

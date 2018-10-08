@@ -580,6 +580,7 @@ h3.modalGroupTitle {
 .geography {
     stroke: #000;
     fill: #fff;
+    cursor: pointer;
 }
 
 .geography.selected {
@@ -588,6 +589,7 @@ h3.modalGroupTitle {
 
 .geography.disabled {
     fill: #9d9fa2;
+    cursor: auto;
 }
 
 .geography.hovered {
