@@ -1,9 +1,13 @@
 d3.json("data/wards_topo.json", function(error, json) {
 
-    makeMap(960, 960, json);
+    var width = 350,
+        height = 350;
+
+    makeMap("#baseGeographyMenu", width, height, json);
+    makeMap("#comparisonGeographyMenu", width, height, json);
 });
 
-function makeMap(width, height, data){
+function makeMap(menuElementID, width, height, data){
 
     // topojsons are already projected using this projection:
     // var projection = d3.geoConicConformal()
@@ -14,7 +18,7 @@ function makeMap(width, height, data){
     var path = d3.geoPath()
         .projection(null);
 
-    var svg = d3.select("#baseGeographyMenu div.dcWards.map")
+    var svg = d3.select(menuElementID + " div.dcWards.map")
         .append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -26,8 +30,8 @@ function makeMap(width, height, data){
         .append("path")
         .attr("class", function(d) { return "geography ward_" + d.properties.WARD; })
         .attr("d", path)
-        .on("click", function(d) { selectGeography("#baseGeographyMenu", "ward_" + d.properties.WARD);
-                                    showSelectionInMenu("#baseGeographyMenu", ".baseGeographySelector"); });
+        .on("click", function(d) { selectGeography(menuElementID, "ward_" + d.properties.WARD);
+                                   showSelectionInMenu(menuElementID, menuElementID === "#baseGeographyMenu" ? ".baseGeographySelector" : ".comparisonGeographySelector"); });
         // .on("mouseover", function(d) { })
         // .on("mouseout", function(d) {});
 }
