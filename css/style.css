@@ -511,6 +511,7 @@ h3.modalGroupTitle {
     margin-top: 40px;
     margin-bottom: 10px;
     padding-left: 5px;
+    clear: both;
 }
 
 .selectorMenuModal ul {
@@ -565,6 +566,34 @@ h3.modalGroupTitle {
     color: #9d9fa2;
     cursor: auto;
 }
+
+
+/************ MAP STYLES ***************/
+
+.map {
+    width: 350px;
+    height: 350px;
+    float: left;
+    margin-bottom: 46px;
+}
+
+.geography {
+    stroke: #000;
+    fill: #fff;
+}
+
+.geography.selected {
+    fill: #fdbf11;
+}
+
+.geography.disabled {
+    fill: #9d9fa2;
+}
+
+.geography.hovered {
+    fill: #1696d2;
+}
+
 
 
 /************ SUBNAV ***************/
