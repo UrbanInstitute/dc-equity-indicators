@@ -11,6 +11,11 @@ d3.select(".baseGeographySelector .selectorButton")
 d3.select("#baseGeographyMenu .closeButton")
     .on("click", function() { closeMenu("#baseGeographyMenu"); });
 
+d3.select(".comparisonGeographySelector .selectorButton")
+    .on("click", function() { showMenu("#comparisonGeographyMenu"); });
+
+d3.select("#comparisonGeographyMenu .closeButton")
+    .on("click", function() { closeMenu("#comparisonGeographyMenu"); });
 
 function showMenu(menuElementID) {
     d3.select(menuElementID).classed("closed", false);
@@ -32,15 +37,27 @@ d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
                               d3.select(this).classed("selected", true);
                               showSelectionInMenu("#baseGeographyMenu", ".baseGeographySelector", d3.select(this).node().innerText); });
 
+d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
+    .on("click", function() { d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("selected", false);
+                              d3.select(this).classed("selected", true);
+                              showSelectionInMenu("#comparisonGeographyMenu", ".comparisonGeographySelector", d3.select(this).node().innerText); });
+
+
 function showSelectionInMenu(menuElementID, selectorBoxClass, selectedItemName) {
     d3.select(selectorBoxClass + " .selectorBox").text(selectedItemName);
     closeMenu(menuElementID);
 
     var indicator = getIndicatorSelected();
     var baseGeo = getBaseGeography();
-    // only show graph if an indicator and a base geography have been selected
-    indicator !== "Select an indicator" && baseGeo!== "Select a location" && d3.select("#equityChart").classed("initialize", false);
-    baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, "Washington, D.C.");
+    var compareGeo = getComparisonGeography();
+
+    console.log("Indicator:", indicator);
+    console.log("Base geo:", baseGeo);
+    console.log("Comparison geo:", compareGeo);
+
+    // only show graph once an indicator and a base geography have been selected
+    indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
+    indicator !== "Select an indicator" && baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
 }
 
 
@@ -72,4 +89,10 @@ function getIndicatorSelected() {
 
 function getBaseGeography() {
     return d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
+}
+
+function getComparisonGeography() {
+    var geo = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
+    if(geo == "All of Washington, DC") return "Washington, D.C.";
+    else return geo;
 }
