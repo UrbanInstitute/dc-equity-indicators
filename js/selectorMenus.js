@@ -57,8 +57,13 @@ function showSelectionInMenu(menuElementID, selectorBoxClass, selectedItemName) 
 
     // disable link in comparison geography selection modal so that users can't choose to compare a geography against itself
     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
-    var selectedGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
-    d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedGeoClassname).classed("disabled", true);
+    var selectedBaseGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+    d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedBaseGeoClassname).classed("disabled", true);
+
+    // disable link in base geography selection modal so that users can't choose to compare a geography against itself
+    d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+    var selectedCompareGeoClassname = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+    d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem." + selectedCompareGeoClassname).classed("disabled", true);
 
     // only show graph once an indicator and a base geography have been selected
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
