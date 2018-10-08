@@ -3,11 +3,19 @@ d3.json("data/wards_topo.json", function(error, json) {
     var width = 350,
         height = 350;
 
-    makeMap("#baseGeographyMenu", width, height, json);
-    makeMap("#comparisonGeographyMenu", width, height, json);
+    makeMap("#baseGeographyMenu", ".dcWards", width, height, json);
+    makeMap("#comparisonGeographyMenu", ".dcWards", width, height, json);
 });
 
-function makeMap(menuElementID, width, height, data){
+d3.json("data/clusters_topo.json", function(error, json) {
+    var width = 350,
+        height = 350;
+
+    makeMap("#baseGeographyMenu", ".dcClusters", width, height, json);
+    makeMap("#comparisonGeographyMenu", ".dcClusters", width, height, json);
+})
+
+function makeMap(menuElementID, mapClassName, width, height, data){
 
     // topojsons are already projected using this projection:
     // var projection = d3.geoConicConformal()
@@ -18,7 +26,7 @@ function makeMap(menuElementID, width, height, data){
     var path = d3.geoPath()
         .projection(null);
 
-    var svg = d3.select(menuElementID + " div.dcWards.map")
+    var svg = d3.select(menuElementID + " div" + mapClassName + ".map")
         .append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -28,9 +36,9 @@ function makeMap(menuElementID, width, height, data){
         .data(topojson.feature(data, data.objects.tracts).features)
         .enter()
         .append("path")
-        .attr("class", function(d) { return "geography ward_" + d.properties.WARD; })
+        .attr("class", function(d) { return mapClassName === ".dcWards" ? "geography ward_" + d.properties.WARD : "geography cluster_" + parseFloat(d.id); })
         .attr("d", path)
-        .on("click", function(d) { selectGeography(menuElementID, "ward_" + d.properties.WARD);
+        .on("click", function(d) { selectGeography(menuElementID, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id));
                                    showSelectionInMenu(menuElementID, menuElementID === "#baseGeographyMenu" ? ".baseGeographySelector" : ".comparisonGeographySelector"); });
         // .on("mouseover", function(d) { })
         // .on("mouseout", function(d) {});
@@ -71,13 +79,14 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
+    // .on("mouseover", function() {})
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                               selectGeography("#baseGeographyMenu", selectedGeoClassname);
                               showSelectionInMenu("#baseGeographyMenu", ".baseGeographySelector"); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
-    .on("click", function() { d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("selected", false);
-                              d3.select(this).classed("selected", true);
+    .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
+                              selectGeography("#comparisonGeographyMenu", selectedGeoClassname);
                               showSelectionInMenu("#comparisonGeographyMenu", ".comparisonGeographySelector"); });
 
 function selectGeography(menuElementID, selectedGeo) {
@@ -107,9 +116,9 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedBaseGeoClassname).classed("disabled", true);
 
     // disable link in base geography selection modal so that users can't choose to compare a geography against itself
-    d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
-    var selectedCompareGeoClassname = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
-    d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem." + selectedCompareGeoClassname).classed("disabled", true);
+    // d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+    // var selectedCompareGeoClassname = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+    // d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem." + selectedCompareGeoClassname).classed("disabled", true);
 
     // if user selects same base geo as the comparison geo, force the user to select a new comparison geo
     // if(baseGeo === compareGeo) {
