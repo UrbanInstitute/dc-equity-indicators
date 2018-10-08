@@ -556,8 +556,14 @@ h3.modalGroupTitle {
     cursor: auto;
 }
 
-.dcEquityIndicators.menuItem.selected span.menuItemLink:hover {
+.dcEquityIndicators.menuItem.selected span.menuItemLink:hover,
+.dcEquityIndicators.menuItem.disabled span.menuItemLink:hover {
     text-decoration: none;
+}
+
+.dcEquityIndicators.menuItem.disabled span.menuItemLink {
+    color: #9d9fa2;
+    cursor: auto;
 }
 
 

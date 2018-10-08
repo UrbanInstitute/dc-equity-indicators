@@ -55,6 +55,11 @@ function showSelectionInMenu(menuElementID, selectorBoxClass, selectedItemName) 
     console.log("Base geo:", baseGeo);
     console.log("Comparison geo:", compareGeo);
 
+    // disable link in comparison geography selection modal so that users can't choose to compare a geography against itself
+    d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+    var selectedGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+    d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedGeoClassname).classed("disabled", true);
+
     // only show graph once an indicator and a base geography have been selected
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
