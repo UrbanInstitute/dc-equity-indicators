@@ -491,6 +491,14 @@ input#customTarget {
     cursor: pointer;
 }
 
+.geographyModal {
+    padding-left: 170px;
+}
+
+.selectorMenuModal p {
+    max-width: 100%;
+}
+
 h2.modalTitle {
     font-size: 36px;
     font-weight: normal;
