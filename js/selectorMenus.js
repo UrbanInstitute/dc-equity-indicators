@@ -17,6 +17,8 @@ d3.json("data/clusters_topo.json", function(error, json) {
 
 function makeMap(menuElementID, mapClassName, width, height, data){
 
+    var selectorBoxClass = menuElementID === "#baseGeographyMenu" ? ".baseGeographySelector" : ".comparisonGeographySelector";
+
     // topojsons are already projected using this projection:
     // var projection = d3.geoConicConformal()
     //     .rotate([77, 0])
@@ -38,10 +40,10 @@ function makeMap(menuElementID, mapClassName, width, height, data){
         .append("path")
         .attr("class", function(d) { return mapClassName === ".dcWards" ? "geography ward_" + d.properties.WARD : "geography cluster_" + parseFloat(d.id); })
         .attr("d", path)
-        .on("click", function(d) { selectGeography(menuElementID, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id));
-                                   showSelectionInMenu(menuElementID, menuElementID === "#baseGeographyMenu" ? ".baseGeographySelector" : ".comparisonGeographySelector"); });
-        // .on("mouseover", function(d) { })
-        // .on("mouseout", function(d) {});
+        .on("mouseover", function(d) { var selectedGeoClassname = mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id);
+                                       mouseoverGeography(menuElementID, selectedGeoClassname); })
+        .on("mouseout", function() { mouseoutGeography(menuElementID); })
+        .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id)); });
 
     (mapClassName === ".dcClusters") && d3.selectAll(".dcClusters .cluster_42,.cluster_45,.cluster_46").classed("disabled", true);
 }
@@ -76,27 +78,53 @@ function closeMenu(menuElementID) {
 
 // event listeners to handle selection of indicator or geography
 d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
+    .on("mouseover", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("hovered", false);
+                                  d3.select(this).classed("hovered", true); })
     .on("click", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("selected", false);
                               d3.select(this).classed("selected", true);
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
-    // .on("mouseover", function() {})
+    .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
+                                  mouseoverGeography("#baseGeographyMenu", selectedGeoClassname); })
+    .on("mouseout", function() { mouseoutGeography("#baseGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
-                              selectGeography("#baseGeographyMenu", selectedGeoClassname);
-                              showSelectionInMenu("#baseGeographyMenu", ".baseGeographySelector"); });
+                              selectGeography("#baseGeographyMenu", ".baseGeographySelector", selectedGeoClassname); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
+    .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
+                                  mouseoverGeography("#comparisonGeographyMenu", selectedGeoClassname); })
+    .on("mouseout", function() { mouseoutGeography("#comparisonGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
-                              selectGeography("#comparisonGeographyMenu", selectedGeoClassname);
-                              showSelectionInMenu("#comparisonGeographyMenu", ".comparisonGeographySelector"); });
+                              selectGeography("#comparisonGeographyMenu", ".comparisonGeographySelector", selectedGeoClassname); });
 
-function selectGeography(menuElementID, selectedGeo) {
-    d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("selected", false);
-    d3.selectAll(menuElementID + " .map .geography").classed("selected", false);
+function mouseoutGeography(menuElementID) {
+    d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("hovered", false);
+    d3.selectAll(menuElementID + " .map .geography").classed("hovered", false);
+}
 
-    d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("selected", true);
-    d3.select(menuElementID + " .map ." + selectedGeo).classed("selected", true);
+function mouseoverGeography(menuElementID, selectedGeo) {
+    mouseoutGeography(menuElementID);
+
+    // don't allow mouseover state on selected or disabled geography
+    if(!d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("selected") && !d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("disabled")) {
+        d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("hovered", true);
+        d3.select(menuElementID + " .map ." + selectedGeo).classed("hovered", true);
+    }
+}
+
+function selectGeography(menuElementID, selectorBoxClass, selectedGeo) {
+    // don't allow disabled geographies to be selected
+    if(!d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("disabled")) {
+        mouseoutGeography(menuElementID);
+        d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("selected", false);
+        d3.selectAll(menuElementID + " .map .geography").classed("selected", false);
+
+        d3.select(menuElementID + " .dcEquityIndicators.menuItem." + selectedGeo).classed("selected", true);
+        d3.select(menuElementID + " .map ." + selectedGeo).classed("selected", true);
+
+        showSelectionInMenu(menuElementID, selectorBoxClass);
+    }
 }
 
 function showSelectionInMenu(menuElementID, selectorBoxClass) {
@@ -114,8 +142,11 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
 
     // disable link in comparison geography selection modal so that users can't choose to compare a geography against itself
     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+    d3.selectAll("#comparisonGeographyMenu .map .geography").classed("disabled", false);
+    d3.selectAll("#comparisonGeographyMenu .map .cluster_42,.cluster_45,.cluster_46").classed("disabled", true)
     var selectedBaseGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
     d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedBaseGeoClassname).classed("disabled", true);
+    d3.select("#comparisonGeographyMenu .map ." + selectedBaseGeoClassname).classed("disabled", true);
 
     // disable link in base geography selection modal so that users can't choose to compare a geography against itself
     // d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);

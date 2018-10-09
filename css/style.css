@@ -544,7 +544,7 @@ h3.modalGroupTitle {
     color: #333;
 }
 
-.dcEquityIndicators.menuItem span.menuItemLink:hover {
+.dcEquityIndicators.menuItem.hovered span.menuItemLink {
     color: #007897;
 }
 
@@ -557,14 +557,10 @@ h3.modalGroupTitle {
     cursor: auto;
 }
 
-/*.dcEquityIndicators.menuItem.selected span.menuItemLink:hover,
-.dcEquityIndicators.menuItem.disabled span.menuItemLink:hover {
-    text-decoration: none;
-}*/
-
 .dcEquityIndicators.menuItem.disabled span.menuItemLink {
     color: #9d9fa2;
     cursor: auto;
+    pointer-events: none;
 }
 
 
@@ -590,10 +586,11 @@ h3.modalGroupTitle {
 .geography.disabled {
     fill: #9d9fa2;
     cursor: auto;
+    pointer-events: none;
 }
 
 .geography.hovered {
-    fill: #1696d2;
+    fill: #007897;
 }
 
 
