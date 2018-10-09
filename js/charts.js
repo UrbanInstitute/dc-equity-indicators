@@ -7,11 +7,8 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 
 var categories = ["yes", "diff", "no"];
 
-var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
-var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 40, bottom: 55, left: 0}};
-// var width = 500,
-//     height = 34,
-//     margin = ;
+var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 10}};
+var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 50, bottom: 55, left: 10}};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1]);
@@ -86,17 +83,20 @@ function populateBarTitles(chartDivID, baseGeo, compareGeo) {
 function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, dimensions) {
     var chartData = getData(parentClass, geo, indicator);
 
-    xScale.range([0, dimensions.width]);
+    xScale.range([0, dimensions.width - dimensions.margin.left - dimensions.margin.right]);
 
     var svg = d3.select(chartDivID + " ." + chartID)
         .append("svg")
-        .attr("width", dimensions.width + dimensions.margin.left + dimensions.margin.right)
+        .attr("width", dimensions.width)
         .attr("height", dimensions.height + dimensions.margin.top + dimensions.margin.bottom)
         .append("g")
         .attr("transform", "translate(" + dimensions.margin.left + "," + dimensions.margin.top + ")");
 
     drawBars(svg, chartData, colorScale, dimensions.height);
     labelBars(chartDivID, parentClass, chartData);
+
+    // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
+    adjustLabels(chartDivID, parentClass);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, chartData);
@@ -357,8 +357,22 @@ function labelBars(chartDivID, parentClass, data) {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
         }
     }
+}
 
-    // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
+function adjustLabels(chartDivID, parentClass) {
+    var yesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();
+    var noLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .no g.labelTextGrp").node().getBoundingClientRect();
+
+    console.log(yesLabelBoundingRect.x, yesLabelBoundingRect.width);
+    console.log(noLabelBoundingRect.x);
+    if(yesLabelBoundingRect.x + yesLabelBoundingRect.width + 20 > noLabelBoundingRect.x) {
+        d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
+        d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
+    }
+    else {
+        d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", false);
+        d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", false);
+    }
 }
 
 function updateBars(chartDivID, parentClass, geo, indicator) {
@@ -404,24 +418,24 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         if(nonbinaryIndicators.indexOf(indicator) > -1) {
             slices.selectAll("line")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x1", function(d) { return xScale(d[0]); })
                 .attr("x2", function(d) { return xScale(d[0]); });
 
             slices.selectAll(".barLabel.line1")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x", function(d) { return xScale(d[0]); });
 
             slices.selectAll(".barLabel.line2")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x", function(d) { return xScale(d[0]); });
         }
         else {
             slices.selectAll("line")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x1", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } })
@@ -431,14 +445,14 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
             slices.selectAll(".barLabel.line1")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } });
 
             slices.selectAll(".barLabel.line2")
                 .data(function(d) { return d; })
-                .transition()
+                // .transition()
                 .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } });
@@ -447,19 +461,20 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     else {
         slices.selectAll("line")
             .data(function(d) { return d; })
-            .transition()
+            // .transition()
             .attr("x1", function(d) { return xScale(d[1]) - 1; })
             .attr("x2", function(d) { return xScale(d[1]) - 1; });
 
         slices.selectAll(".barLabel.line1")
             .data(function(d) { return d; })
-            .transition()
+            // .transition()
             .attr("x", function(d) { return xScale(d[1]) - 1; });
 
         slices.selectAll(".barLabel.line2")
             .data(function(d) { return d; })
-            .transition()
+            // .transition()
             .attr("x", function(d) { return xScale(d[1]) - 1; });
+            // .on("end", adjustLabels(chartDivID, parentClass) );
     }
 
     // if there is no equity gap, hide the third bar chart
@@ -469,6 +484,9 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     else {
         d3.select(chartDivID + " .withEquity").classed("noEquityGap", false);
     }
+
+    // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
+    adjustLabels(chartDivID, parentClass);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, data);

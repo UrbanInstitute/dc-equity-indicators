@@ -240,6 +240,14 @@ text.barLabel {
     stroke: none;
 }
 
+text.barLabel.rightJustified {
+    text-anchor: end;
+}
+
+text.barLabel.leftJustified {
+    text-anchor: start;
+}
+
 text.barLabel.line1 {
     font-size: 14px;
 }
