@@ -8,11 +8,10 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 10}};
-var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 50, bottom: 55, left: 10}};
+var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 50, bottom: 65, left: 10}};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1]);
-    // .rangeRound([0, width]);
 
 var colorScale = d3.scaleOrdinal()
     .domain(["yes", "no", "diff"])
@@ -96,7 +95,7 @@ function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, dimensio
     labelBars(chartDivID, parentClass, chartData);
 
     // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
-    adjustLabels(chartDivID, parentClass);
+    adjustLabels(chartDivID, parentClass, indicator);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, chartData);
@@ -359,19 +358,63 @@ function labelBars(chartDivID, parentClass, data) {
     }
 }
 
-function adjustLabels(chartDivID, parentClass) {
+function adjustLabels(chartDivID, parentClass, indicator) {
     var yesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();
     var noLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .no g.labelTextGrp").node().getBoundingClientRect();
+    var diffLabelBoundingRect = (parentClass === ".withEquity") && d3.select(chartDivID + " " + parentClass + " .diff g.labelTextGrp").node().getBoundingClientRect();
 
-    console.log(yesLabelBoundingRect.x, yesLabelBoundingRect.width);
-    console.log(noLabelBoundingRect.x);
-    if(yesLabelBoundingRect.x + yesLabelBoundingRect.width + 20 > noLabelBoundingRect.x) {
+    // console.log(chartDivID, parentClass);
+    // console.log(yesLabelBoundingRect.x, yesLabelBoundingRect.width);
+    // console.log(noLabelBoundingRect.x);
+    // console.log(diffLabelBoundingRect);
+    // console.log(diffLabelBoundingRect.width + diffLabelBoundingRect.x > noLabelBoundingRect.x);
+
+    // if label for blue and grey bars overlap, adjust the text alignment of the labels
+    if(yesLabelBoundingRect.x + yesLabelBoundingRect.width + 60 > noLabelBoundingRect.x) {
         d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
         d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
     }
     else {
         d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", false);
         d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", false);
+    }
+
+    // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
+    if(diffLabelBoundingRect && ((yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
+        // if yellow/pink bar label overlaps the blue label, right-justify the blue label for non-negative indicators
+        if(yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x && negativeIndicators.indexOf(indicator) === -1) {
+            d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
+        }
+
+        // if yellow/pink bar label overlaps the grey label, left-justify the grey label
+        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x) {
+            d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
+        }
+
+        d3.select(chartDivID + " " + parentClass + " .diff line.barLabel")
+            .transition()
+            .attr("y2", toolChartDimensions.height + 34);
+
+        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line1")
+            .transition()
+            .attr("y", toolChartDimensions.height + 49);
+
+        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line2")
+            .transition()
+            .attr("y", toolChartDimensions.height + 63);
+    }
+    else if(chartDivID === "#equityChart") {
+        d3.select(chartDivID + " " + parentClass + " .diff line.barLabel")
+            .transition()
+            .attr("y2", toolChartDimensions.height + 4);
+
+        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line1")
+            .transition()
+            .attr("y", toolChartDimensions.height + 19);
+
+        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line2")
+            .transition()
+            .attr("y", toolChartDimensions.height + 33);
     }
 }
 
@@ -414,6 +457,8 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     //      and the grey label should be at the end
     // negative non-binary indicators only need to have a label for the pink bar at the start of the pink bar so can transition all of the labels
     //      to be at the start of the bars since the others will be hidden anyways
+
+    // also need to reset the height of the labels so it doesn't throw off the collision detection
     if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
         if(nonbinaryIndicators.indexOf(indicator) > -1) {
             slices.selectAll("line")
@@ -477,6 +522,20 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
             // .on("end", adjustLabels(chartDivID, parentClass) );
     }
 
+    // reset height of labels and text-alignment so it doesn't throw off the collision detection calculations
+    slices.selectAll("line")
+        .attr("y2", toolChartDimensions.height + 4);
+
+    slices.selectAll(".barLabel.line1")
+        .attr("y", toolChartDimensions.height + 19)
+        .classed("rightJustified", false)
+        .classed("leftJustified", false);
+
+    slices.selectAll(".barLabel.line2")
+        .attr("y", toolChartDimensions.height + 33)
+        .classed("rightJustified", false)
+        .classed("leftJustified", false);
+
     // if there is no equity gap, hide the third bar chart
     if(parentClass === ".withEquity" && data[0].diff <=0) {
         d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
@@ -486,7 +545,7 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     }
 
     // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
-    adjustLabels(chartDivID, parentClass);
+    adjustLabels(chartDivID, parentClass, indicator);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, data);
