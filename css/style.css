@@ -545,7 +545,7 @@ h3.modalGroupTitle {
 }
 
 .dcEquityIndicators.menuItem span.menuItemLink:hover {
-    text-decoration: underline;
+    color: #007897;
 }
 
 .dcEquityIndicators.menuItem.selected {
@@ -557,10 +557,10 @@ h3.modalGroupTitle {
     cursor: auto;
 }
 
-.dcEquityIndicators.menuItem.selected span.menuItemLink:hover,
+/*.dcEquityIndicators.menuItem.selected span.menuItemLink:hover,
 .dcEquityIndicators.menuItem.disabled span.menuItemLink:hover {
     text-decoration: none;
-}
+}*/
 
 .dcEquityIndicators.menuItem.disabled span.menuItemLink {
     color: #9d9fa2;
