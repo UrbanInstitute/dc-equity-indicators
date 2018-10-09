@@ -8,7 +8,7 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
-var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 40, bottom: 40, left: 0}};
+var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 40, bottom: 55, left: 0}};
 // var width = 500,
 //     height = 34,
 //     margin = ;
@@ -264,19 +264,20 @@ function drawBars(svg, data, colorScale, barHeight) {
         .attr("y1", barHeight)
         .attr("y2", barHeight + 4);
 
-    slices.selectAll(".barLabel.line1")
+    // add in placeholder text elements for the labels - these will get filled in with labelBars()
+    var labelTextGrp = slices.selectAll(".labelTextGrp")
         .data(function(d) { return d; })
         .enter()
-        .append("text")
+        .append("g")
+        .attr("class", "labelTextGrp");
+
+    labelTextGrp.append("text")
         .attr("class", "barLabel line1")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", barHeight + 19)
         .text("test");
 
-    slices.selectAll(".barLabel.line2")
-        .data(function(d) { return d; })
-        .enter()
-        .append("text")
+    labelTextGrp.append("text")
         .attr("class", "barLabel line2")
         .attr("x", function(d) { return xScale(d[1]) - 1; })
         .attr("y", barHeight + 33)
@@ -356,6 +357,8 @@ function labelBars(chartDivID, parentClass, data) {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
         }
     }
+
+    // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
 }
 
 function updateBars(chartDivID, parentClass, geo, indicator) {
