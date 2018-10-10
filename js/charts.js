@@ -186,13 +186,18 @@ function getData(parentClass, geo, indicator) {
         }
         // binary indicators that we want more of
         else {
+            // error handling - user cannot set target to be more than 100%
+            if(compareData[0].value + (adjustment/100) > 1) {
+                adjustment = (1 - compareData[0].value) * 100;
+            }
+
             data = [{
                 indicator: baseData[0].indicator,
                 geo: baseData[0].geo,
                 compareGeo: compareData[0].geo,
                 yes: baseData[0].value,
-                diff: compareData[0].value - baseData[0].value + (adjustment/100),
-                no: 1 - compareData[0].value - (adjustment/100),
+                diff: (compareData[0].value + (adjustment/100)) - baseData[0].value,
+                no: 1 - (compareData[0].value + (adjustment/100)),
                 year: baseData[0].year,
                 numerator: baseData[0].numerator,
                 denom: baseData[0].denom,
@@ -417,7 +422,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
         }
 
         // if pink bar label overlaps the blue label, left-justify the blue label for negative indicators
-        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x && negativeIndicators.indexOf(indicator) >= -1) {
+        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x && negativeIndicators.indexOf(indicator) > -1) {
             d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("leftJustified", true);
         }
 
