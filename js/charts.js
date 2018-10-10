@@ -8,7 +8,7 @@ var negativeIndicators = ["Unemployment rate", "Households with a housing cost b
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 10}};
-var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 50, bottom: 65, left: 10}};
+var toolChartDimensions = {width: 760, height: 60, margin: {top: 0, right: 50, bottom: 65, left: 20}};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1]);
@@ -164,18 +164,18 @@ function getData(parentClass, geo, indicator) {
         // binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
             // error handling - user cannot adjust target to be less than zero
-            // if(compareData[0].value + adjustment/100 < 0) {
-            //     adjustment = compareData[0].value/100;
-            // }
+            if(compareData[0].value + adjustment/100 < 0) {
+                adjustment = -compareData[0].value * 100 - 0.01;  // add a little fudge factor so label doesn't wrap around
+            }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
-                    yes: compareData[0].value,
-                    diff: baseData[0].value - compareData[0].value + (adjustment/100),
-                    no: 1 - baseData[0].value - (adjustment/100),
+                    yes: compareData[0].value + (adjustment/100),
+                    diff: baseData[0].value - (compareData[0].value + (adjustment/100)),
+                    no: 1 - baseData[0].value,
                     year: baseData[0].year,
                     numerator: baseData[0].numerator,
                     denom: baseData[0].denom,
@@ -411,9 +411,14 @@ function adjustLabels(chartDivID, parentClass, indicator) {
 
     // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
     if(diffLabelBoundingRect && (((negativeIndicators.indexOf(indicator) === -1) && (yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x)) || ((negativeIndicators.indexOf(indicator) > -1) && (diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x)) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
-        // if yellow/pink bar label overlaps the blue label, right-justify the blue label for non-negative indicators
+        // if yellow bar label overlaps the blue label, right-justify the blue label for non-negative indicators
         if(yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x && negativeIndicators.indexOf(indicator) === -1) {
             d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
+        }
+
+        // if pink bar label overlaps the blue label, left-justify the blue label for negative indicators
+        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x && negativeIndicators.indexOf(indicator) >= -1) {
+            d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("leftJustified", true);
         }
 
         // if yellow/pink bar label overlaps the grey label, left-justify the grey label
