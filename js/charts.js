@@ -96,8 +96,9 @@ function makeBarChart(chartDivID, parentClass, chartID, geo, indicator, dimensio
     drawBars(svg, chartData, colorScale, dimensions.height);
     labelBars(chartDivID, parentClass, chartData);
 
-    // detect label collision here? - if labels are overlapping, make label for diff bar extend lower
-    adjustLabels(chartDivID, parentClass, indicator);
+    // detect label collision - if labels are overlapping, make label for diff bar extend lower
+    // (only apply this to binary indicators since non-binary ones only have one label)
+    nonbinaryIndicators.indexOf(indicator) && adjustLabels(chartDivID, parentClass, indicator);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, chartData);
@@ -116,6 +117,11 @@ function getData(parentClass, geo, indicator) {
 
         // non-binary indicators that we want more of
         if(indicator === "Small-business lending per employee") {
+            // error handling - user cannot adjust target to be less than the base geo's value
+            if(compareData[0].value + adjustment < baseData[0].value) {
+                adjustment = baseData[0].value - compareData[0].value;
+            }
+
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
@@ -134,13 +140,18 @@ function getData(parentClass, geo, indicator) {
         }
         // non-binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
+            // error handling - user cannot adjust target to be less than the comparison geo's value
+            if(compareData[0].value + adjustment < 0) {
+                adjustment = -compareData[0].value;
+            }
+
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
-                    yes: compareData[0].value,
-                    diff: baseData[0].value - compareData[0].value + adjustment,
+                    yes: compareData[0].value + adjustment,
+                    diff: baseData[0].value - (compareData[0].value + adjustment),
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -152,6 +163,11 @@ function getData(parentClass, geo, indicator) {
         }
         // binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
+            // error handling - user cannot adjust target to be less than zero
+            // if(compareData[0].value + adjustment/100 < 0) {
+            //     adjustment = compareData[0].value/100;
+            // }
+
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
@@ -295,6 +311,12 @@ function labelBars(chartDivID, parentClass, data) {
         if(parentClass === ".withEquity") {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes + data[0].diff));
 
+            // need to clear the other labels so they don't throw off the collision calculations
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
+
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
@@ -309,6 +331,12 @@ function labelBars(chartDivID, parentClass, data) {
 
         if(parentClass === ".withEquity") {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+
+            // need to clear the other labels so they don't throw off the collision calculations
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line1").text("");
+            d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
@@ -366,7 +394,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
     var diffLabelBoundingRect = (parentClass === ".withEquity") && d3.select(chartDivID + " " + parentClass + " .diff g.labelTextGrp").node().getBoundingClientRect();
 
     // console.log(chartDivID, parentClass);
-    // console.log(yesLabelBoundingRect.x, yesLabelBoundingRect.width);
+    // console.log(yesLabelBoundingRect.x + yesLabelBoundingRect.width);
     // console.log(noLabelBoundingRect.x);
     // console.log(diffLabelBoundingRect);
     // console.log(diffLabelBoundingRect.width + diffLabelBoundingRect.x > noLabelBoundingRect.x);
@@ -381,8 +409,8 @@ function adjustLabels(chartDivID, parentClass, indicator) {
         d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", false);
     }
 
-    // // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
-    if(diffLabelBoundingRect && ((yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
+    // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
+    if(diffLabelBoundingRect && (((negativeIndicators.indexOf(indicator) === -1) && (yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x)) || ((negativeIndicators.indexOf(indicator) > -1) && (diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x)) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
         // if yellow/pink bar label overlaps the blue label, right-justify the blue label for non-negative indicators
         if(yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x && negativeIndicators.indexOf(indicator) === -1) {
             d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
@@ -532,7 +560,8 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     }
 
     // detect label collision - if labels are overlapping, make label for diff bar extend lower
-    adjustLabels(chartDivID, parentClass, indicator);
+    // (only do this for binary indicators since non-binary indicators only have 1 label)
+    nonbinaryIndicators.indexOf(indicator) === -1 && adjustLabels(chartDivID, parentClass, indicator);
 
     if(parentClass === ".withEquity") {
         populateEquityStatement(chartDivID, indicator, data);

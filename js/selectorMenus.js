@@ -175,10 +175,10 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
 
 // event handlers to listen to if the up/down arrows in the third bar chart are clicked
 d3.select("#equityChart .withEquity .adjustTargetBtns .upArrowBtn")
-    .on("click", function() { adjustment++; console.log(adjustment); updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+    .on("click", function() { adjustment++; updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 d3.select("#equityChart .withEquity .adjustTargetBtns .downArrowBtn")
-    .on("click", function() { adjustment--; console.log(adjustment); updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+    .on("click", function() { adjustment--; updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 
 
