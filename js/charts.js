@@ -23,6 +23,8 @@ var colorScaleLess = d3.scaleOrdinal()
 
 var stack = d3.stack();
 
+var adjustment = 0; // to keep track of arrow clicks
+
 var equityData;
 
 
@@ -120,7 +122,7 @@ function getData(parentClass, geo, indicator) {
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
                     yes: baseData[0].value,
-                    diff: compareData[0].value - baseData[0].value,
+                    diff: compareData[0].value - baseData[0].value + adjustment,
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -138,7 +140,7 @@ function getData(parentClass, geo, indicator) {
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
                     yes: compareData[0].value,
-                    diff: baseData[0].value - compareData[0].value,
+                    diff: baseData[0].value - compareData[0].value + adjustment,
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -156,8 +158,8 @@ function getData(parentClass, geo, indicator) {
                     geo: baseData[0].geo,
                     compareGeo: compareData[0].geo,
                     yes: compareData[0].value,
-                    diff: baseData[0].value - compareData[0].value,
-                    no: 1 - baseData[0].value,
+                    diff: baseData[0].value - compareData[0].value + (adjustment/100),
+                    no: 1 - baseData[0].value - (adjustment/100),
                     year: baseData[0].year,
                     numerator: baseData[0].numerator,
                     denom: baseData[0].denom,
@@ -173,8 +175,8 @@ function getData(parentClass, geo, indicator) {
                 geo: baseData[0].geo,
                 compareGeo: compareData[0].geo,
                 yes: baseData[0].value,
-                diff: compareData[0].value - baseData[0].value,
-                no: 1 - compareData[0].value,
+                diff: compareData[0].value - baseData[0].value + (adjustment/100),
+                no: 1 - compareData[0].value - (adjustment/100),
                 year: baseData[0].year,
                 numerator: baseData[0].numerator,
                 denom: baseData[0].denom,
@@ -553,3 +555,4 @@ function populateEquityStatement(chartDivID, indicator, data) {
         d3.select(chartDivID + " .equitySentence").classed("noGap", false);
     }
 }
+

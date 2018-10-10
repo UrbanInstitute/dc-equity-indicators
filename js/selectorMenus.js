@@ -1,3 +1,4 @@
+// make maps of DC wards and neighborhood clusters in both the base geo and comparison geo menus
 d3.json("data/wards_topo.json", function(error, json) {
 
     var width = 350,
@@ -45,6 +46,7 @@ function makeMap(menuElementID, mapClassName, width, height, data){
         .on("mouseout", function() { mouseoutGeography(menuElementID); })
         .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id)); });
 
+    // disable Clusters 42, 45 and 46 on the map because these clusters have small population sizes
     (mapClassName === ".dcClusters") && d3.selectAll(".dcClusters .cluster_42,.cluster_45,.cluster_46").classed("disabled", true);
 }
 
@@ -132,6 +134,9 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     d3.select(selectorBoxClass + " .selectorBox").text(selectedItemName);
     closeMenu(menuElementID);
 
+    // reset adjustment every time user makes a new menu selection
+    adjustment = 0;
+
     var indicator = getIndicatorSelected();
     var baseGeo = getBaseGeography();
     var compareGeo = getComparisonGeography();
@@ -166,6 +171,17 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
 }
+
+
+// event handlers to listen to if the up/down arrows in the third bar chart are clicked
+d3.select("#equityChart .withEquity .adjustTargetBtns .upArrowBtn")
+    .on("click", function() { adjustment++; console.log(adjustment); updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+
+d3.select("#equityChart .withEquity .adjustTargetBtns .downArrowBtn")
+    .on("click", function() { adjustment--; console.log(adjustment); updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+
+
+
 
 
 // event listeners to toggle between using a comparison geography and a custom target
