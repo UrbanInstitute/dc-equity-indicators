@@ -60,6 +60,7 @@ function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo, dimensio
     makeBarChart(chartDivID, ".baseLocation", "baseBar", baseGeo, indicator, dimensions);
     makeBarChart(chartDivID, ".comparisonLocation", "comparisonBar", compareGeo, indicator, dimensions);
     makeBarChart(chartDivID, ".withEquity", "withEquityBar", baseGeo + "|" + compareGeo, indicator, dimensions);
+    populateDescriptiveText(chartDivID, indicator);
 }
 
 function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
@@ -68,6 +69,7 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     updateBars(chartDivID, ".baseLocation", baseGeo, indicator);
     updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
     updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
+    populateDescriptiveText(chartDivID, indicator);
 }
 
 function populateChartTitle(chartDivID, indicator) {
@@ -593,6 +595,13 @@ function populateEquityStatement(chartDivID, indicator, data) {
     else {  // TODO: figure out how to bold first part of this sentence for all equity sentences
         d3.select(chartDivID + " .equitySentence").html("<span class='equitySentenceFirstPart'>" + COMMAFORMAT(diffNumber) + " more adults</span> in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
         d3.select(chartDivID + " .equitySentence").classed("noGap", false);
+    }
+}
+
+function populateDescriptiveText(chartDivID, indicator) {
+    if(chartDivID === "#equityChart") {
+        var full_name = equityData.filter(function(d) { return d.indicator === indicator; })[0].indicator_full_name;
+        d3.select(".indicatorDescriptiveText").html(indicator_text[full_name]);
     }
 }
 
