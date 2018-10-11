@@ -1,9 +1,9 @@
 var PCTFORMAT = d3.format(".0%");
 var COMMAFORMAT = d3.format(",.0f");
 
-var nonbinaryIndicators = ["Small-business lending per employee", "Violent crimes per 1,000 population", "Premature deaths per 1,000 population"];
+var nonbinaryIndicators = ["Small-business lending", "Violent crime", "Premature mortality"];
 // var positiveIndicators = [];
-var negativeIndicators = ["Unemployment rate", "Households with a housing cost burden", "Violent crimes per 1,000 population", "Premature deaths per 1,000 population"];
+var negativeIndicators = ["Unemployment", "Housing cost burden", "Violent crime", "Premature mortality"];
 
 var categories = ["yes", "diff", "no"];
 
@@ -119,7 +119,7 @@ function getData(parentClass, geo, indicator) {
         var data;
 
         // non-binary indicators that we want more of
-        if(indicator === "Small-business lending per employee") {
+        if(indicator === "Small-business lending") {
             // error handling - user cannot adjust target to be less than the base geo's value
             if(compareData[0].value + adjustment < baseData[0].value) {
                 adjustment = baseData[0].value - compareData[0].value;
