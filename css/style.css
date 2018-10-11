@@ -340,9 +340,10 @@ button.downArrowBtn {
 
 .indicatorSelectorMenus {
     position: absolute;
+    width: 1221px;
     top: 50%;
-    transform: translateY(-60%);
-    margin-left: 3%;
+    left: 50%;
+    transform: translate(-50%, -60%);
 }
 
 .selectorGroup {
