@@ -191,19 +191,28 @@ d3.select(".comparisonToggle .switch")
 function toggleMenu() {
     d3.select(".toggleLabel.location").classed("selected", !d3.select(".toggleLabel.location").classed("selected"));
     d3.select(".toggleLabel.target").classed("selected", !d3.select(".toggleLabel.target").classed("selected"));
+    adjustment = 0;  // reset adjustment factor on toggle
 
     if(d3.select(".toggleLabel.location").classed("selected")) {
         d3.select(".sliderButton").classed("off", false);
         d3.select(".comparisonGeographySelector").classed("hidden", false);
         d3.select(".customTargetTextbox").classed("hidden", true);
+        d3.select("#equityChart .comparisonLocation").classed("noShow", false);
+        customGoal = 0;
+        updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());  // render bar chart with previous selected comparison geography when user toggles back to location comparison
     }
     else if(d3.select(".toggleLabel.target").classed("selected")) {
         d3.select(".sliderButton").classed("off", true);
         d3.select(".comparisonGeographySelector").classed("hidden", true);
         d3.select(".customTargetTextbox").classed("hidden", false);
+        d3.select("#equityChart .comparisonLocation").classed("noShow", true);  // hide comparison location bar
+        customGoal = 1;
     }
 }
 
+// event listeners to detect user-entered goal
+d3.select("#customTarget")
+    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); adjustment = 0; });
 
 // get selection values
 function getIndicatorSelected() {
@@ -218,4 +227,8 @@ function getComparisonGeography() {
     var geo = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
     if(geo == "DC") return "Washington, D.C.";
     else return geo;
+}
+
+function getUserGoal() {
+    return +d3.select("#customTarget").node().value;
 }

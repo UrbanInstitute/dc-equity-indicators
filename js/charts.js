@@ -25,6 +25,7 @@ var colorScaleLess = d3.scaleOrdinal()
 var stack = d3.stack();
 
 var adjustment = 0; // to keep track of arrow clicks
+var customGoal = 0; // to keep track of whether comparing geographies or using user-entered goal
 
 var equityData;
 
@@ -69,7 +70,7 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     populateChartTitle(chartDivID, indicator);
     populateBarTitles(chartDivID, baseGeo, compareGeo);
     updateBars(chartDivID, ".baseLocation", baseGeo, indicator);
-    updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
+    (compareGeo !== "customTarget") && updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
     updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
     populateDescriptiveText(chartDivID, indicator);
 }
@@ -115,25 +116,33 @@ function getData(parentClass, geo, indicator) {
         var base = geo.split("|")[0];
         var compare = geo.split("|")[1];
 
+        var compareGeo = "Custom";
+        var compareValue = (nonbinaryIndicators.indexOf(indicator) > -1) ? getUserGoal() : getUserGoal()/100;
+
         var baseData = equityData.filter(function(d) { return d.geo === base && d.indicator === indicator; });
         var compareData = equityData.filter(function(d) { return d.geo === compare && d.indicator === indicator; });
+
+        if(customGoal === 0) {
+            compareGeo = compareData[0].geo;
+            compareValue = compareData[0].value;
+        }
 
         var data;
 
         // non-binary indicators that we want more of
         if(indicator === "Small-business lending") {
             // error handling - user cannot adjust target to be less than the base geo's value
-            if(compareData[0].value + adjustment < baseData[0].value) {
-                adjustment = baseData[0].value - compareData[0].value;
+            if(compareValue + adjustment < baseData[0].value) {
+                adjustment = baseData[0].value - compareValue;
             }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
-                    compareGeo: compareData[0].geo,
+                    compareGeo: compareGeo,
                     yes: baseData[0].value,
-                    diff: compareData[0].value - baseData[0].value + adjustment,
+                    diff: (compareValue + adjustment) - baseData[0].value,
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -147,17 +156,17 @@ function getData(parentClass, geo, indicator) {
         // non-binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
             // error handling - user cannot adjust target to be less than the comparison geo's value
-            if(compareData[0].value + adjustment < 0) {
-                adjustment = -compareData[0].value;
+            if(compareValue + adjustment < 0) {
+                adjustment = -compareValue;
             }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
-                    compareGeo: compareData[0].geo,
-                    yes: compareData[0].value + adjustment,
-                    diff: baseData[0].value - (compareData[0].value + adjustment),
+                    compareGeo: compareGeo,
+                    yes: compareValue + adjustment,
+                    diff: baseData[0].value - (compareValue + adjustment),
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -171,17 +180,17 @@ function getData(parentClass, geo, indicator) {
         // binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
             // error handling - user cannot adjust target to be less than zero
-            if(compareData[0].value + adjustment/100 < 0) {
-                adjustment = -compareData[0].value * 100 - 0.01;  // add a little fudge factor so label doesn't wrap around
+            if(compareValue + adjustment/100 < 0) {
+                adjustment = -compareValue * 100 - 0.01;  // add a little fudge factor so label doesn't wrap around
             }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
-                    compareGeo: compareData[0].geo,
-                    yes: compareData[0].value + (adjustment/100),
-                    diff: baseData[0].value - (compareData[0].value + (adjustment/100)),
+                    compareGeo: compareGeo,
+                    yes: compareValue + (adjustment/100),
+                    diff: baseData[0].value - (compareValue + (adjustment/100)),
                     no: 1 - baseData[0].value,
                     year: baseData[0].year,
                     numerator: baseData[0].numerator,
@@ -195,17 +204,17 @@ function getData(parentClass, geo, indicator) {
         // binary indicators that we want more of
         else {
             // error handling - user cannot set target to be more than 100%
-            if(compareData[0].value + (adjustment/100) > 1) {
-                adjustment = (1 - compareData[0].value) * 100;
+            if(compareValue + (adjustment/100) > 1) {
+                adjustment = (1 - compareValue) * 100;
             }
 
             data = [{
                 indicator: baseData[0].indicator,
                 geo: baseData[0].geo,
-                compareGeo: compareData[0].geo,
+                compareGeo: compareGeo,
                 yes: baseData[0].value,
-                diff: (compareData[0].value + (adjustment/100)) - baseData[0].value,
-                no: 1 - (compareData[0].value + (adjustment/100)),
+                diff: (compareValue + (adjustment/100)) - baseData[0].value,
+                no: 1 - (compareValue + (adjustment/100)),
                 year: baseData[0].year,
                 numerator: baseData[0].numerator,
                 denom: baseData[0].denom,
@@ -220,7 +229,7 @@ function getData(parentClass, geo, indicator) {
         if(data[0].diff < 0) {
             data[0].diff = 0;
             if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
-                data[0].no = 1 - compareData[0].value;
+                data[0].no = 1 - compareValue;
             }
             else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) === -1) {
                 data[0].no = 1 - baseData[0].value;
