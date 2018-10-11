@@ -1,5 +1,6 @@
 var PCTFORMAT = d3.format(".0%");
 var COMMAFORMAT = d3.format(",.0f");
+var DOLLARFORMAT = d3.format("$,.0f");
 
 var nonbinaryIndicators = ["Small-business lending", "Violent crime", "Premature mortality"];
 // var positiveIndicators = [];
@@ -39,7 +40,8 @@ d3.csv("data/equity_data.csv", function(d) {
         value: +d.value,
         blue_bar_label: d.blue_bar_label,
         diff_bar_label: d.diff_bar_label,
-        grey_bar_label: d.grey_bar_label
+        grey_bar_label: d.grey_bar_label,
+        summary_sentence: d.summary_sentence
     };
 }, function(error, data) {
 
@@ -138,7 +140,8 @@ function getData(parentClass, geo, indicator) {
                     denom: "",
                     blue_bar_label: "",
                     grey_bar_label: "",
-                    diff_bar_label: baseData[0].diff_bar_label
+                    diff_bar_label: baseData[0].diff_bar_label,
+                    sentence: baseData[0].summary_sentence
                 }];
         }
         // non-binary indicators that we want less of
@@ -161,7 +164,8 @@ function getData(parentClass, geo, indicator) {
                     denom: "",
                     blue_bar_label: "",
                     grey_bar_label: "",
-                    diff_bar_label: baseData[0].diff_bar_label
+                    diff_bar_label: baseData[0].diff_bar_label,
+                    sentence: baseData[0].summary_sentence
                 }];
         }
         // binary indicators that we want less of
@@ -184,7 +188,8 @@ function getData(parentClass, geo, indicator) {
                     denom: baseData[0].denom,
                     blue_bar_label: baseData[0].blue_bar_label,
                     grey_bar_label: baseData[0].grey_bar_label,
-                    diff_bar_label: baseData[0].diff_bar_label
+                    diff_bar_label: baseData[0].diff_bar_label,
+                    sentence: baseData[0].summary_sentence
                 }];
         }
         // binary indicators that we want more of
@@ -206,7 +211,8 @@ function getData(parentClass, geo, indicator) {
                 denom: baseData[0].denom,
                 blue_bar_label: baseData[0].blue_bar_label,
                 grey_bar_label: baseData[0].grey_bar_label,
-                diff_bar_label: baseData[0].diff_bar_label
+                diff_bar_label: baseData[0].diff_bar_label,
+                sentence: baseData[0].summary_sentence
             }];
         }
 
@@ -312,12 +318,12 @@ function drawBars(svg, data, colorScale, barHeight) {
 function labelBars(chartDivID, parentClass, data) {
     var indicator = data[0].indicator;
 
-    // labelling for non-binary indicators
+    // labelling for positive non-binary indicators
     if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) === -1) {
         d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", true);
 
         if(parentClass === ".withEquity") {
-            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes + data[0].diff));
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(DOLLARFORMAT(data[0].yes + data[0].diff));
 
             // need to clear the other labels so they don't throw off the collision calculations
             d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text("");
@@ -326,11 +332,11 @@ function labelBars(chartDivID, parentClass, data) {
             d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
-            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(DOLLARFORMAT(data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
-            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(DOLLARFORMAT(data[0].yes));
         }
     }
     // labelling for negative non-binary indicators
@@ -582,7 +588,14 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 }
 
 function populateEquityStatement(chartDivID, indicator, data) {
-    var diffNumber = data[0].diff * data[0].denom;
+    var diffNumber = COMMAFORMAT(data[0].diff * data[0].denom);
+    if(indicator === "Small-business lending") {
+        diffNumber = DOLLARFORMAT(data[0].diff);
+    }
+    else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
+        diffNumber = COMMAFORMAT(data[0].diff);
+    }
+
     // console.log(data);
 
     if(indicator === "Initial") {
@@ -592,10 +605,12 @@ function populateEquityStatement(chartDivID, indicator, data) {
         d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
         d3.select(chartDivID + " .equitySentence").classed("noGap", true);
     }
-    else {  // TODO: figure out how to bold first part of this sentence for all equity sentences
-        d3.select(chartDivID + " .equitySentence").html("<span class='equitySentenceFirstPart'>" + COMMAFORMAT(diffNumber) + " more adults</span> in " + data[0].geo + " would need a postsecondary degree to close the equity gap with " + data[0].compareGeo);
+    else {
+        (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
+        (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + diffNumber + " " + data[0].sentence);
         d3.select(chartDivID + " .equitySentence").classed("noGap", false);
     }
+    // for custom goal, first part of sentence will always read "If this goal is met,"
 }
 
 function populateDescriptiveText(chartDivID, indicator) {

@@ -22,10 +22,11 @@ dat <- bind_rows(city_dat, ward_dat, cluster_dat_clean) %>%
   select(-year) %>%
   left_join(name_mapping, by = c("indicator" = "data_name")) %>%
   left_join(labels, by=c("text_name" = "Full name of indicator")) %>%
+  mutate(summary_sentence = str_c(`Summary sentence-pt 1`, geo, `Summary sentence-pt 2`, sep=" "))  %>%
   select(indicator_full_name = text_name, indicator = `Abberviated name of indicator`,
          year = `Year`, geo, numerator, denom, value = equityvariable,
          blue_bar_label = `Blue bar label`, diff_bar_label = `Yellow/pink bar label`,
-         grey_bar_label = `Gray bar label`, summary_sentence = `Summary sentence`)
+         grey_bar_label = `Gray bar label`, summary_sentence)
 
 # add a row with [fake] data to initialize the bar chart with
 dat <- add_row(dat, indicator_full_name = "Initial",
