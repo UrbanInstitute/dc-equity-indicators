@@ -610,16 +610,44 @@ function populateEquityStatement(chartDivID, indicator, data) {
     if(indicator === "Initial") {
         d3.select(chartDivID + " .equitySentence").text();
     }
-    else if(data[0].diff <= 0) {
-        d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
-        d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+    else if(customGoal === 1  && getUserGoal() >= 0) {
+        // error handling to catch invalid user-entered goals
+        if(nonbinaryIndicators.indexOf(indicator) === -1 && getUserGoal() > 100) {  // user can't enter > 100% for binary indicators
+            d3.select(chartDivID + " .equitySentence").text("Invalid entry.");
+            d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+            d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
+        }
+        else if(["Violent crime", "Premature mortality"].indexOf(indicator) > -1 && getUserGoal() > 1000) {  // user can't enter > 1000 b/c these are per 1,000
+            d3.select(chartDivID + " .equitySentence").text("Invalid entry.");
+            d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+            d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
+        }
+        else if(data[0].diff <= 0) {
+            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has met or exceeded that goal.");
+            d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+        }
+        else {
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If this goal is met, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
+            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If this goal is met, " + diffNumber + " " + data[0].sentence);
+            d3.select(chartDivID + " .equitySentence").classed("noGap", false);
+        }
+    }
+    else if(customGoal === 0) {
+        if(data[0].diff <= 0) {
+            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
+            d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+        }
+        else {
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
+            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + diffNumber + " " + data[0].sentence);
+            d3.select(chartDivID + " .equitySentence").classed("noGap", false);
+        }
     }
     else {
-        (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
-        (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + diffNumber + " " + data[0].sentence);
-        d3.select(chartDivID + " .equitySentence").classed("noGap", false);
+        d3.select(chartDivID + " .equitySentence").text("Invalid entry.");
+        d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+        d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
     }
-    // for custom goal, first part of sentence will always read "If this goal is met,"
 }
 
 function populateDescriptiveText(chartDivID, indicator) {
