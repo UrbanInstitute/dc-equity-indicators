@@ -399,7 +399,7 @@ button.downArrowBtn {
 .comparisonToggle {
     width: 120px;
     display: inline-block;
-    margin: 10px 15px;
+    margin: 20px 15px;
     overflow: auto;
 }
 
@@ -510,7 +510,6 @@ input#customTarget {
 h2.modalTitle {
     font-size: 36px;
     font-weight: normal;
-    padding-left: 5px;
 }
 
 h3.modalGroupTitle {
@@ -518,7 +517,6 @@ h3.modalGroupTitle {
     font-weight: normal;
     margin-top: 40px;
     margin-bottom: 10px;
-    padding-left: 5px;
     clear: both;
 }
 

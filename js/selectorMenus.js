@@ -216,6 +216,6 @@ function getBaseGeography() {
 
 function getComparisonGeography() {
     var geo = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
-    if(geo == "All of Washington, DC") return "Washington, D.C.";
+    if(geo == "DC") return "Washington, D.C.";
     else return geo;
 }

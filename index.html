@@ -135,22 +135,22 @@
                         <img src="img/arrow-divider.svg">
                     </div>
                     <div class="comparisonToggle">
-                        <div class="selectorLabel">For comparison</div>
+                        <!-- <div class="selectorLabel">For comparison</div> -->
                         <div class="toggleLabels">
-                            <span class="toggleLabel location selected">Location</span>
-                            <span class="toggleLabel target">Target</span>
+                            <span class="toggleLabel location selected">Compare</span>
+                            <span class="toggleLabel target">Set goal</span>
                         </div>
                         <div class="switch">
                             <span class="sliderButton"></span>
                         </div>
                     </div>
                     <div class="selectorGroup comparisonGeographySelector">
-                        <div class="selectorLabel">Select a location</div>
+                        <div class="selectorLabel">Comparison location</div>
                         <div class="selectorBox">DC</div>
                         <button class="selectorButton"></button>
                     </div>
                     <div class="selectorGroup customTargetTextbox hidden">
-                        <div class="selectorLabel">Enter your own target</div>
+                        <div class="selectorLabel">Enter your own equity goal</div>
                             <input type="number" id="customTarget" name="customTarget" min="0" step="1">
                     </div>
                 </div>
@@ -276,7 +276,7 @@
 
         <div id="baseGeographyMenu" class="selectorMenuModal geographyModal closed">
             <button class="closeButton"></button>
-            <h2 class="modalTitle">Select a ward or neighborhood cluster</h2>
+            <h2 class="modalTitle">Select a location</h2>
 
             <h3 class="modalGroupTitle">Wards</h3>
             <div class="dcWards map"></div>
@@ -292,7 +292,9 @@
             </ul>
 
             <h3 class="modalGroupTitle">Neighborhood clusters</h3>
-            <p>The DC government uses neighborhood clusters for budgeting, planning, and service delivery purposes.</p>
+            <p>The DC government uses <a href="" target="_blank">neighborhood clusters</a> for budgeting, planning, and service delivery purposes.</p>
+
+            <p>Neighborhood clusters 42 (Observatory Circle), 45 (National Mall, Potomac River), and 46 (Arboretum, Anacostia River) are not displayed because they have fewer than 200 people or 200 housing units.</p>
 
             <div class="dcClusters map"></div>
             <ul class="modalGroup threeColumns">
@@ -473,10 +475,10 @@
 
         <div id="comparisonGeographyMenu" class="selectorMenuModal geographyModal closed">
             <button class="closeButton"></button>
-            <h2 class="modalTitle">Select a ward or neighborhood cluster</h2>
+            <h2 class="modalTitle">Select a location</h2>
 
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem dc selected"><span class="menuItemLink">All of Washington, DC</span></li>
+                <li class="dcEquityIndicators menuItem dc selected"><span class="menuItemLink">DC</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Wards</h3>
@@ -493,7 +495,9 @@
             </ul>
 
             <h3 class="modalGroupTitle">Neighborhood clusters</h3>
-            <p>The DC government uses neighborhood clusters for budgeting, planning, and service delivery purposes.</p>
+            <p>The DC government uses <a href="" target="_blank">neighborhood clusters</a> for budgeting, planning, and service delivery purposes.</p>
+
+            <p>Neighborhood clusters 42 (Observatory Circle), 45 (National Mall, Potomac River), and 46 (Arboretum, Anacostia River) are not displayed because they have fewer than 200 people or 200 housing units.</p>
 
             <div class="dcClusters map"></div>
             <ul class="modalGroup threeColumns">
