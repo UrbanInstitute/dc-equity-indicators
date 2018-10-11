@@ -30,8 +30,8 @@ var equityData;
 
 d3.csv("data/equity_data.csv", function(d) {
     return {
+        indicator_full_name: d.indicator_full_name,
         indicator: d.indicator,
-        indicator_short: d.indicator,
         year: d.year,
         geo: d.geo,
         numerator: +d.numerator,
@@ -48,7 +48,7 @@ d3.csv("data/equity_data.csv", function(d) {
     equityData = data;
 
     // render example chart
-    makeEquityBarChart("#exampleEquityChart", "Adults with a postsecondary degree", "Ward 7", "Washington, D.C.", exampleChartDimensions);
+    makeEquityBarChart("#exampleEquityChart", "Postsecondary education", "Ward 7", "Washington, D.C.", exampleChartDimensions);
 
     // initialize bottom chart as grey rectangles
     makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial", toolChartDimensions);
@@ -70,8 +70,9 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
 }
 
-function populateChartTitle(chartDivID, title) {
-    var year = equityData.filter(function(d) { return d.indicator === title})[0].year;
+function populateChartTitle(chartDivID, indicator) {
+    var title = equityData.filter(function(d) { return d.indicator === indicator; })[0].indicator_full_name;
+    var year = equityData.filter(function(d) { return d.indicator === indicator; })[0].year;
     d3.select(chartDivID + " h2.chartTitle").text(title + ", " + year);
 }
 
