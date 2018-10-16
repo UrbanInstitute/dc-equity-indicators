@@ -64,10 +64,16 @@ function makeRaceBarChart(parentDivClass, geo) {
     svg.append("g")
         .attr("class", "axis axis--y")
         .call(d3.axisLeft(raceYScale));
+
+    populateTotalPopulation(parentDivClass, data[0].total_population);
 };
 
 function getRaceData(geo) {
     return raceData.filter(function(d) { return d.geo === geo; });
+}
+
+function populateTotalPopulation(parentDivClass, totalPopulationNumber) {
+    d3.select(parentDivClass + " .totalPopulation").text(COMMAFORMAT(totalPopulationNumber));
 }
 
 function updateRaceBarChart(parentDivClass, geo) {
@@ -81,6 +87,8 @@ function updateRaceBarChart(parentDivClass, geo) {
         .data(data)
         .attr("x", function(d) { return raceXScale(d.pct_population) + 4; })
         .text(function(d) { return PCTFORMAT(d.pct_population); });
+
+    populateTotalPopulation(parentDivClass, data[0].total_population);
 }
 
 // show charts on click
