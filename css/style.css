@@ -215,7 +215,7 @@ h4.barTitle {
     line-height: 20px;
     color: #0096d2;
     text-decoration: underline;
-    float: left;
+    cursor: pointer;
 }
 
 .infoIcon {
@@ -341,10 +341,12 @@ button.downArrowBtn {
 .demoChart {
     width: 207px;
     height: 119px;
-    position: relative;
+    position: absolute;
+    left: 270px;
+    transform: translateY(-50%);
     border: 1px solid #1696d2;
+    background-color: #fff;
     padding: 10px;
-    float: left;
 }
 
 .demoChart .closeButton {
