@@ -346,8 +346,8 @@ button.downArrowBtn {
     width: 320px;
     height: 150px;
     position: absolute;
-    left: 270px;
-    transform: translateY(-50%);
+    left: 320px;
+    transform: translateY(-55%);
     border: 1px solid #1696d2;
     background-color: #fff;
     padding: 5px 10px 10px 10px;
