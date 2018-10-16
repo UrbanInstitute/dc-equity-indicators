@@ -91,14 +91,16 @@ d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
                                   mouseoverGeography("#baseGeographyMenu", selectedGeoClassname); })
     .on("mouseout", function() { mouseoutGeography("#baseGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
-                              selectGeography("#baseGeographyMenu", ".baseGeographySelector", selectedGeoClassname); });
+                              selectGeography("#baseGeographyMenu", ".baseGeographySelector", selectedGeoClassname);
+                              updateRaceBarChart(".baseLocation", getBaseGeography()); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                                   mouseoverGeography("#comparisonGeographyMenu", selectedGeoClassname); })
     .on("mouseout", function() { mouseoutGeography("#comparisonGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
-                              selectGeography("#comparisonGeographyMenu", ".comparisonGeographySelector", selectedGeoClassname); });
+                              selectGeography("#comparisonGeographyMenu", ".comparisonGeographySelector", selectedGeoClassname);
+                              updateRaceBarChart(".comparisonLocation", getComparisonGeography()); });
 
 function mouseoutGeography(menuElementID) {
     d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("hovered", false);

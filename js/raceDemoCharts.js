@@ -93,12 +93,10 @@ function updateRaceBarChart(parentDivClass, geo) {
 
 // show charts on click
 d3.select(".baseLocation .viewDemoInfo")
-    .on("click", function() { updateRaceBarChart(".baseLocation", getBaseGeography());
-                              d3.select(".baseLocation .demoChart").classed("hidden", false); });
+    .on("click", function() { d3.select(".baseLocation .demoChart").classed("hidden", false); });
 
 d3.select(".comparisonLocation .viewDemoInfo")
-    .on("click", function() { updateRaceBarChart(".comparisonLocation", getComparisonGeography());
-                              d3.select(".comparisonLocation .demoChart").classed("hidden", false); });
+    .on("click", function() { d3.select(".comparisonLocation .demoChart").classed("hidden", false); });
 
 // hide charts when clicking on close button
 d3.select(".baseLocation .demoChart .closeButton")
