@@ -353,6 +353,31 @@ button.downArrowBtn {
     padding: 5px 10px 10px 10px;
 }
 
+.demoChart:after, .demoChart:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.demoChart:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #ffffff;
+    border-width: 10px;
+    margin-top: -10px;
+}
+
+.demoChart:before {
+    border-color: rgba(22, 150, 210, 0);
+    border-right-color: #1696d2;
+    border-width: 11px;
+    margin-top: -11px;
+}
+
 .demoChart .closeButton {
     border: 0;
     cursor: pointer;
