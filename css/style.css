@@ -142,6 +142,7 @@ h4.barTitle {
 
 .chartRow {
     width: 100%;
+    position: relative;
     /*margin: 20px 0;*/
 }
 
@@ -346,7 +347,7 @@ button.downArrowBtn {
     width: 320px;
     height: 150px;
     position: absolute;
-    left: 320px;
+    left: 170px;
     transform: translateY(-55%);
     border: 1px solid #1696d2;
     background-color: #fff;
