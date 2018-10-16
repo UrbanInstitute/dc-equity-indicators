@@ -1,4 +1,5 @@
 var PCTFORMAT = d3.format(".0%");
+var PCTFORMATONEDECIMAL = d3.format(".1%");
 var COMMAFORMAT = d3.format(",.0f");
 var DOLLARFORMAT = d3.format("$,.0f");
 
@@ -379,7 +380,7 @@ function labelBars(chartDivID, parentClass, data) {
         d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text(data[0].grey_bar_label);
 
         if(parentClass === ".withEquity") {
-            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+            indicator === "Unemployment" ? d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMATONEDECIMAL(data[0].yes)) : d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
 
             d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].numerator));
             d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
@@ -387,7 +388,7 @@ function labelBars(chartDivID, parentClass, data) {
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
-            d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
+            indicator === "Unemployment" ? d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMATONEDECIMAL(data[0].yes)) : d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(PCTFORMAT(data[0].yes));
         }
     }
     // labelling for positive binary indicators
