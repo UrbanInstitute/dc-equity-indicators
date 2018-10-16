@@ -10,7 +10,7 @@ var negativeIndicators = ["Unemployment", "Housing cost burden", "Violent crime"
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 10}};
-var toolChartDimensions = {width: 870, height: 60, margin: {top: 0, right: 50, bottom: 65, left: 20}};
+var toolChartDimensions = {width: 870, height: 60, margin: {top: 0, right: 50, bottom: 65, left: 40}};
 
 var xScale = d3.scaleLinear()
     .domain([0, 1]);
