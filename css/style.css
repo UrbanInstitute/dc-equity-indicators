@@ -183,7 +183,7 @@ h4.barTitle {
 }
 
 .barLeft {
-    width: 270px;
+    width: 210px;
     display: inline-block;
     float: left;
 }
@@ -203,11 +203,11 @@ h4.barTitle {
     margin-right: 7px;
     font-size: 54px;
     line-height: 54px;
-    width: 255px;
+    width: 170px;
 }
 
 #equityChart .withEquity .equityNumber {
-    width: 230px;
+    width: 170px;
 }
 
 .viewDemoInfo {
@@ -215,6 +215,7 @@ h4.barTitle {
     line-height: 20px;
     color: #0096d2;
     text-decoration: underline;
+    float: left;
 }
 
 .infoIcon {
@@ -336,7 +337,32 @@ button.downArrowBtn {
     padding: 17px 0;
 }
 
-/************ STYLES FOR SELECTORs **************/
+/************ STYLES FOR RACIAL DEMO CHARTS **************/
+.demoChart {
+    width: 207px;
+    height: 119px;
+    position: relative;
+    border: 1px solid #1696d2;
+    padding: 10px;
+    float: left;
+}
+
+.demoChart .closeButton {
+    border: 0;
+    cursor: pointer;
+    background: none;
+    color: #1696d2;
+    font-size: 18px;
+    float: right;
+}
+
+h5 {
+    font-size: 11px;
+    font-weight: bold;
+    clear: both;
+}
+
+/************ STYLES FOR SELECTORS **************/
 
 .indicatorSelectorMenus {
     position: absolute;
