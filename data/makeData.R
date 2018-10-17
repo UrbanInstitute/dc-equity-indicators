@@ -56,3 +56,31 @@ dat <- add_row(dat, indicator_full_name = "Initial",
 write_csv(dat, "equity_data.csv")
 # NOTE: manually edit this CSV to remove the extra space in front of the period for 
 # the small business lending summary sentence
+
+
+
+##### Racial demo data ##############
+race_data_sheets <- excel_sheets("source/Equity feature_racial composition.xlsx")
+
+race_city_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[1])
+race_ward_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[2])
+race_cluster_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[3])
+
+race_cluster_dat_clean <- race_cluster_dat %>%
+  filter(!(geo %in% c("Cluster 42 (Observatory Circle)", "Cluster 45 (National Mall, Potomac River)", "Cluster 46 (Arboretum, Anacostia River)"))) %>%
+  mutate(geo2 = str_extract(geo, "\\(.*\\)")) %>%
+  mutate(geo3 = str_sub(geo2, 2, -2)) %>%
+  select(indicator, year, "geo" = geo3, numerator, denom, equityvariable)
+
+race_dat <- bind_rows(race_city_dat, race_ward_dat, race_cluster_dat_clean) %>%
+  mutate(geo = replace(geo, geo=="Washington, D.C.", "DC")) %>%
+  mutate(race = case_when(
+    indicator == "percent white" ~ "White",
+    indicator == "percent black" ~ "Black",
+    indicator == "percent latino" ~ "Latino",
+    indicator == "percent Asian and Pacific Islander" ~ "Asian and Pacific Islander",
+    indicator == "percent other or multiple race" ~ "Other or multiple race"
+  )) %>%
+  select(race, geo, n = numerator, total_population = denom, pct_population = equityvariable)
+  
+write_csv(race_dat, "racial_demo_data.csv")

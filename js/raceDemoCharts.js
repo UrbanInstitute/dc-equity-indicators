@@ -27,8 +27,8 @@ d3.csv("data/racial_demo_data.csv", function(d) {
     raceData = data;
 
     // initialize charts
-    makeRaceBarChart(".baseLocation", "Washington, D.C.");
-    makeRaceBarChart(".comparisonLocation", "Washington, D.C.");
+    makeRaceBarChart(".baseLocation", "DC");
+    makeRaceBarChart(".comparisonLocation", "DC");
 });
 
 function makeRaceBarChart(parentDivClass, geo) {
