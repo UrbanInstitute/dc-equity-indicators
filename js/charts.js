@@ -52,7 +52,7 @@ d3.csv("data/equity_data.csv", function(d) {
     equityData = data;
 
     // render example chart
-    makeEquityBarChart("#exampleEquityChart", "Postsecondary education", "Ward 7", "Washington, D.C.", exampleChartDimensions);
+    makeEquityBarChart("#exampleEquityChart", "Postsecondary education", "Ward 7", "DC", exampleChartDimensions);
 
     // initialize bottom chart as grey rectangles
     makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial", toolChartDimensions);

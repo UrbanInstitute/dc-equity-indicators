@@ -177,10 +177,14 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
 
 // event handlers to listen to if the up/down arrows in the third bar chart are clicked
 d3.select("#equityChart .withEquity .adjustTargetBtns .upArrowBtn")
-    .on("click", function() { adjustment++; updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+    .on("click", function() { adjustment++;
+                              // d3.select("#customTarget").node().value = getUserGoal() + 1;
+                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 d3.select("#equityChart .withEquity .adjustTargetBtns .downArrowBtn")
-    .on("click", function() { adjustment--; updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+    .on("click", function() { adjustment--;
+                              // d3.select("#customTarget").node().value = getUserGoal() - 1;
+                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 
 
@@ -227,7 +231,7 @@ function getBaseGeography() {
 
 function getComparisonGeography() {
     var geo = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected span.menuItemLink").text();
-    if(geo == "DC") return "Washington, D.C.";
+    if(geo == "Washington, DC") return "DC";
     else return geo;
 }
 

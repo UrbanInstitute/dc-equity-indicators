@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <!-- <meta name="description" content="Our tool shows 10 important characteristics of children from birth to age 2. It displays the characteristics by whether their families are low income, whether their parents have education beyond high school, or whether their parents are immigrants."> -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <title>Can DC's wards and neighborhoods close their equity gaps?</title>
+        <title>DC Equity Indicators Tool</title>
 
         <!--social metas-->
         <!-- <meta name="twitter:card" content="summary">
@@ -86,7 +86,7 @@
         <main class="wrapper">
 
             <section class="introduction">
-                <h1 class="title">Can DC's wards and neighborhoods close their equity gaps?</h1>
+                <h1 class="title">Can DC's Wards and Neighborhoods Close Their Equity Gaps?</h1>
                 <p>In an equitable DC, every resident would have the opportunity to prosper. But <a href="https://www.urban.org/research/publication/color-wealth-nations-capital" target="_blank">decades of discriminatory policies and practices</a> have created inequities by ward, neighborhood, and <a href="https://www.urban.org/features/vision-equitable-dc" target="_blank">race and ethnicity</a>. And it’s not always clear how to level the playing field.</p>
                 <p>This tool adds clarity by showing what it would take to close gaps in opportunity for 16 key indicators. Select different areas of the District to compare or set your own equity goals. In the example below, we compare the share of adults with a postsecondary degree in Ward 7 with the share in DC overall.</p>
                 <div class="example chart">
@@ -125,12 +125,21 @@
                         <div class="selectorLabel">Indicator</div>
                         <div class="selectorBox">Select an indicator</div>
                         <button class="selectorButton"></button>
+<!--                         <div class="selectorTooltip">
+                            <button class="closeButton">X</button>
+                            <p>Equity indicators are measures of community well-being.</p>
+                        </div> -->
                     </div>
                     <div class="selectorGroup baseGeographySelector">
                         <div class="selectorLabel">Location</div>
                         <div class="selectorBox">Select a location</div>
                         <button class="selectorButton"></button>
+<!--                         <div class="selectorTooltip">
+                            <button class="closeButton">X</button>
+                            <p>Select a ward or a neighborhood cluster as your primary location.</p>
+                        </div> -->
                     </div>
+
                     <div class="dividerImage">
                         <img src="img/arrow-divider.svg">
                     </div>
@@ -143,6 +152,10 @@
                         <div class="switch">
                             <span class="sliderButton"></span>
                         </div>
+<!--                         <div class="selectorTooltip">
+                            <button class="closeButton">X</button>
+                            <p>Select a comparison location or set your own equity goal.</p>
+                        </div> -->
                     </div>
                     <div class="selectorGroup comparisonGeographySelector">
                         <div class="selectorLabel">Comparison location</div>
@@ -151,7 +164,7 @@
                     </div>
                     <div class="selectorGroup customTargetTextbox hidden">
                         <div class="selectorLabel">Enter your own equity goal</div>
-                            <input type="number" id="customTarget" name="customTarget" min="0" step="1">
+                        <input type="number" id="customTarget" name="customTarget" min="0" step="1">
                     </div>
                 </div>
             </section>
@@ -486,7 +499,7 @@
             <h2 class="modalTitle">Select a location</h2>
 
             <ul class="modalGroup">
-                <li class="dcEquityIndicators menuItem dc selected"><span class="menuItemLink">DC</span></li>
+                <li class="dcEquityIndicators menuItem dc selected"><span class="menuItemLink">Washington, DC</span></li>
             </ul>
 
             <h3 class="modalGroupTitle">Wards</h3>
