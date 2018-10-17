@@ -54,3 +54,5 @@ dat <- add_row(dat, indicator_full_name = "Initial",
                     summary_sentence = NA)
 
 write_csv(dat, "equity_data.csv")
+# NOTE: manually edit this CSV to remove the extra space in front of the period for 
+# the small business lending summary sentence
