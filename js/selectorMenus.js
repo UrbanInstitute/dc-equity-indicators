@@ -221,6 +221,7 @@ function toggleMenu() {
 
     if(d3.select(".toggleLabel.location").classed("selected")) {
         d3.select(".sliderButton").classed("off", false);
+        d3.select(".adjustTargetBtns").classed("hidden", true);
         d3.select(".comparisonGeographySelector").classed("hidden", false);
         d3.select(".customTargetTextbox").classed("hidden", true);
         d3.select("#equityChart .comparisonLocation").classed("noShow", false);
@@ -229,6 +230,7 @@ function toggleMenu() {
     }
     else if(d3.select(".toggleLabel.target").classed("selected")) {
         d3.select(".sliderButton").classed("off", true);
+        d3.select(".adjustTargetBtns").classed("hidden", false);
         d3.select(".comparisonGeographySelector").classed("hidden", true);
         d3.select(".customTargetTextbox").classed("hidden", false);
         d3.select("#equityChart .comparisonLocation").classed("noShow", true);  // hide comparison location bar
