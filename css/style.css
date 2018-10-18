@@ -45,6 +45,11 @@ p {
     max-width: 700px;
 }
 
+/* needed for IE so images with transparent backgrounds used in buttons don't show up with a grey background */
+button {
+    background: transparent;
+}
+
 section.introduction {
     max-width: 700px;
     margin: 0 auto;
