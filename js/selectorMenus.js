@@ -98,7 +98,8 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               hideTooltip(".indicatorSelector .selectorTooltip");
                               showTooltip(".baseGeographySelector .selectorTooltip");
                               activateElement(".baseGeographySelector");
-                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
+                              updatePlaceholderText();
+                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector");  });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -258,6 +259,23 @@ function toggleMenu() {
         customGoal = 1;
     }
 }
+
+function updatePlaceholderText() {
+    var currentIndicator = getIndicatorSelected();
+    console.log(currentIndicator);
+    if(currentIndicator === "Small-business lending") {
+        d3.select("#customTarget").node().placeholder = "Enter a dollar value";
+    }
+    else if(["Violent crime", "Premature mortality"].indexOf(currentIndicator) > -1) {
+        d3.select("#customTarget").node().placeholder = "Enter a number";
+    }
+    else {
+        d3.select("#customTarget").node().placeholder = "Enter a percentage";
+    }
+}
+
+
+
 
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
