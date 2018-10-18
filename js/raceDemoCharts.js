@@ -93,14 +93,18 @@ function updateRaceBarChart(parentDivClass, geo) {
 
 // show charts on click
 d3.select(".baseLocation .viewDemoInfo")
-    .on("click", function() { d3.select(".baseLocation .demoChart").classed("hidden", false); });
+    .on("click", function() { d3.select(".baseLocation .demoChart").classed("fadeOut", false);
+                              d3.select(".baseLocation .demoChart").classed("fadeIn", true); });
 
 d3.select(".comparisonLocation .viewDemoInfo")
-    .on("click", function() { d3.select(".comparisonLocation .demoChart").classed("hidden", false); });
+    .on("click", function() { d3.select(".comparisonLocation .demoChart").classed("fadeOut", false);
+                              d3.select(".comparisonLocation .demoChart").classed("fadeIn", true); });
 
 // hide charts when clicking on close button
 d3.select(".baseLocation .demoChart .closeButton")
-    .on("click", function() { d3.select(".baseLocation .demoChart").classed("hidden", true); });
+    .on("click", function() { d3.select(".baseLocation .demoChart").classed("fadeIn", false);
+                              d3.select(".baseLocation .demoChart").classed("fadeOut", true); });
 
 d3.select(".comparisonLocation .demoChart .closeButton")
-    .on("click", function() { d3.select(".comparisonLocation .demoChart").classed("hidden", true); });
+    .on("click", function() { d3.select(".comparisonLocation .demoChart").classed("fadeIn", false);
+                              d3.select(".comparisonLocation .demoChart").classed("fadeOut", true);});
