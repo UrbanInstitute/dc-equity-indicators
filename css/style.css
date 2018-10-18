@@ -58,6 +58,7 @@ section.toolDropdownSelector {
     margin: 50px 0 44px 0;
 }
 
+/*
 section.toolDropdownSelector:after, section.toolDropdownSelector:before {
     top: 100%;
     left: 50%;
@@ -67,25 +68,21 @@ section.toolDropdownSelector:after, section.toolDropdownSelector:before {
     width: 0;
     position: absolute;
     pointer-events: none;
-    border-color: rgba(136, 183, 213, 0);
-    border-top-color: #0a4c6a;
-    border-width: 20px;
-    margin-left: -20px;
 }
 
 section.toolDropdownSelector:after {
-    border-color: rgba(255, 255, 255, 0);
-    border-bottom-color: #ffffff;
-    border-width: 10px;
-    margin-left: -10px;
+    border-color: rgba(10, 76, 106, 0);
+    border-top-color: #0a4c6a;
+    border-width: 30px;
+    margin-left: -30px;
 }
 
 section.toolDropdownSelector:before {
-    border-color: rgba(0, 0, 0, 0);
-    border-bottom-color: #;
-    border-width: 11px;
-    margin-left: -11px;
-}
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 31px;
+    margin-left: -31px;
+}*/
 
 #equityChart {
     width: 1100px;
@@ -359,13 +356,13 @@ button.downArrowBtn {
 /************ STYLES FOR RACIAL DEMO CHARTS **************/
 .demoChart {
     width: 320px;
-    height: 150px;
+    height: 125px;
     position: absolute;
     left: 170px;
     transform: translateY(-55%);
     border: 1px solid #1696d2;
     background-color: #fff;
-    padding: 5px 10px 10px 10px;
+    padding: 10px;
 }
 
 .demoChart:after, .demoChart:before {
@@ -399,7 +396,9 @@ button.downArrowBtn {
     background: none;
     color: #1696d2;
     font-size: 14px;
-    float: right;
+    position: absolute;
+    top: 5px;
+    right: 0;
 }
 
 h5 {
@@ -609,7 +608,7 @@ input#customTarget {
 
 .selectorTooltip p {
     clear: both;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .selectorGroup.inactive .selectorLabel,
