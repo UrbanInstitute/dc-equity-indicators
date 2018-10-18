@@ -360,6 +360,7 @@ button.downArrowBtn {
 
 /************ STYLES FOR PLOT ON INITIAL PAGE LOAD *********/
 
+.initialize h2.chartTitle,
 .initialize .saveImageBtn,
 .initialize .barTitle,
 .initialize .viewDemoInfo,
