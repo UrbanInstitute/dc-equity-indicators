@@ -464,6 +464,10 @@ h5 {
     margin-bottom: 8px;
 }
 
+.selectorItem {
+    cursor: pointer;
+}
+
 .comparisonToggle .selectorLabel {
     margin-bottom: 6px;
 }
@@ -562,7 +566,7 @@ h5 {
 }
 
 input#customTarget {
-    width: 271px;
+    width: 321px;
     height: 45px;
     font-size: 18px;
 }
