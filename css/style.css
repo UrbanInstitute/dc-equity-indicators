@@ -373,7 +373,7 @@ button.downArrowBtn {
     display: none;
 }
 
-.initialize h2.chartTitle,
+/*.initialize h2.chartTitle,*/
 .initialize .barLeft {
     background-color: rgb(227, 227, 227);
 }
