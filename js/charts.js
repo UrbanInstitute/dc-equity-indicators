@@ -494,6 +494,8 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     slices.selectAll("rect")
         .data(function(d) { return d; })
         .transition()
+        .delay(300)
+        .duration(500)
         .attr("x", function(d) { return xScale(d[0]); })
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
 
