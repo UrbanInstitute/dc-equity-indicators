@@ -44,26 +44,33 @@ function makeMap(menuElementID, mapClassName, width, height, data){
         .on("mouseover", function(d) { var selectedGeoClassname = mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id);
                                        mouseoverGeography(menuElementID, selectedGeoClassname); })
         .on("mouseout", function() { mouseoutGeography(menuElementID); })
-        .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id)); });
+        .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id));
+                                   if(menuElementID === "#baseGeographyMenu") {
+                                    updateRaceBarChart(".baseLocation", getBaseGeography());
+                              hideTooltip(".baseGeographySelector .selectorTooltip");
+                              showTooltip(".comparisonToggle .selectorTooltip");
+                              activateElement(".comparisonToggle");
+                              activateElement(".comparisonGeographySelector");
+                                   } });
 
     // disable Clusters 42, 45 and 46 on the map because these clusters have small population sizes
     (mapClassName === ".dcClusters") && d3.selectAll(".dcClusters .cluster_42,.cluster_45,.cluster_46").classed("disabled", true);
 }
 
 // event listeners to open and close menu modals
-d3.select(".indicatorSelector .selectorButton")
+d3.select(".indicatorSelector .selectorItem")
     .on("click", function() { showMenu("#equityIndicatorMenu"); });
 
 d3.select("#equityIndicatorMenu .closeButton")
     .on("click", function() { closeMenu("#equityIndicatorMenu"); });
 
-d3.select(".baseGeographySelector .selectorButton")
+d3.select(".baseGeographySelector .selectorItem")
     .on("click", function() { showMenu("#baseGeographyMenu"); });
 
 d3.select("#baseGeographyMenu .closeButton")
     .on("click", function() { closeMenu("#baseGeographyMenu"); });
 
-d3.select(".comparisonGeographySelector .selectorButton")
+d3.select(".comparisonGeographySelector .selectorItem")
     .on("click", function() { showMenu("#comparisonGeographyMenu"); });
 
 d3.select("#comparisonGeographyMenu .closeButton")
@@ -78,7 +85,7 @@ function closeMenu(menuElementID) {
 }
 
 
-// event listeners to handle selection of indicator or geography
+// event listeners to handle selection of indicator or geography via either list or map
 d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
     .on("mouseover", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("hovered", false);
                                   d3.select(this).classed("hovered", true); })
@@ -89,7 +96,7 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               activateElement(".baseGeographySelector");
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
 
-d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
+d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                                   mouseoverGeography("#baseGeographyMenu", selectedGeoClassname); })
     .on("mouseout", function() { mouseoutGeography("#baseGeographyMenu"); })
