@@ -58,7 +58,7 @@ section.toolDropdownSelector {
     margin: 50px 0 44px 0;
 }
 
-section.toolDropdownSelector:after {
+section.toolDropdownSelector:after, section.toolDropdownSelector:before {
     top: 100%;
     left: 50%;
     border: solid transparent;
@@ -71,6 +71,20 @@ section.toolDropdownSelector:after {
     border-top-color: #0a4c6a;
     border-width: 20px;
     margin-left: -20px;
+}
+
+section.toolDropdownSelector:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffffff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+section.toolDropdownSelector:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: #;
+    border-width: 11px;
+    margin-left: -11px;
 }
 
 #equityChart {
@@ -286,7 +300,7 @@ text.barLabel.line2 {
 }
 
 .tool .equitySentence {
-    margin-left: 290px;
+    margin-left: 250px;
 }
 
 .tool .equitySentence.noGap {
@@ -543,7 +557,86 @@ input#customTarget {
     font-size: 18px;
 }
 
+.selectorTooltip {
+    width: 340px;
+    height: 100px;
+    background-color: #fff;
+    border: 1px solid #1696d2;
+    font-size: 14px;
+    padding: 5px 15px 15px 15px;
+    position: absolute;
+    transform: translateY(95%);
+}
 
+.comparisonToggle .selectorTooltip {
+    transform: translate(-35%, 35%);
+}
+
+.selectorTooltip:after, .selectorTooltip:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.selectorTooltip:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 20px;
+    margin-left: -20px;
+}
+
+.selectorTooltip:before {
+    border-color: rgba(22, 150, 210, 0);
+    border-bottom-color: #1696d2;
+    border-width: 21px;
+    margin-left: -21px;
+}
+
+.selectorTooltip .closeButton {
+    border: 0;
+    cursor: pointer;
+    background: none;
+    color: #1696d2;
+    font-size: 14px;
+    float: right;
+    margin-bottom: 5px;
+}
+
+.selectorTooltip p {
+    clear: both;
+    margin-top: 30px;
+}
+
+.selectorGroup.inactive .selectorLabel,
+.selectorGroup.inactive .selectorBox,
+.comparisonToggle.inactive .toggleLabel {
+    color: #9d9fa2;
+}
+
+.selectorGroup.inactive .selectorButton {
+    background:
+        linear-gradient(
+            rgba(216, 216, 216, 0.8),
+            rgba(216, 216, 216, 0.8)
+        ),
+        url('../img/select-button.svg');
+    cursor: auto;
+    pointer-events: none;
+}
+
+.comparisonToggle.inactive .sliderButton:before {
+    background-color: #d2d2d2;
+}
+
+.comparisonToggle.inactive .switch {
+    cursor: auto;
+    pointer-events: none;
+}
 
 
 /************ STYLES FOR MODALS **************/

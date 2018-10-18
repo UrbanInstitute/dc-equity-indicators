@@ -84,6 +84,9 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                                   d3.select(this).classed("hovered", true); })
     .on("click", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("selected", false);
                               d3.select(this).classed("selected", true);
+                              hideTooltip(".indicatorSelector .selectorTooltip");
+                              showTooltip(".baseGeographySelector .selectorTooltip");
+                              activateElement(".baseGeographySelector");
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
@@ -92,7 +95,11 @@ d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
     .on("mouseout", function() { mouseoutGeography("#baseGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                               selectGeography("#baseGeographyMenu", ".baseGeographySelector", selectedGeoClassname);
-                              updateRaceBarChart(".baseLocation", getBaseGeography()); });
+                              updateRaceBarChart(".baseLocation", getBaseGeography());
+                              hideTooltip(".baseGeographySelector .selectorTooltip");
+                              showTooltip(".comparisonToggle .selectorTooltip");
+                              activateElement(".comparisonToggle");
+                              activateElement(".comparisonGeographySelector"); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -100,7 +107,8 @@ d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
     .on("mouseout", function() { mouseoutGeography("#comparisonGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                               selectGeography("#comparisonGeographyMenu", ".comparisonGeographySelector", selectedGeoClassname);
-                              updateRaceBarChart(".comparisonLocation", getComparisonGeography()); });
+                              updateRaceBarChart(".comparisonLocation", getComparisonGeography());
+                              hideTooltip(".comparisonToggle .selectorTooltip"); });
 
 function mouseoutGeography(menuElementID) {
     d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("hovered", false);
@@ -215,6 +223,8 @@ d3.select(".comparisonToggle .switch")
     .on("click", function() { toggleMenu(); });
 
 function toggleMenu() {
+    // hide tooltip
+    hideTooltip(".comparisonToggle .selectorTooltip");
     d3.select(".toggleLabel.location").classed("selected", !d3.select(".toggleLabel.location").classed("selected"));
     d3.select(".toggleLabel.target").classed("selected", !d3.select(".toggleLabel.target").classed("selected"));
     adjustment = 0;  // reset adjustment factor on toggle
@@ -241,6 +251,31 @@ function toggleMenu() {
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
     .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); adjustment = 0; });
+
+
+// event listeners to handle initial tooltip popups and making the selector menus active
+d3.select(".indicatorSelector .selectorTooltip button.closeButton")
+    .on("click", function() { hideTooltip(".indicatorSelector .selectorTooltip"); });
+
+d3.select(".baseGeographySelector .selectorTooltip button.closeButton")
+    .on("click", function() { hideTooltip(".baseGeographySelector .selectorTooltip"); });
+
+d3.select(".comparisonToggle .selectorTooltip button.closeButton")
+    .on("click", function() { hideTooltip(".comparisonToggle .selectorTooltip"); });
+
+
+function activateElement(classname) {
+    d3.select(classname).classed("inactive", false);
+}
+
+function hideTooltip(classname) {
+    // get rid of tooltip after the user has made selections for the first time
+    d3.select(classname).classed("noShow", true);
+}
+
+function showTooltip(classname) {
+    d3.select(classname).classed("hidden", false);
+}
 
 // get selection values
 function getIndicatorSelected() {
