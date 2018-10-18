@@ -308,7 +308,8 @@ p.exampleParagraph {
 }
 
 .tool .equitySentence {
-    margin-left: 250px;
+    margin: 0 auto 18px auto;
+    font-weight: 700;
 }
 
 .tool .equitySentence.noGap {
@@ -667,10 +668,18 @@ input#customTarget {
     background-color: #fff;
     z-index: 1000;
     padding: 47px 150px 0 190px;
+   /*opacity: 1;*/
+   transition: display .5s ease-in-out;
+   -moz-transition: display .5s ease-in-out;
+   -webkit-transition: display .5s ease-in-out;
 }
 
 .selectorMenuModal.closed {
     display: none;
+    opacity: 0;
+    transition: display .2s ease-in-out;
+    -moz-transition: display .2s ease-in-out;
+    -webkit-transition: display .2s ease-in-out;
 }
 
 .selectorMenuModal .closeButton {
