@@ -46,12 +46,16 @@ function makeMap(menuElementID, mapClassName, width, height, data){
         .on("mouseout", function() { mouseoutGeography(menuElementID); })
         .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id));
                                    if(menuElementID === "#baseGeographyMenu") {
-                                    updateRaceBarChart(".baseLocation", getBaseGeography());
-                              hideTooltip(".baseGeographySelector .selectorTooltip");
-                              showTooltip(".comparisonToggle .selectorTooltip");
-                              activateElement(".comparisonToggle");
-                              activateElement(".comparisonGeographySelector");
-                                   } });
+                                        updateRaceBarChart(".baseLocation", getBaseGeography());
+                                        hideTooltip(".baseGeographySelector .selectorTooltip");
+                                        showTooltip(".comparisonToggle .selectorTooltip");
+                                        activateElement(".comparisonToggle");
+                                        activateElement(".comparisonGeographySelector");
+                                    }
+                                    else if(menuElementID === "#comparisonGeographyMenu") {
+                                          updateRaceBarChart(".comparisonLocation", getComparisonGeography());
+                                          hideTooltip(".comparisonToggle .selectorTooltip");
+                                    }});
 
     // disable Clusters 42, 45 and 46 on the map because these clusters have small population sizes
     (mapClassName === ".dcClusters") && d3.selectAll(".dcClusters .cluster_42,.cluster_45,.cluster_46").classed("disabled", true);
