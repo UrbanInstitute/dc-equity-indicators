@@ -133,7 +133,7 @@ h4.barTitle {
 }
 
 #equityChart .withEquity h4.barTitle {
-    padding: 18px 18px 0 0;
+    padding: 18px 18px 0;
 }
 
 .saveImageBtn {
@@ -376,6 +376,10 @@ button.downArrowBtn {
     visibility: hidden;
 }
 
+.initialize .barTitle,
+.initialize .viewDemoInfo,
+.initialize .chartTitle,
+.initialize .saveImageBtn,
 .initialize .adjustTargetBtns {
     display: none;
 }
@@ -714,9 +718,10 @@ input#customTarget {
     z-index: 1;
     right: 15%;
     border: 0;
-    height: 18px;
-    width: 18px;
-    background-image: url('../img/close-button.png');
+    height: 32px;
+    width: 32px;
+    background-image: url('../img/button_close.png');
+    background-size: contain;
     cursor: pointer;
 }
 
