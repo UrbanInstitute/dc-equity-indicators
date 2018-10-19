@@ -99,7 +99,8 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               showTooltip(".baseGeographySelector .selectorTooltip");
                               activateElement(".baseGeographySelector");
                               updatePlaceholderText();
-                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector");  });
+                              scrollMenuDivToTop();
+                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -111,7 +112,8 @@ d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
                               hideTooltip(".baseGeographySelector .selectorTooltip");
                               showTooltip(".comparisonToggle .selectorTooltip");
                               activateElement(".comparisonToggle");
-                              activateElement(".comparisonGeographySelector"); });
+                              activateElement(".comparisonGeographySelector");
+                              scrollMenuDivToTop(); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -120,7 +122,15 @@ d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                               selectGeography("#comparisonGeographyMenu", ".comparisonGeographySelector", selectedGeoClassname);
                               updateRaceBarChart(".comparisonLocation", getComparisonGeography());
-                              hideTooltip(".comparisonToggle .selectorTooltip"); });
+                              hideTooltip(".comparisonToggle .selectorTooltip");
+                              scrollMenuDivToTop(); });
+
+function scrollMenuDivToTop() {
+    if(screen.width >= 768) {
+        var position = $(".toolDropdownSelector").offset().top - 50;
+        $("html, body").animate({ scrollTop: position}, 500);
+    }
+}
 
 function mouseoutGeography(menuElementID) {
     d3.selectAll(menuElementID + " .dcEquityIndicators.menuItem").classed("hovered", false);
