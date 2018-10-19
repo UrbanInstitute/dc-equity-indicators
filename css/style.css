@@ -87,8 +87,8 @@ section.toolDropdownSelector:before {
     border-top-color: #fff;
     border-width: 31px;
     margin-left: -31px;
-}*/
-
+}
+*/
 #equityChart {
     width: 1100px;
     margin: 0 auto;
@@ -429,8 +429,8 @@ button.downArrowBtn {
 .demoChart:before {
     border-color: rgba(22, 150, 210, 0);
     border-right-color: #1696d2;
-    border-width: 11px;
-    margin-top: -11px;
+    border-width: 12px;
+    margin-top: -12px;
 }
 
 .demoChart .closeButton {
@@ -639,8 +639,8 @@ input#customTarget {
 .selectorTooltip:before {
     border-color: rgba(22, 150, 210, 0);
     border-bottom-color: #1696d2;
-    border-width: 21px;
-    margin-left: -21px;
+    border-width: 22px;
+    margin-left: -22px;
 }
 
 .selectorTooltip .closeButton {
@@ -688,7 +688,7 @@ input#customTarget {
 /************ STYLES FOR MODALS **************/
 
 .selectorMenuModal {
-    display: block;
+    /*display: block;*/
     position: fixed;
     top: 50%;
     left: 50%;
@@ -700,18 +700,24 @@ input#customTarget {
     z-index: 1000;
     padding: 47px 150px 0 190px;
    /*opacity: 1;*/
-   transition: display .5s ease-in-out;
-   -moz-transition: display .5s ease-in-out;
-   -webkit-transition: display .5s ease-in-out;
+   visibility: visible;
+   backface-visibility: visible;
+   -webkit-backface-visibility: visible;
+   transition: all .2s ease-in-out;
+   -moz-transition: all .2s ease-in-out;
+   -webkit-transition: all .2s ease-in-out;
 }
 
 .selectorMenuModal.closed {
-    display: none;
-    opacity: 0;
-    transition: display .2s ease-in-out;
+    /*display: none;*/
+    visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /*opacity: 0;*/
+/*    transition: display .2s ease-in-out;
     -moz-transition: display .2s ease-in-out;
     -webkit-transition: display .2s ease-in-out;
-}
+*/}
 
 .selectorMenuModal .closeButton {
     position: absolute;
