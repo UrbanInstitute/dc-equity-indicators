@@ -45,6 +45,7 @@ function makeMap(menuElementID, mapClassName, width, height, data){
                                        mouseoverGeography(menuElementID, selectedGeoClassname); })
         .on("mouseout", function() { mouseoutGeography(menuElementID); })
         .on("click", function(d) { selectGeography(menuElementID, selectorBoxClass, mapClassName === ".dcWards" ? "ward_" + d.properties.WARD : "cluster_" + parseFloat(d.id));
+                                   scrollMenuDivToTop();
                                    if(menuElementID === "#baseGeographyMenu") {
                                         updateRaceBarChart(".baseLocation", getBaseGeography());
                                         hideTooltip(".baseGeographySelector .selectorTooltip");
