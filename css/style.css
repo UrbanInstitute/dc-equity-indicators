@@ -325,6 +325,7 @@ p.exampleParagraph {
     font-weight: bold;
     padding-bottom: 18px;
     border-bottom: 1px solid #0a4c6a;
+    margin-left: 0;
 }
 
 .tool .equitySentence {
