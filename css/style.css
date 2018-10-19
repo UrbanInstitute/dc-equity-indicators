@@ -59,7 +59,9 @@ section.toolDropdownSelector {
     width: 100%;
     height: 130px;
     background-color: #0a4c6a;
-    position: relative;
+    position: sticky;
+    top: 50px;
+    z-index: 10;
     margin: 50px 0 44px 0;
 }
 
@@ -194,8 +196,8 @@ h4.barTitle {
 #equityChart .withEquity.chartRow :before {
     border-color: rgba(216, 216, 216, 0);
     border-top-color: #d8d8d8;
-    border-width: 21px;
-    margin-left: -21px;
+    border-width: 22px;
+    margin-left: -22px;
 }
 
 .equityBarGroup {
