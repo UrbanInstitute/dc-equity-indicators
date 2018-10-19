@@ -91,6 +91,15 @@ section.toolDropdownSelector:before {
     margin-left: -31px;
 }
 */
+
+p.publishedDate {
+    top: 0;
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 15px;
+    position: relative;
+}
+
 #equityChart {
     width: 1100px;
     margin: 0 auto;
