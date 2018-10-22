@@ -181,7 +181,7 @@
                 <div class="chart">
                     <div id="equityChart" class="chart initialize">
                         <h2 class="chartTitle"></h2>
-                        <button class="saveImageBtn">Save Image</button>
+                        <a id="saveImageLink" href="/" download="equity_chart.png"><button class="saveImageBtn">Save Image</button></a>
                         <div class="baseLocation chartRow">
                             <h4 class="barTitle baseGeographyName"></h4>
                             <div class="viewDemoInfo"><img class="infoIcon" src="img/info-icon.svg">See demographic info</div>
@@ -709,9 +709,9 @@
         <script type="text/javascript" src="js/jquery.2.1.4.min.js"></script>
     	<script type="text/javascript" src="js/d3.v4.min.js"></script>
         <script type="text/javascript" src="js/topojson.v1.min.js"></script>
-        <!-- <script type="text/javascript" src="js/d3-polygon.v1.min.js"></script> -->
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <!-- <script type="text/javascript" src="js/make_stacked_bars.js"></script> -->
+        <!-- <script type="text/javascript" src="js/saveSvgAsPng.js"></script> -->
+        <script type="text/javascript" src="js/html2canvas.min.js"></script>
         <script type="text/javascript" src="data/indicator_text.json"></script>
         <script type="text/javascript" src="js/charts.js"></script>
         <script type="text/javascript" src="js/raceDemoCharts.js"></script>

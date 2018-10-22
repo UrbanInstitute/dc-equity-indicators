@@ -684,3 +684,15 @@ function populateDescriptiveText(chartDivID, indicator) {
     }
 }
 
+
+
+// save chart to png using html2canvas
+// source: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/
+d3.select(".saveImageBtn").on("click", function() {
+    html2canvas(document.querySelector("#equityChart")).then(function (canvas) {
+        // document.querySelector(".previewImage").appendChild(canvas);
+        var imageData = canvas.toDataURL("image/png");
+        var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        document.querySelector("#saveImageLink").setAttribute("href", newData);
+    });
+});
