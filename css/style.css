@@ -71,6 +71,13 @@ section.tool {
     -webkit-transition: opacity 300ms;
 }
 
+@media screen and (max-width: 767px) {
+    section.introduction,
+    section.tool {
+        padding: 0 20px;
+    }
+}
+
 .sectionFade {
     opacity: 0.5;
     transition: opacity 300ms;
@@ -155,6 +162,12 @@ h4.barTitle {
     margin-bottom: 7px;
 }
 
+@media screen and (max-width: 767px) {
+    h4.barTitle {
+        font-size: 16px;
+    }
+}
+
 #equityChart .withEquity h4.barTitle {
     padding: 18px 18px 0;
 }
@@ -173,6 +186,12 @@ h4.barTitle {
     width: 100%;
     min-height: 400px;
     /*background-color: #d2d2d2;*/
+}
+
+@media screen and (max-width: 1024px){
+    .chart {
+        margin: 0 20px;
+    }
 }
 
 .chartTitle {
@@ -252,6 +271,22 @@ h4.barTitle {
 
 #equityChart .withEquity .equityNumber {
     width: 170px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    #equityChart .equityNumber {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .equityNumber {
+        font-size: 16px;
+    }
+
+    #equityChart .equityNumber {
+        font-size: 16px;
+    }
 }
 
 .viewDemoInfo {
@@ -748,6 +783,11 @@ input#customTarget {
     .dividerImage {
         display: none;
     }
+
+    .comparisonToggle {
+        margin: 20px 0;
+        display: block;
+    }
 }
 
 @media screen and (max-width: 499px) {
@@ -776,6 +816,11 @@ input#customTarget {
 
     .dividerImage {
         display: none;
+    }
+
+    .comparisonToggle {
+        margin: 20px 0;
+        display: block;
     }
 }
 
