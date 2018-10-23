@@ -799,6 +799,10 @@ input#customTarget {
         margin: 20px 0;
         display: block;
     }
+
+    input#customTarget {
+        width: 460px;
+    }
 }
 
 @media screen and (max-width: 499px) {
@@ -832,6 +836,10 @@ input#customTarget {
     .comparisonToggle {
         margin: 20px 0;
         display: block;
+    }
+
+    input#customTarget {
+        width: 100%;
     }
 }
 
