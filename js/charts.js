@@ -665,8 +665,8 @@ function populateEquityStatement(chartDivID, indicator, data) {
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
         }
         else {
-            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
-            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed the equity gap, " + diffNumber + " " + data[0].sentence);
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed this equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
+            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed this equity gap, " + diffNumber + " " + data[0].sentence);
             d3.select(chartDivID + " .equitySentence").classed("noGap", false);
         }
     }
@@ -687,12 +687,14 @@ function populateDescriptiveText(chartDivID, indicator) {
 
 
 // save chart to png using html2canvas
-// source: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/
+// sources: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/, https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
 d3.select(".saveImageBtn").on("click", function() {
-    html2canvas(document.querySelector("#equityChart")).then(function (canvas) {
-        // document.querySelector(".previewImage").appendChild(canvas);
-        var imageData = canvas.toDataURL("image/png");
-        var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
-        document.querySelector("#saveImageLink").setAttribute("href", newData);
+    html2canvas(document.querySelector("#equityChart"), {scale: 0.75}).then(function (canvas) {
+        // document.body.appendChild(canvas);
+        var imageData = canvas.toDataURL();
+        document.querySelector("#saveImageLink").setAttribute("href", imageData);
+    })
+    .catch(function(error) {
+        console.log(error);
     });
 });

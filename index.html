@@ -181,13 +181,15 @@
                 <div class="chart">
                     <div id="equityChart" class="chart initialize">
                         <h2 class="chartTitle"></h2>
-                        <a id="saveImageLink" href="/" download="equity_chart.png"><button class="saveImageBtn">Save Image</button></a>
+                        <a id="saveImageLink" href="/" download="equity_chart.png"><button class="saveImageBtn" data-html2canvas-ignore>Save Image</button></a>
                         <div class="baseLocation chartRow">
                             <h4 class="barTitle baseGeographyName"></h4>
-                            <div class="viewDemoInfo"><img class="infoIcon" src="img/info-icon.svg">See demographic info</div>
-                            <div class="demoChart fadeOut">
-                                <button class="closeButton">X</button>
-                                <h5>Total population: <span class="totalPopulation"></span></h5>
+                            <div class="demoInfo" data-html2canvas-ignore>
+                                <div class="viewDemoInfo"><img class="infoIcon" src="img/info-icon.svg">See demographic info</div>
+                                <div class="demoChart fadeOut">
+                                    <button class="closeButton">X</button>
+                                    <h5>Total population: <span class="totalPopulation"></span></h5>
+                                </div>
                             </div>
                             <div class="equityBarGroup">
                                 <div class="barLeft">
@@ -198,10 +200,12 @@
                         </div>
                         <div class="comparisonLocation chartRow">
                             <h4 class="barTitle comparisonGeographyName"></h4>
-                            <div class="viewDemoInfo"><img class="infoIcon" src="img/info-icon.svg">See demographic info</div>
-                            <div class="demoChart fadeOut">
-                                <button class="closeButton">X</button>
-                                <h5>Total population: <span class="totalPopulation"></span></h5>
+                            <div class="demoInfo" data-html2canvas-ignore>
+                                <div class="viewDemoInfo"><img class="infoIcon" src="img/info-icon.svg">See demographic info</div>
+                                <div class="demoChart fadeOut">
+                                    <button class="closeButton">X</button>
+                                    <h5>Total population: <span class="totalPopulation"></span></h5>
+                                </div>
                             </div>
                             <div class="equityBarGroup">
                                 <div class="barLeft">
