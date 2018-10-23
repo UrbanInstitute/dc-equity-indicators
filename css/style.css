@@ -707,6 +707,77 @@ input#customTarget {
     pointer-events: none;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1209px) {
+    .indicatorSelectorMenus {
+        width: 100%;
+    }
+
+    .selectorGroup {
+        width: 22%;
+    }
+
+    .selectorBox {
+        width: calc(100% - 50px);
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+    section.toolDropdownSelector {
+        height: 400px;
+        position: static;
+        padding: 20px;
+    }
+
+    .indicatorSelectorMenus {
+        width: 100%;
+        position: static;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    .selectorGroup {
+        width: 460px;
+        margin: 10px 0;
+    }
+
+    .selectorBox {
+        width: 410px;
+    }
+
+    .dividerImage {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    section.toolDropdownSelector {
+        height: 400px;
+        position: static;
+        padding: 20px;
+    }
+
+    .indicatorSelectorMenus {
+        width: 100%;
+        position: static;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    .selectorGroup {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .selectorBox {
+        width: calc(100% - 50px);
+    }
+
+    .dividerImage {
+        display: none;
+    }
+}
 
 /************ STYLES FOR MODALS **************/
 
