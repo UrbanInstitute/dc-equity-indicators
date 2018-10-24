@@ -23,6 +23,7 @@
         <meta property="og:url" content="https://urbn.is/2LWt6kS"> -->
 
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic,900" rel="stylesheet" type="text/css">
         <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
@@ -181,7 +182,7 @@
                 <div class="chart">
                     <div id="equityChart" class="chart initialize">
                         <h2 class="chartTitle"></h2>
-                        <button class="saveImageBtn" data-html2canvas-ignore>Save Image</button>
+                        <a id="saveImageLink" download="equity_chart.png"><button class="saveImageBtn" data-html2canvas-ignore>Save Image</button></a>
                         <div class="baseLocation chartRow">
                             <h4 class="barTitle baseGeographyName"></h4>
                             <div class="demoInfo" data-html2canvas-ignore>
@@ -709,13 +710,51 @@
             </ul>
         </div>
 
+        <div class="imageDownloadChart">
+            <div class="chart">
+                <div id="downloadChart" class="chart">
+                    <h2 class="chartTitle"></h2>
+                    <div class="baseLocation chartRow">
+                        <h4 class="barTitle baseGeographyName"></h4>
+                        <div class="equityBarGroup">
+                            <div class="barLeft">
+                                <div class="baseNumber equityNumber"></div>
+                            </div>
+                            <div class="baseBar equityBar"></div>
+                            <img id="baseBarPng">
+                        </div>
+                    </div>
+                    <div class="comparisonLocation chartRow">
+                        <h4 class="barTitle comparisonGeographyName"></h4>
+                        <div class="equityBarGroup">
+                            <div class="barLeft">
+                                <div class="comparisonNumber equityNumber"></div>
+                            </div>
+                            <div class="comparisonBar equityBar"></div>
+                            <img id="comparisonBarPng">
+                        </div>
+                    </div>
+                    <div class="withEquity chartRow">
+                        <h4 class="barTitle equityGeographyName"><span class="baseGeographyName"></span> in an equitable DC</h4>
+                        <div class="equityBarGroup">
+                            <div class="barLeft">
+                                <div class="withEquityNumber equityNumber"></div>
+                            </div>
+                            <div class="withEquityBar equityBar"></div>
+                            <img id="equityBarPng">
+                        </div>
+                        <p class="equitySentence"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script type="text/javascript" src="js/jquery.2.1.4.min.js"></script>
     	<script type="text/javascript" src="js/d3.v4.min.js"></script>
         <script type="text/javascript" src="js/topojson.v1.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/saveSvgAsPng.js"></script>
-        <!-- <script type="text/javascript" src="js/html2canvas.min.js"></script> -->
+        <script type="text/javascript" src="js/html2canvas.min.js"></script>
         <script type="text/javascript" src="data/indicator_text.json"></script>
         <script type="text/javascript" src="js/charts.js"></script>
         <script type="text/javascript" src="js/raceDemoCharts.js"></script>

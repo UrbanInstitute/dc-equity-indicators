@@ -222,18 +222,23 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
 
     // only show graph once an indicator and a base geography have been selected
     indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
-    indicator !== "Select an indicator" && baseGeo !== "Select a location" && updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
+    if(indicator !== "Select an indicator" && baseGeo !== "Select a location") {
+        updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
+        updateEquityBarChart("#downloadChart", indicator, baseGeo, compareGeo);
+    }
 }
 
 
 // event handlers to listen to if the up/down arrows in the third bar chart are clicked
 d3.select("#equityChart .withEquity .adjustTargetBtns .upArrowBtn")
     .on("click", function() { d3.select("#customTarget").node().value = getUserGoal() + 1;
-                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());
+                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography()); });
 
 d3.select("#equityChart .withEquity .adjustTargetBtns .downArrowBtn")
     .on("click", function() { d3.select("#customTarget").node().value = getUserGoal() - 1;
-                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
+                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());
+                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 
 
@@ -255,8 +260,10 @@ function toggleMenu() {
         d3.select(".comparisonGeographySelector").classed("hidden", false);
         d3.select(".customTargetTextbox").classed("hidden", true);
         d3.select("#equityChart .comparisonLocation").classed("noShow", false);
+        d3.select("#downloadChart .comparisonLocation").classed("noShow", false);
         customGoal = 0;
         updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());  // render bar chart with previous selected comparison geography when user toggles back to location comparison
+        updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());
     }
     else if(d3.select(".toggleLabel.target").classed("selected")) {
         d3.select(".sliderButton").classed("off", true);
@@ -264,6 +271,7 @@ function toggleMenu() {
         d3.select(".comparisonGeographySelector").classed("hidden", true);
         d3.select(".customTargetTextbox").classed("hidden", false);
         d3.select("#equityChart .comparisonLocation").classed("noShow", true);  // hide comparison location bar
+        d3.select("#downloadChart .comparisonLocation").classed("noShow", true);
         customGoal = 1;
     }
 }
@@ -287,7 +295,8 @@ function updatePlaceholderText() {
 
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
-    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); });
+    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget");
+                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); });
 
 
 // event listeners to handle initial tooltip popups and making the selector menus active
@@ -300,6 +309,19 @@ d3.select(".baseGeographySelector .selectorTooltip button.closeButton")
 d3.select(".comparisonToggle .selectorTooltip button.closeButton")
     .on("click", function() { hideTooltip(".comparisonToggle .selectorTooltip"); });
 
+
+
+// function to make selector menus section stick to top of viewport (since IE doesn't support position: sticky)
+// $(function() {
+//   var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top; //get the offset top of the element
+//   var mainBottom = $("main")[0].getBoundingClientRect().bottom;
+
+//   $(window).scroll(function() { //when window is scrolled
+//     if($(window).scrollTop() - toolDropdownSelectorTop <= 50) {
+//         // $('.toolDropdownSelector').addClass("sticky");
+//     }
+//   });
+// });
 
 function activateElement(classname) {
     d3.select(classname).classed("inactive", false);

@@ -52,8 +52,9 @@ d3.csv("data/equity_data.csv", function(d) {
     // render example chart
     makeEquityBarChart("#exampleEquityChart", "Postsecondary education", "Ward 7", "DC", exampleChartDimensions);
 
-    // initialize bottom chart as grey rectangles
+    // initialize bottom and image download charts as grey rectangles
     makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial", toolChartDimensions);
+    makeEquityBarChart("#downloadChart", "Initial", "Initial", "Initial", toolChartDimensions);
 });
 
 function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo, dimensions) {
@@ -78,6 +79,33 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     (compareGeo !== "customTarget") && updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
     updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
     populateDescriptiveText(chartDivID, indicator);
+}
+
+function makeImageDownloadChart(indicator, baseGeo, compareGeo) {
+    var svg = d3.select(".imageDownloadSvg")
+        .append("svg")
+        .attr("id", "imageDownload")
+        .attr("width", 1024)
+        .attr("height", 1024)
+        .append("g")
+        .attr("transform", "translate(" + 12 + "," + 12 + ")");
+
+    // add chart title
+    var title = equityData.filter(function(d) { return d.indicator === indicator; })[0].indicator_full_name;
+    var year = equityData.filter(function(d) { return d.indicator === indicator; })[0].year;
+    svg.append("text")
+        .attr("class", "chartTitle")
+        .attr("x", 0)
+        .attr("y", 26)
+        .text(title + ", " + year);
+
+    // add base location bar title
+    svg.append("text")
+        .attr("class", "barTitle")
+        .attr("x", 0)
+        .attr("y", 26 + 35 + 19)
+        .text(baseGeo);
+
 }
 
 function populateChartTitle(chartDivID, indicator) {
@@ -147,7 +175,7 @@ function getData(parentClass, geo, indicator) {
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
-                    denom: "",
+                    denom: baseData[0].denom,
                     blue_bar_label: "",
                     grey_bar_label: "",
                     diff_bar_label: baseData[0].diff_bar_label,
@@ -167,7 +195,7 @@ function getData(parentClass, geo, indicator) {
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
-                    denom: "",
+                    denom: baseData[0].denom,
                     blue_bar_label: "",
                     grey_bar_label: "",
                     diff_bar_label: baseData[0].diff_bar_label,
@@ -321,6 +349,7 @@ function labelBars(chartDivID, parentClass, data) {
         d3.selectAll(chartDivID + " " + parentClass + " .barLabel").classed("hidden", true);
 
         if(parentClass === ".withEquity") {
+            // Gap = Focus area denominator * ( Target proportion - Focus proportion )
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(DOLLARFORMAT(data[0].yes + data[0].diff));
 
             // need to clear the other labels so they don't throw off the collision calculations
@@ -330,7 +359,7 @@ function labelBars(chartDivID, parentClass, data) {
             d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
-            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(DOLLARFORMAT(data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(DOLLARFORMAT(data[0].denom * data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
@@ -351,7 +380,7 @@ function labelBars(chartDivID, parentClass, data) {
             d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
-            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].denom * data[0].diff));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
@@ -608,10 +637,10 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 function populateEquityStatement(chartDivID, indicator, data) {
     var diffNumber = COMMAFORMAT(data[0].diff * data[0].denom);
     if(indicator === "Small-business lending") {
-        diffNumber = DOLLARFORMAT(data[0].diff);
+        diffNumber = DOLLARFORMAT(data[0].denom * data[0].diff);
     }
     else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
-        diffNumber = COMMAFORMAT(data[0].diff);
+        diffNumber = COMMAFORMAT(data[0].denom * data[0].diff);
     }
 
     // console.log(data);
@@ -670,14 +699,28 @@ function populateDescriptiveText(chartDivID, indicator) {
 
 // save chart to png using html2canvas
 // sources: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/, https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
-d3.select(".saveImageBtn").on("click", function() {
-    // html2canvas(document.querySelector("#equityChart"), {scale: 0.75}).then(function (canvas) {
-    //     // document.body.appendChild(canvas);
-    //     var imageData = canvas.toDataURL();
-    //     document.querySelector("#saveImageLink").setAttribute("href", imageData);
-    // })
-    // .catch(function(error) {
-    //     console.log(error);
-    // });
-    saveSvgAsPng(d3.select("#equityChart .equityBar svg").node(), 'equity_chart.png', {backgroundColor: "#FFFFFF"});
+document.getElementById("saveImageLink").addEventListener("click", function() {
+
+    // saveSvgAsPng(d3.select("#equityChart .baseLocation .equityBar svg").node(), 'equity_chart.png', {canvg: canvg, backgroundColor: "#FFFFFF"});
+    svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {}, function(uri) {
+        var baseBarImg = document.getElementById("baseBarPng");
+        baseBarImg.src = uri;
+    });
+
+    svgAsDataUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {}, function(uri) {
+        var comparisonBarImg = document.getElementById("comparisonBarPng");
+        comparisonBarImg.src = uri;
+    });
+
+    svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {}, function(uri) {
+        var equityBarImg = document.getElementById("equityBarPng");
+        equityBarImg.src = uri;
+    html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+        // document.body.appendChild(canvas);
+        var imageData = canvas.toDataURL();
+        document.getElementById("saveImageLink").setAttribute("href", imageData);
+    });
+
+    });
+
 });

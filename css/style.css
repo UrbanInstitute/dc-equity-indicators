@@ -71,6 +71,13 @@ section.tool {
     -webkit-transition: opacity 300ms;
 }
 
+.imageDownloadChart {
+    width: 1150px;
+    height: 600px;
+    padding: 10px;
+    /*display: none;*/
+}
+
 @media screen and (max-width: 767px) {
     section.introduction,
     section.tool {
@@ -135,7 +142,8 @@ h1.title {
     margin-bottom: 24px;
 }
 
-h2 {
+h2,
+.chartTitle {
     font-size: 25px;
     line-height: 24px;
     font-weight: normal;
@@ -156,14 +164,14 @@ h2.chartTitle.initialize {
     color: #e3e3e3;
 }
 
-h4.barTitle {
+.barTitle {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 7px;
 }
 
 @media screen and (max-width: 767px) {
-    h4.barTitle {
+    .barTitle {
         font-size: 16px;
     }
 }
@@ -233,11 +241,17 @@ h4.barTitle {
     border-width: 20px;
     margin-left: -20px;
 }
+
 #equityChart .withEquity.chartRow :before {
     border-color: rgba(216, 216, 216, 0);
     border-top-color: #d8d8d8;
     border-width: 22px;
     margin-left: -22px;
+}
+
+#downloadChart .withEquity.chartRow {
+    border: 1px solid #d8d8d8;
+    padding: 18px;
 }
 
 .equityBarGroup {
@@ -261,7 +275,8 @@ h4.barTitle {
     width: 70px;
 }
 
-#equityChart .equityNumber {
+#equityChart .equityNumber,
+#downloadChart .equityNumber {
     text-align: right;
     margin-right: 7px;
     font-size: 42px;
@@ -304,6 +319,10 @@ h4.barTitle {
 
 .equityBar {
     float: left;
+}
+
+#downloadChart .equityBar {
+    display: none;
 }
 
 .hidden {
