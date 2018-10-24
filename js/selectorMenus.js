@@ -167,8 +167,8 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     d3.select(selectorBoxClass + " .selectorBox").text(selectedItemName);
     closeMenu(menuElementID);
 
-    // reset adjustment every time user makes a new menu selection
-    adjustment = 0;
+    // reset custom goal every time user makes a new menu selection
+    d3.select("#customTarget").node().value = '';
 
     var indicator = getIndicatorSelected();
     var baseGeo = getBaseGeography();
@@ -228,13 +228,11 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
 
 // event handlers to listen to if the up/down arrows in the third bar chart are clicked
 d3.select("#equityChart .withEquity .adjustTargetBtns .upArrowBtn")
-    .on("click", function() { adjustment++;
-                              // d3.select("#customTarget").node().value = getUserGoal() + 1;
+    .on("click", function() { d3.select("#customTarget").node().value = getUserGoal() + 1;
                               updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 d3.select("#equityChart .withEquity .adjustTargetBtns .downArrowBtn")
-    .on("click", function() { adjustment--;
-                              // d3.select("#customTarget").node().value = getUserGoal() - 1;
+    .on("click", function() { d3.select("#customTarget").node().value = getUserGoal() - 1;
                               updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography());});
 
 
@@ -250,7 +248,6 @@ function toggleMenu() {
     hideTooltip(".comparisonToggle .selectorTooltip");
     d3.select(".toggleLabel.location").classed("selected", !d3.select(".toggleLabel.location").classed("selected"));
     d3.select(".toggleLabel.target").classed("selected", !d3.select(".toggleLabel.target").classed("selected"));
-    adjustment = 0;  // reset adjustment factor on toggle
 
     if(d3.select(".toggleLabel.location").classed("selected")) {
         d3.select(".sliderButton").classed("off", false);
@@ -273,7 +270,7 @@ function toggleMenu() {
 
 function updatePlaceholderText() {
     var currentIndicator = getIndicatorSelected();
-    console.log(currentIndicator);
+
     if(currentIndicator === "Small-business lending") {
         d3.select("#customTarget").node().placeholder = "Enter a dollar value";
     }
@@ -290,7 +287,7 @@ function updatePlaceholderText() {
 
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
-    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); adjustment = 0; });
+    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); });
 
 
 // event listeners to handle initial tooltip popups and making the selector menus active

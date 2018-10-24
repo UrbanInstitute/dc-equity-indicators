@@ -4,7 +4,6 @@ var COMMAFORMAT = d3.format(",.0f");
 var DOLLARFORMAT = d3.format("$,.0f");
 
 var nonbinaryIndicators = ["Small-business lending", "Violent crime", "Premature mortality"];
-// var positiveIndicators = [];
 var negativeIndicators = ["Unemployment", "Housing cost burden", "Violent crime", "Premature mortality"];
 
 var categories = ["yes", "diff", "no"];
@@ -25,7 +24,6 @@ var colorScaleLess = d3.scaleOrdinal()
 
 var stack = d3.stack();
 
-var adjustment = 0; // to keep track of arrow clicks
 var customGoal = 0; // to keep track of whether comparing geographies or using user-entered goal
 
 var equityData;
@@ -138,10 +136,6 @@ function getData(parentClass, geo, indicator) {
 
         // non-binary indicators that we want more of
         if(indicator === "Small-business lending") {
-            // error handling - user cannot adjust target to be less than the base geo's value
-            if(compareValue + adjustment < baseData[0].value) {
-                adjustment = baseData[0].value - compareValue;
-            }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
@@ -149,7 +143,7 @@ function getData(parentClass, geo, indicator) {
                     geo: baseData[0].geo,
                     compareGeo: compareGeo,
                     yes: baseData[0].value,
-                    diff: (compareValue + adjustment) - baseData[0].value,
+                    diff: compareValue - baseData[0].value,
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -162,18 +156,14 @@ function getData(parentClass, geo, indicator) {
         }
         // non-binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
-            // error handling - user cannot adjust target to be less than the comparison geo's value
-            if(compareValue + adjustment < 0) {
-                adjustment = -compareValue;
-            }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareGeo,
-                    yes: compareValue + adjustment,
-                    diff: baseData[0].value - (compareValue + adjustment),
+                    yes: compareValue,
+                    diff: baseData[0].value - compareValue,
                     no: 0,
                     year: baseData[0].year,
                     numerator: "",
@@ -186,18 +176,14 @@ function getData(parentClass, geo, indicator) {
         }
         // binary indicators that we want less of
         else if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
-            // error handling - user cannot adjust target to be less than zero
-            if(compareValue + adjustment/100 < 0) {
-                adjustment = -compareValue * 100 - 0.01;  // add a little fudge factor so label doesn't wrap around
-            }
 
             // for indicators that we want less of, need to assign the length of the blue "yes" bar as the comparison geo's "yes" value
             data = [{
                     indicator: baseData[0].indicator,
                     geo: baseData[0].geo,
                     compareGeo: compareGeo,
-                    yes: compareValue + (adjustment/100),
-                    diff: baseData[0].value - (compareValue + (adjustment/100)),
+                    yes: compareValue,
+                    diff: baseData[0].value - compareValue,
                     no: 1 - baseData[0].value,
                     year: baseData[0].year,
                     numerator: baseData[0].numerator,
@@ -210,18 +196,14 @@ function getData(parentClass, geo, indicator) {
         }
         // binary indicators that we want more of
         else {
-            // error handling - user cannot set target to be more than 100%
-            if(compareValue + (adjustment/100) > 1) {
-                adjustment = (1 - compareValue) * 100;
-            }
 
             data = [{
                 indicator: baseData[0].indicator,
                 geo: baseData[0].geo,
                 compareGeo: compareGeo,
                 yes: baseData[0].value,
-                diff: (compareValue + (adjustment/100)) - baseData[0].value,
-                no: 1 - (compareValue + (adjustment/100)),
+                diff: compareValue - baseData[0].value,
+                no: 1 - compareValue,
                 year: baseData[0].year,
                 numerator: baseData[0].numerator,
                 denom: baseData[0].denom,
@@ -689,12 +671,13 @@ function populateDescriptiveText(chartDivID, indicator) {
 // save chart to png using html2canvas
 // sources: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/, https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
 d3.select(".saveImageBtn").on("click", function() {
-    html2canvas(document.querySelector("#equityChart"), {scale: 0.75}).then(function (canvas) {
-        // document.body.appendChild(canvas);
-        var imageData = canvas.toDataURL();
-        document.querySelector("#saveImageLink").setAttribute("href", imageData);
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+    // html2canvas(document.querySelector("#equityChart"), {scale: 0.75}).then(function (canvas) {
+    //     // document.body.appendChild(canvas);
+    //     var imageData = canvas.toDataURL();
+    //     document.querySelector("#saveImageLink").setAttribute("href", imageData);
+    // })
+    // .catch(function(error) {
+    //     console.log(error);
+    // });
+    saveSvgAsPng(d3.select("#equityChart .equityBar svg").node(), 'equity_chart.png', {backgroundColor: "#FFFFFF"});
 });
