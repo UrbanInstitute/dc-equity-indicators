@@ -10,6 +10,21 @@ city_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", shee
 ward_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", sheet = data_sheets[2])
 cluster_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", sheet = data_sheets[3])
 
+# function for adding "and" as appropriate to cluster names
+addAnd <- function(cluster_name) {
+  namesplit <- str_split(cluster_name, pattern = ",")
+  if(length(namesplit[[1]]) == 1) {
+    return(cluster_name)
+  }
+  else if(length(namesplit[[1]]) == 2) {
+    return(paste(namesplit[[1]][1], " and", namesplit[[1]][2], sep = ""))
+  }
+  else {
+    comma_locations <- str_locate_all(cluster_name, ",")
+    last_comma_location <- max(comma_locations[[1]])
+    return(paste(substr(cluster_name, 1, last_comma_location), " and", substr(cluster_name, last_comma_location + 1, nchar(cluster_name)), sep=""))
+  }
+}
 
 # clean cluster names by getting rid of "Cluster X" and the parentheses from each name
 # also filter out clusters 42, 45 and 46 which have small sample sizes
@@ -29,7 +44,7 @@ dat <- bind_rows(city_dat, ward_dat, cluster_dat_clean) %>%
   filter(indicator != "Total Population") %>%
   left_join(name_mapping, by = c("indicator" = "data_name")) %>%
   left_join(labels, by=c("text_name" = "Full name of indicator")) %>%
-  mutate(summary_sentence = str_c(`Summary sentence-pt 1`, geo, `Summary sentence-pt 2`, sep=" "))  %>%
+  mutate(summary_sentence = str_c(`Summary sentence-pt 1`, map_chr(geo, addAnd), `Summary sentence-pt 2`, sep=" "))  %>%
   mutate(value = case_when(
     indicator %in% c("Small business lending per employee", "Age-adjusted premature mortality rate", "Violent Crime Rate per 1000 people") ~ round(equityvariable, digits = 0),
     indicator == "unemployment" ~ round(equityvariable, digits = 3),
