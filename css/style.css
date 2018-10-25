@@ -74,7 +74,8 @@ section.tool {
 .imageDownloadChart {
     width: 1150px;
     padding: 10px;
-    /*display: none;*/
+    position: fixed;  /* use this to hide the div from view, can't use display:none because that'll cause nothing to get rendered */
+    z-index: -10;
 }
 
 @media screen and (max-width: 767px) {
