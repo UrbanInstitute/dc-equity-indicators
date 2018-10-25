@@ -695,12 +695,13 @@ function populateDescriptiveText(chartDivID, indicator) {
     }
 }
 
-
-
 // save chart to png using html2canvas
 // sources: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/, https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
-document.getElementById("saveImageLink").addEventListener("click", function() {
-
+// bind event listener to button (not <a>) click
+document.querySelector("button.saveImageBtn").addEventListener("click", function() {
+    // first convert each bar svg into a png so we can use html2canvas to capture the entire area
+    // (was having issues using html2canvas to convert the svg directly - didn't preserve fonts)
+    // (instead, convert svg -> png -> write into saveImageDownload div -> use html2canvas)
     // saveSvgAsPng(d3.select("#equityChart .baseLocation .equityBar svg").node(), 'equity_chart.png', {canvg: canvg, backgroundColor: "#FFFFFF"});
     svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {}, function(uri) {
         var baseBarImg = document.getElementById("baseBarPng");
@@ -715,12 +716,14 @@ document.getElementById("saveImageLink").addEventListener("click", function() {
     svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {}, function(uri) {
         var equityBarImg = document.getElementById("equityBarPng");
         equityBarImg.src = uri;
-    html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
-        // document.body.appendChild(canvas);
-        var imageData = canvas.toDataURL();
-        document.getElementById("saveImageLink").setAttribute("href", imageData);
-    });
 
+        // use html2canvas to save turn html into downloadable png after svgs rendered into png
+        html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+            // document.body.appendChild(canvas);
+            var imageData = canvas.toDataURL();
+            var link = document.getElementById("saveImageLink");
+            link.setAttribute("href", imageData);
+            link.click(); // trigger click on link (not button) so file download works now that href has been set
+        });
     });
-
 });

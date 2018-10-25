@@ -73,7 +73,6 @@ section.tool {
 
 .imageDownloadChart {
     width: 1150px;
-    height: 600px;
     padding: 10px;
     /*display: none;*/
 }
@@ -410,7 +409,13 @@ p.exampleParagraph {
     font-weight: 700;
 }
 
-.tool .equitySentence.noGap {
+.imageDownloadChart .equitySentence {
+    margin: 0 auto;
+    font-weight: 700;
+}
+
+.tool .equitySentence.noGap,
+.imageDownloadChart .equitySentence.noGap {
     margin-top: 0;
     margin-left: 18px;
     font-size: 32px;
