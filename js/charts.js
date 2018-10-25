@@ -71,6 +71,7 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     // code from: https://stackoverflow.com/questions/2510115/jquery-can-i-call-delay-between-addclass-and-such
     $("section.tool").addClass("sectionFade").delay(1000).queue(function() {
         $(this).removeClass("sectionFade").dequeue();
+        convertSvgToPng();  // also, update downloadable chart after bars have finished transitioning
     });
 
     populateChartTitle(chartDivID, indicator);
@@ -695,10 +696,9 @@ function populateDescriptiveText(chartDivID, indicator) {
     }
 }
 
-// save chart to png using html2canvas
+// function to save chart to png using saveSvgAsPng and html2canvas
 // sources: https://codepedia.info/convert-html-to-image-in-jquery-div-or-table-to-jpg-png/, https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
-// bind event listener to button (not <a>) click
-document.querySelector("button.saveImageBtn").addEventListener("click", function() {
+function convertSvgToPng() {
     // first convert each bar svg into a png so we can use html2canvas to capture the entire area
     // (was having issues using html2canvas to convert the svg directly - didn't preserve fonts)
     // (instead, convert svg -> png -> write into saveImageDownload div -> use html2canvas)
@@ -723,7 +723,6 @@ document.querySelector("button.saveImageBtn").addEventListener("click", function
             var imageData = canvas.toDataURL();
             var link = document.getElementById("saveImageLink");
             link.setAttribute("href", imageData);
-            link.click(); // trigger click on link (not button) so file download works now that href has been set
         });
     });
-});
+}

@@ -179,6 +179,10 @@ h2.chartTitle.initialize {
     padding: 18px 18px 0;
 }
 
+a#saveImageLink {
+    pointer-events: none;
+}
+
 .saveImageBtn {
     border: none;
     width: 153px;
@@ -187,6 +191,7 @@ h2.chartTitle.initialize {
     color: #fff;
     font-size: 14px;
     text-transform: uppercase;
+    pointer-events: all;
 }
 
 .chart {
@@ -309,6 +314,7 @@ h2.chartTitle.initialize {
     color: #0096d2;
     text-decoration: underline;
     cursor: pointer;
+    width: 160px;
 }
 
 .infoIcon {
