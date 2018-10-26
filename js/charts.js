@@ -371,7 +371,7 @@ function labelBars(chartDivID, parentClass, data) {
             d3.selectAll(chartDivID + " " + parentClass + " g.no text.barLabel.line2").text("");
 
             d3.selectAll(chartDivID + " " + parentClass + " g.diff .barLabel").classed("hidden", false);
-            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].denom * data[0].diff));
+            d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line1").text(COMMAFORMAT(data[0].denom * data[0].diff/1000));
             d3.selectAll(chartDivID + " " + parentClass + " g.diff text.barLabel.line2").text(data[0].diff_bar_label);
         }
         else {
@@ -631,7 +631,7 @@ function populateEquityStatement(chartDivID, indicator, data) {
         diffNumber = DOLLARFORMAT(data[0].denom * data[0].diff);
     }
     else if(nonbinaryIndicators.indexOf(indicator) > -1 && negativeIndicators.indexOf(indicator) > -1) {
-        diffNumber = COMMAFORMAT(data[0].denom * data[0].diff);
+        diffNumber = COMMAFORMAT(data[0].denom * data[0].diff / 1000);
     }
 
     // console.log(data);
