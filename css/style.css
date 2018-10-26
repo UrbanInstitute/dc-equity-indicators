@@ -369,8 +369,12 @@ text.barLabel.line2 {
     font-weight: normal;
 }
 
-.equitySentence span.equitySentenceFirstPart {
+/*.equitySentence span.equitySentenceFirstPart {
     font-weight: bold;
+}*/
+
+.highlight {
+    background: rgba(253, 191, 17, 0.75);
 }
 
 p.exampleParagraph {

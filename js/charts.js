@@ -656,8 +656,8 @@ function populateEquityStatement(chartDivID, indicator, data) {
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
         }
         else {
-            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If this goal is met, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
-            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If this goal is met, " + diffNumber + " " + data[0].sentence);
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If this goal is met, <span class='highlight'>" + data[0].geo + " would have " + diffNumber + " fewer violent crimes.</span>");
+            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If this goal is met, <span class='highlight'>" + diffNumber + " " + data[0].sentence + "</span>");
             d3.select(chartDivID + " .equitySentence").classed("noGap", false);
         }
     }
@@ -667,8 +667,8 @@ function populateEquityStatement(chartDivID, indicator, data) {
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
         }
         else {
-            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed this equity gap, " + data[0].geo + " would have " + diffNumber + " fewer violent crimes.");
-            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").text("If we closed this equity gap, " + diffNumber + " " + data[0].sentence);
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + data[0].geo + " would have " + diffNumber + " fewer violent crimes.</span>");
+            (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + diffNumber + " " + data[0].sentence + "</span>");
             d3.select(chartDivID + " .equitySentence").classed("noGap", false);
         }
     }
