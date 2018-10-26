@@ -59,11 +59,18 @@ section.toolDropdownSelector {
     width: 100%;
     height: 130px;
     background-color: #0a4c6a;
+    position: relative;
     position: sticky;
     top: 50px;
     z-index: 10;
     margin: 50px 0 24px 0;
 }
+
+/*section.toolDropdownSelector.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}*/
 
 section.tool {
     /*opacity: 1;*/
@@ -76,13 +83,6 @@ section.tool {
     padding: 10px;
     position: fixed;  /* use this to hide the div from view, can't use display:none because that'll cause nothing to get rendered */
     z-index: -10;
-}
-
-@media screen and (max-width: 767px) {
-    section.introduction,
-    section.tool {
-        padding: 0 20px;
-    }
 }
 
 .sectionFade {
@@ -156,7 +156,7 @@ h2,
 
 #equityChart h2 {
     display: inline-block;
-    width: 85%;
+    width: calc(100% - 160px);
 }
 
 h2.chartTitle.initialize {
@@ -168,12 +168,6 @@ h2.chartTitle.initialize {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 7px;
-}
-
-@media screen and (max-width: 767px) {
-    .barTitle {
-        font-size: 16px;
-    }
 }
 
 #equityChart .withEquity h4.barTitle {
@@ -193,18 +187,13 @@ a#saveImageLink {
     font-size: 14px;
     text-transform: uppercase;
     pointer-events: all;
+    vertical-align: top;
 }
 
 .chart {
     width: 100%;
     min-height: 400px;
     /*background-color: #d2d2d2;*/
-}
-
-@media screen and (max-width: 1024px){
-    .chart {
-        margin: 0 20px;
-    }
 }
 
 .chartTitle {
@@ -291,22 +280,6 @@ a#saveImageLink {
 
 #equityChart .withEquity .equityNumber {
     width: 170px;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    #equityChart .equityNumber {
-        font-size: 32px;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .equityNumber {
-        font-size: 16px;
-    }
-
-    #equityChart .equityNumber {
-        font-size: 16px;
-    }
 }
 
 .viewDemoInfo {
@@ -453,6 +426,87 @@ button.downArrowBtn {
 }
 
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .barLeft {
+        width: 160px;
+    }
+
+    #equityChart .equityNumber,
+    #equityChart .withEquity .equityNumber {
+        font-size: 32px;
+        width: 120px;
+    }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1100px){
+    .chart {
+        margin: 0;
+    }
+
+    #equityChart {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    section.introduction,
+    section.tool {
+        padding: 0 20px;
+    }
+
+    .equityNumber {
+        font-size: 16px;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    #equityChart .equityNumber {
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .barTitle {
+        font-size: 16px;
+    }
+
+    #equityChart .withEquity h4.barTitle {
+        padding: 10px 10px 0;
+    }
+
+    .barLeft {
+        width: 100%;
+    }
+
+    .tool .equitySentence {
+        padding: 0 10px;
+    }
+
+    .withEquity .barLeft {
+        margin-left: 10px;
+        /*box-sizing: border-box;*/
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #equityChart {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    #equityChart h2 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .saveImageBtn {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}
 /************ STYLES FOR PLOT ON INITIAL PAGE LOAD *********/
 
 .initialize h2.chartTitle,
@@ -552,6 +606,12 @@ h5 {
 .raceLabel,
 .axis text {
     font-size: 11px;
+}
+
+@media screen and (max-width: 767px) {
+    .demoChart {
+        left: 17px;
+    }
 }
 
 /************ STYLES FOR SELECTORS **************/
@@ -758,6 +818,12 @@ input#customTarget {
     }
 }
 
+@media screen and (max-width: 350px) {
+    .selectorTooltip {
+        width: 300px;
+    }
+}
+
 .selectorGroup.inactive .selectorLabel,
 .selectorGroup.inactive .selectorBox,
 .comparisonToggle.inactive .toggleLabel {
@@ -931,6 +997,7 @@ input#customTarget {
 h2.modalTitle {
     font-size: 36px;
     font-weight: normal;
+    line-height: 36px;
 }
 
 h3.modalGroupTitle {

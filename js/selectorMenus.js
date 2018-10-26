@@ -317,8 +317,17 @@ d3.select(".comparisonToggle .selectorTooltip button.closeButton")
 //   var mainBottom = $("main")[0].getBoundingClientRect().bottom;
 
 //   $(window).scroll(function() { //when window is scrolled
-//     if($(window).scrollTop() - toolDropdownSelectorTop <= 50) {
-//         // $('.toolDropdownSelector').addClass("sticky");
+//     // console.log("Window top:", $(window).scrollTop());
+//     // console.log("Main bottom:", mainBottom);
+//     if(($(window).scrollTop() - toolDropdownSelectorTop >= 50) && ($(window).scrollTop() - mainBottom < -130)) {
+//         // console.log("add sticky");
+//         $('.toolDropdownSelector').addClass("sticky");
+//     }
+//     else if($(window).scrollTop() - mainBottom >= 0) {
+//         $('.toolDropdownSelector').removeClass("sticky");
+//     }
+//     else {
+//         $('.toolDropdownSelector').removeClass("sticky");
 //     }
 //   });
 // });

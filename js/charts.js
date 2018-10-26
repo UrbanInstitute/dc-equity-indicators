@@ -8,8 +8,25 @@ var negativeIndicators = ["Unemployment", "Housing cost burden", "Violent crime"
 
 var categories = ["yes", "diff", "no"];
 
-var exampleChartDimensions = {width: 600, height: 34, margin: {top: 0, right: 25, bottom: 40, left: 10}};
-var toolChartDimensions = {width: 870, height: 50, margin: {top: 0, right: 50, bottom: 65, left: 40}};
+var exampleChartDimensions = {height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
+var toolChartDimensions = {height: 50, margin: {top: 0, right: 85, bottom: 65, left: 40}};
+
+// set chart widths based on screen size
+exampleChartDimensions.width = Math.min(getParentDivWidth("exampleEquityChart") - 70, 575);
+
+if(getParentDivWidth("equityChart") >= 1150) {
+    toolChartDimensions.width = 870;
+}
+else if(getParentDivWidth("equityChart") >= 1024 && getParentDivWidth("equityChart") < 1150) {
+    toolChartDimensions.width = 770;
+}
+else if(getParentDivWidth("equityChart") >= 768 && getParentDivWidth("equityChart") < 1024) {
+    toolChartDimensions.width = getParentDivWidth("equityChart") * 0.7;
+}
+else if(getParentDivWidth("equityChart") <= 767) {
+    toolChartDimensions.width = getParentDivWidth("equityChart") * 0.95;
+}
+
 
 var xScale = d3.scaleLinear()
     .domain([0, 1]);
@@ -80,33 +97,6 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     (compareGeo !== "customTarget") && updateBars(chartDivID, ".comparisonLocation", compareGeo, indicator);
     updateBars(chartDivID, ".withEquity", baseGeo + "|" + compareGeo, indicator);
     populateDescriptiveText(chartDivID, indicator);
-}
-
-function makeImageDownloadChart(indicator, baseGeo, compareGeo) {
-    var svg = d3.select(".imageDownloadSvg")
-        .append("svg")
-        .attr("id", "imageDownload")
-        .attr("width", 1024)
-        .attr("height", 1024)
-        .append("g")
-        .attr("transform", "translate(" + 12 + "," + 12 + ")");
-
-    // add chart title
-    var title = equityData.filter(function(d) { return d.indicator === indicator; })[0].indicator_full_name;
-    var year = equityData.filter(function(d) { return d.indicator === indicator; })[0].year;
-    svg.append("text")
-        .attr("class", "chartTitle")
-        .attr("x", 0)
-        .attr("y", 26)
-        .text(title + ", " + year);
-
-    // add base location bar title
-    svg.append("text")
-        .attr("class", "barTitle")
-        .attr("x", 0)
-        .attr("y", 26 + 35 + 19)
-        .text(baseGeo);
-
 }
 
 function populateChartTitle(chartDivID, indicator) {
@@ -694,6 +684,12 @@ function populateDescriptiveText(chartDivID, indicator) {
         var full_name = equityData.filter(function(d) { return d.indicator === indicator; })[0].indicator_full_name;
         d3.select(".indicatorDescriptiveText").html(indicator_text[full_name]);
     }
+}
+
+function getParentDivWidth(elementId) {
+    var width = document.getElementById(elementId).clientWidth;
+    // console.log(width)
+    return width;
 }
 
 // function to save chart to png using saveSvgAsPng and html2canvas
