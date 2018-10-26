@@ -604,12 +604,15 @@ button.downArrowBtn {
 .demoChart .closeButton {
     border: 0;
     cursor: pointer;
-    background: none;
+    height: 20px;
+    width: 20px;
+    background-image: url('../img/button_close.png');
+    background-size: contain;
     color: #1696d2;
     font-size: 14px;
     position: absolute;
     top: 5px;
-    right: 0;
+    right: 5px;
 }
 
 h5 {
