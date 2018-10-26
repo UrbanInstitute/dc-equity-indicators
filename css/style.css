@@ -354,7 +354,7 @@ text.barLabel.line2 {
 }
 
 .withEquity .withEquityBar g.diff text.barLabel {
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .noEquityGap div.equityBarGroup {
@@ -1029,7 +1029,7 @@ h2.modalTitle {
 h3.modalGroupTitle {
     font-size: 25px;
     font-weight: normal;
-    margin-top: 40px;
+    margin-top: 18px;
     margin-bottom: 10px;
     clear: both;
 }
