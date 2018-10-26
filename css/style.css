@@ -432,7 +432,9 @@ button.downArrowBtn {
     }
 
     #equityChart .equityNumber,
-    #equityChart .withEquity .equityNumber {
+    #equityChart .withEquity .equityNumber,
+    #downloadChart .equityNumber,
+    #downloadChart .withEquity .equityNumber {
         font-size: 32px;
         width: 120px;
     }
@@ -441,6 +443,10 @@ button.downArrowBtn {
 @media screen and (min-width: 501px) and (max-width: 1100px){
     .chart {
         margin: 0;
+    }
+
+    .imageDownloadChart {
+        width: 100%;
     }
 
     #equityChart {
@@ -462,16 +468,19 @@ button.downArrowBtn {
         margin-bottom: 5px;
     }
 
-    #equityChart .equityNumber {
+    #equityChart .equityNumber,
+    #downloadChart .equityNumber {
         font-size: 16px;
         text-align: left;
+        line-height: 30px;
     }
 
     .barTitle {
         font-size: 16px;
     }
 
-    #equityChart .withEquity h4.barTitle {
+    #equityChart .withEquity h4.barTitle,
+    #downloadChart .withEquity h4.barTitle {
         padding: 10px 10px 0;
     }
 
@@ -487,6 +496,16 @@ button.downArrowBtn {
         margin-left: 10px;
         /*box-sizing: border-box;*/
     }
+
+    .adjustTargetBtns {
+        float: right;
+        width: auto;
+        margin: 2px 80px 2px 4px;
+    }
+
+    .adjustTargetBtns button {
+        margin: 4px 5px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -494,10 +513,15 @@ button.downArrowBtn {
         width: 100%;
         padding: 0;
     }
+
+    .imageDownloadChart {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 420px) {
-    #equityChart h2 {
+    #equityChart h2,
+    #downloadChart h2 {
         width: 100%;
         margin-bottom: 15px;
     }
