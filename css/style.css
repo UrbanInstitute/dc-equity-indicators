@@ -188,6 +188,7 @@ a#saveImageLink {
     text-transform: uppercase;
     pointer-events: all;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .chart {
