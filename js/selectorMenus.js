@@ -273,6 +273,7 @@ function toggleMenu() {
         d3.select("#equityChart .comparisonLocation").classed("noShow", true);  // hide comparison location bar
         d3.select("#downloadChart .comparisonLocation").classed("noShow", true);
         customGoal = 1;
+        d3.select("#customTarget").node().value = '';  // reset custom goal
     }
 }
 
