@@ -775,6 +775,7 @@ input#customTarget {
     width: 321px;
     height: 45px;
     font-size: 18px;
+    font-family: 'Lato';
 }
 
 .selectorTooltip {
