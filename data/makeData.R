@@ -4,11 +4,11 @@ library(readxl)
 name_mapping <- read_excel("Indicator_name_mapping.xlsx", sheet = "mapping")
 labels <- read_excel("source/DC equity text spreadsheet.xlsx")
 
-data_sheets <- excel_sheets("source/Updated data for equity feature_10.17.xlsx")
+data_sheets <- excel_sheets("source/Updated data for equity feature_10.25.xlsx")
 
-city_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", sheet = data_sheets[1])
-ward_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", sheet = data_sheets[2])
-cluster_dat <- read_excel("source/Updated data for equity feature_10.17.xlsx", sheet = data_sheets[3])
+city_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[1])
+ward_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[2])
+cluster_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[3])
 
 # function for adding "and" as appropriate to cluster names
 addAnd <- function(cluster_name) {
