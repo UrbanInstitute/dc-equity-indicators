@@ -259,7 +259,7 @@ function getData(parentClass, geo, indicator) {
                 year: data[0].year,
                 numerator: "",
                 denom: "",
-                blue_bar_label: "",
+                blue_bar_label: data[0].blue_bar_label,
                 grey_bar_label: ""
             }];
         }
@@ -355,6 +355,11 @@ function labelBars(chartDivID, parentClass, data) {
         }
         else {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(DOLLARFORMAT(data[0].yes));
+
+            // label blue bars only
+            d3.selectAll(chartDivID + " " + parentClass + " .yes .barLabel").classed("hidden", false);
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(DOLLARFORMAT(data[0].yes));
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
         }
     }
     // labelling for negative non-binary indicators
@@ -376,6 +381,11 @@ function labelBars(chartDivID, parentClass, data) {
         }
         else {
             d3.select(chartDivID + " " + parentClass + " div.equityNumber").text(COMMAFORMAT(data[0].yes));
+
+            // label blue bars only
+            d3.selectAll(chartDivID + " " + parentClass + " .yes .barLabel").classed("hidden", false);
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line1").text(COMMAFORMAT(data[0].yes));
+            d3.selectAll(chartDivID + " " + parentClass + " g.yes text.barLabel.line2").text(data[0].blue_bar_label);
         }
     }
     // labeling for negative binary indicators
@@ -503,6 +513,7 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
     if(nonbinaryIndicators.indexOf(indicator) > -1) {
         xScale.domain([0, d3.max(equityData, function(d) { return d.indicator === indicator && d.value; })]);
+        console.log(xScale.domain());
     }
     else {
         xScale.domain([0, 1]);
