@@ -60,17 +60,18 @@ section.toolDropdownSelector {
     height: 130px;
     background-color: #0a4c6a;
     position: relative;
-    position: sticky;
-    top: 50px;
+/*    position: sticky;
+    position: -webkit-sticky;
+   top: 50px; */
     z-index: 10;
     margin: 50px 0 24px 0;
 }
 
-/*section.toolDropdownSelector.sticky {
+section.toolDropdownSelector.sticky {
     position: fixed;
     top: 0;
-    z-index: 10;
-}*/
+    /*z-index: 10;*/
+}
 
 section.tool {
     /*opacity: 1;*/
@@ -658,9 +659,11 @@ h5 {
 
 .selectorGroup {
     display: inline-block;
+    float: left;
     width: 325px;
+    height: 75px;
     /*background-color: #1696d2;*/
-    margin: 10px;
+    margin: auto 10px;
     overflow: auto;
 }
 
@@ -713,12 +716,14 @@ h5 {
 
 .dividerImage {
     display: inline-block;
+    float: left;
 }
 
 .comparisonToggle {
     width: 120px;
     display: inline-block;
-    margin: 20px 15px;
+    float: left;
+    margin: 10px 15px;
     overflow: auto;
 }
 
