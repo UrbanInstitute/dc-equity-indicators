@@ -312,26 +312,29 @@ d3.select(".comparisonToggle .selectorTooltip button.closeButton")
 
 
 
-// function to make selector menus section stick to top of viewport (since IE doesn't support position: sticky)
-// $(function() {
-//   var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top; //get the offset top of the element
-//   var mainBottom = $("main")[0].getBoundingClientRect().bottom;
+// function to make selector menus section stick to top of viewport (since IE doesn't support position: sticky) if browser more than 768px wide
+if ($(window).width() >= 768) {
+    $(function() {
+        var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top; //get the offset top of the element
+        // var mainBottom = $("main")[0].getBoundingClientRect().bottom;
 
-//   $(window).scroll(function() { //when window is scrolled
-//     // console.log("Window top:", $(window).scrollTop());
-//     // console.log("Main bottom:", mainBottom);
-//     if(($(window).scrollTop() - toolDropdownSelectorTop >= 50) && ($(window).scrollTop() - mainBottom < -130)) {
-//         // console.log("add sticky");
-//         $('.toolDropdownSelector').addClass("sticky");
-//     }
-//     else if($(window).scrollTop() - mainBottom >= 0) {
-//         $('.toolDropdownSelector').removeClass("sticky");
-//     }
-//     else {
-//         $('.toolDropdownSelector').removeClass("sticky");
-//     }
-//   });
-// });
+        $(window).scroll(function() { //when window is scrolled
+            // console.log("Window top:", $(window).scrollTop());
+            // console.log("Main bottom:", mainBottom);
+            if(($(window).scrollTop() - toolDropdownSelectorTop >= 50)) {
+                $('.toolDropdownSelector').addClass("sticky");
+            }
+            else {
+                $('.toolDropdownSelector').removeClass("sticky unstick");
+            }
+
+            if($("main")[0].getBoundingClientRect().bottom < 50) {
+                $('.toolDropdownSelector').removeClass("sticky");
+                $('.toolDropdownSelector').addClass("unstick");
+            }
+        });
+    });
+}
 
 function activateElement(classname) {
     d3.select(classname).classed("inactive", false);

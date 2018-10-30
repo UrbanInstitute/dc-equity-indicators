@@ -67,6 +67,10 @@ section.toolDropdownSelector {
     margin: 50px 0 24px 0;
 }
 
+section.toolDropdownSelector.unstick {
+    position: absolute;
+}
+
 section.toolDropdownSelector.sticky {
     position: fixed;
     top: 0;
@@ -938,7 +942,7 @@ input#customTarget {
     }
 
     .selectorGroup {
-        width: 460px;
+        width: 100%;
         margin: 10px 0;
     }
 
@@ -951,6 +955,7 @@ input#customTarget {
     }
 
     .comparisonToggle {
+        width: 100%;
         margin: 20px 0;
         display: block;
     }
@@ -1087,7 +1092,7 @@ p.clusterNote {
 
 @media screen and (max-width: 500px) {
     .selectorMenuModal {
-        padding: 20px;
+        padding: 60px 20px 20px;
     }
 
     .selectorMenuModal .closeButton {
