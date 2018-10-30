@@ -890,6 +890,7 @@ input#customTarget {
 .selectorGroup.inactive .selectorBox,
 .comparisonToggle.inactive .toggleLabel {
     color: #9d9fa2;
+    pointer-events: none;
 }
 
 .selectorGroup.inactive .selectorButton {
