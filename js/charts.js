@@ -453,15 +453,15 @@ function adjustLabels(chartDivID, parentClass, indicator) {
 
         if(newYesLabelBoundingRect.x + newYesLabelBoundingRect.width + 2 > newNoLabelBoundingRect.x) {
             d3.select(chartDivID + " " + parentClass + " .yes line.barLabel")
-                .transition()
+                // .transition()
                 .attr("y2", toolChartDimensions.height + 34);
 
             d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line1")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 49);
 
             d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line2")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 63);
         }
     }
@@ -496,29 +496,29 @@ function adjustLabels(chartDivID, parentClass, indicator) {
         // if the blue label is left-justified (i.e., is near the bar baseline), move the blue label down beneath the yellow/pink label
         if(d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line1").classed("leftJustified")) {
             d3.select(chartDivID + " " + parentClass + " .yes line.barLabel")
-                .transition()
+                // .transition()
                 .attr("y2", toolChartDimensions.height + 34);
 
             d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line1")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 49);
 
             d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line2")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 63);
         }
         // otherwise, move the yellow/pink label down
         else {
             d3.select(chartDivID + " " + parentClass + " .diff line.barLabel")
-                .transition()
+                // .transition()
                 .attr("y2", toolChartDimensions.height + 34);
 
             d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line1")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 49);
 
             d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line2")
-                .transition()
+                // .transition()
                 .attr("y", toolChartDimensions.height + 63);
         }
     }
