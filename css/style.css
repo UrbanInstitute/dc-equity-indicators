@@ -857,13 +857,16 @@ input#customTarget {
 }
 
 .selectorTooltip .closeButton {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
     border: 0;
+    height: 16px;
+    width: 16px;
+    background-image: url('../img/button_close.png');
+    background-size: contain;
     cursor: pointer;
-    background: none;
-    color: #1696d2;
-    font-size: 14px;
-    float: right;
-    margin-bottom: 5px;
 }
 
 .selectorTooltip p {
