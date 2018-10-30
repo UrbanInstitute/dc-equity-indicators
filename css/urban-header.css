@@ -13,7 +13,7 @@ body{
     width: 100%;
     background: #000;
     border-bottom: 2px solid #000;
-    z-index: 100000;
+    z-index: 100;
     -webkit-transition: top 0.25s linear;
     -moz-transition: top 0.25s linear;
     -o-transition: top 0.25s linear;
