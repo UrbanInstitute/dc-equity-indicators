@@ -9,7 +9,7 @@ var negativeIndicators = ["Unemployment", "Housing cost burden", "Violent crime"
 var categories = ["yes", "diff", "no"];
 
 var exampleChartDimensions = {height: 34, margin: {top: 0, right: 25, bottom: 40, left: 0}};
-var toolChartDimensions = {height: 50, margin: {top: 0, right: 85, bottom: 65, left: 40}};
+var toolChartDimensions = {height: 50, margin: {top: 0, right: 85, bottom: 65, left: 50}};
 
 // set chart widths based on screen size
 exampleChartDimensions.width = Math.min(getParentDivWidth("exampleEquityChart") - 70, 575);
@@ -431,6 +431,7 @@ function labelBars(chartDivID, parentClass, data) {
 }
 
 function adjustLabels(chartDivID, parentClass, indicator) {
+    var blueRectBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes rect").node().getBoundingClientRect();
     var yesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();
     var noLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .no g.labelTextGrp").node().getBoundingClientRect();
     var diffLabelBoundingRect = (parentClass === ".withEquity") && d3.select(chartDivID + " " + parentClass + " .diff g.labelTextGrp").node().getBoundingClientRect();
@@ -469,6 +470,12 @@ function adjustLabels(chartDivID, parentClass, indicator) {
         d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", false);
     }
 
+    // if blue or yellow/pink label too close to bar baseline, left-justify the label (and move blue one down if needed)
+    if(yesLabelBoundingRect.x < blueRectBoundingRect.x) {
+        d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("leftJustified", true);
+        yesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();  // update position of blue bar label
+    }
+
     // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
     if(diffLabelBoundingRect && (((negativeIndicators.indexOf(indicator) === -1) && (yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x)) || ((negativeIndicators.indexOf(indicator) > -1) && (diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x)) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
         // if yellow bar label overlaps the blue label, right-justify the blue label for non-negative indicators
@@ -486,17 +493,34 @@ function adjustLabels(chartDivID, parentClass, indicator) {
             d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
         }
 
-        d3.select(chartDivID + " " + parentClass + " .diff line.barLabel")
-            .transition()
-            .attr("y2", toolChartDimensions.height + 34);
+        // if the blue label is left-justified (i.e., is near the bar baseline), move the blue label down beneath the yellow/pink label
+        if(d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line1").classed("leftJustified")) {
+            d3.select(chartDivID + " " + parentClass + " .yes line.barLabel")
+                .transition()
+                .attr("y2", toolChartDimensions.height + 34);
 
-        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line1")
-            .transition()
-            .attr("y", toolChartDimensions.height + 49);
+            d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line1")
+                .transition()
+                .attr("y", toolChartDimensions.height + 49);
 
-        d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line2")
-            .transition()
-            .attr("y", toolChartDimensions.height + 63);
+            d3.select(chartDivID + " " + parentClass + " .yes text.barLabel.line2")
+                .transition()
+                .attr("y", toolChartDimensions.height + 63);
+        }
+        // otherwise, move the yellow/pink label down
+        else {
+            d3.select(chartDivID + " " + parentClass + " .diff line.barLabel")
+                .transition()
+                .attr("y2", toolChartDimensions.height + 34);
+
+            d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line1")
+                .transition()
+                .attr("y", toolChartDimensions.height + 49);
+
+            d3.select(chartDivID + " " + parentClass + " .diff text.barLabel.line2")
+                .transition()
+                .attr("y", toolChartDimensions.height + 63);
+        }
     }
 }
 
@@ -710,17 +734,17 @@ function convertSvgToPng() {
     // (was having issues using html2canvas to convert the svg directly - didn't preserve fonts)
     // (instead, convert svg -> png -> write into saveImageDownload div -> use html2canvas)
     // saveSvgAsPng(d3.select("#equityChart .baseLocation .equityBar svg").node(), 'equity_chart.png', {canvg: canvg, backgroundColor: "#FFFFFF"});
-    svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {}, function(uri) {
+    svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var baseBarImg = document.getElementById("baseBarPng");
         baseBarImg.src = uri;
     });
 
-    svgAsDataUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {}, function(uri) {
+    svgAsDataUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var comparisonBarImg = document.getElementById("comparisonBarPng");
         comparisonBarImg.src = uri;
     });
 
-    svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {}, function(uri) {
+    svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var equityBarImg = document.getElementById("equityBarPng");
         equityBarImg.src = uri;
 
