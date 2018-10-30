@@ -444,6 +444,7 @@ p.exampleParagraph {
     height: 18px;
     width: 21px;
     border: none;
+    padding: 0;
     margin: 4px 0;
 }
 
