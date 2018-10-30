@@ -92,6 +92,19 @@ section.tool {
     -webkit-transition: opacity 300ms;
 }
 
+.logo {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #000;
+    width: 100%;
+    text-align: right;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+span.urban {
+    color: #1696d2;
+}
 /*
 section.toolDropdownSelector:after, section.toolDropdownSelector:before {
     top: 100%;
