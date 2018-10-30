@@ -173,6 +173,10 @@ h2,
     width: calc(100% - 160px);
 }
 
+#downloadChart h2 {
+    padding-left: 18px;
+}
+
 h2.chartTitle.initialize {
     background-color: #e3e3e3;
     color: #e3e3e3;
@@ -219,6 +223,9 @@ a#saveImageLink {
     width: 100%;
     position: relative;
     /*margin: 20px 0;*/
+}
+#downloadChart .chartRow {
+    padding: 0 18px;
 }
 
 .chartRow h4 {
