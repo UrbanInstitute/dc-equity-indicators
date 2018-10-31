@@ -428,7 +428,7 @@ p.exampleParagraph {
 .imageDownloadChart .equitySentence.noGap {
     margin-top: 0;
     margin-left: 18px;
-    font-size: 32px;
+    /*font-size: 32px;*/
     font-weight: lighter;
     max-width: 100%;
 }
