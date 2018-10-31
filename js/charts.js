@@ -1,3 +1,4 @@
+// (function() {
 var PCTFORMAT = d3.format(".0%");
 var PCTFORMATONEDECIMAL = d3.format(".1%");
 var COMMAFORMAT = d3.format(",.0f");
@@ -698,7 +699,7 @@ function populateEquityStatement(chartDivID, indicator, data) {
     }
     else if(customGoal === 0) {
         if(data[0].diff <= 0) {
-            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo);
+            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
         }
         else {
@@ -757,3 +758,4 @@ function convertSvgToPng() {
         });
     });
 }
+// })();
