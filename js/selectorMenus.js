@@ -328,7 +328,7 @@ if ($(window).width() >= 768) {
                 $('.toolDropdownSelector').removeClass("sticky unstick");
             }
 
-            if($("main")[0].getBoundingClientRect().bottom < 50) {
+            if($(".main")[0].getBoundingClientRect().bottom < 50) {
                 $('.toolDropdownSelector').removeClass("sticky");
                 $('.toolDropdownSelector').addClass("unstick");
             }
