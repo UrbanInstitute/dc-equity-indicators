@@ -296,8 +296,9 @@ function updatePlaceholderText() {
 
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
-    .on("input", function() { updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget");
-                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); });
+    .on("input", function() { if(d3.select("#customTarget").node().value !== "") {
+                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget");
+                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); }});
 
 
 // event listeners to handle initial tooltip popups and making the selector menus active
