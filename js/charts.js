@@ -444,7 +444,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
     // console.log(diffLabelBoundingRect.width + diffLabelBoundingRect.x > noLabelBoundingRect.x);
 
     // if label for blue and grey bars overlap, adjust the text alignment of the labels
-    if(yesLabelBoundingRect.x + yesLabelBoundingRect.width + 5 > noLabelBoundingRect.x) {
+    if(yesLabelBoundingRect.right + 5 > noLabelBoundingRect.left) {
         d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
         d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
 
@@ -452,7 +452,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
         var newYesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();
         var newNoLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .no g.labelTextGrp").node().getBoundingClientRect();
 
-        if(newYesLabelBoundingRect.x + newYesLabelBoundingRect.width + 2 > newNoLabelBoundingRect.x) {
+        if(newYesLabelBoundingRect.right + 2 > newNoLabelBoundingRect.left) {
             d3.select(chartDivID + " " + parentClass + " .yes line.barLabel")
                 // .transition()
                 .attr("y2", toolChartDimensions.height + 34);
@@ -472,25 +472,25 @@ function adjustLabels(chartDivID, parentClass, indicator) {
     }
 
     // if blue or yellow/pink label too close to bar baseline, left-justify the label (and move blue one down if needed)
-    if(yesLabelBoundingRect.x < blueRectBoundingRect.x) {
+    if(yesLabelBoundingRect.left < blueRectBoundingRect.left) {
         d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("leftJustified", true);
         yesLabelBoundingRect = d3.select(chartDivID + " " + parentClass + " .yes g.labelTextGrp").node().getBoundingClientRect();  // update position of blue bar label
     }
 
     // if label for yellow/pink bar overlaps either of the grey or blue labels, shift the label down
-    if(diffLabelBoundingRect && (((negativeIndicators.indexOf(indicator) === -1) && (yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x)) || ((negativeIndicators.indexOf(indicator) > -1) && (diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x)) || (diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x))) {
+    if(diffLabelBoundingRect && (((negativeIndicators.indexOf(indicator) === -1) && (yesLabelBoundingRect.right > diffLabelBoundingRect.left)) || ((negativeIndicators.indexOf(indicator) > -1) && (diffLabelBoundingRect.right > yesLabelBoundingRect.left)) || (diffLabelBoundingRect.right > noLabelBoundingRect.left))) {
         // if yellow bar label overlaps the blue label, right-justify the blue label for non-negative indicators
-        if(yesLabelBoundingRect.x + yesLabelBoundingRect.width > diffLabelBoundingRect.x && negativeIndicators.indexOf(indicator) === -1) {
+        if(yesLabelBoundingRect.right > diffLabelBoundingRect.left && negativeIndicators.indexOf(indicator) === -1) {
             d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("rightJustified", true);
         }
 
         // if pink bar label overlaps the blue label, left-justify the blue label for negative indicators
-        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > yesLabelBoundingRect.x && negativeIndicators.indexOf(indicator) > -1) {
+        if(diffLabelBoundingRect.right > yesLabelBoundingRect.left && negativeIndicators.indexOf(indicator) > -1) {
             d3.selectAll(chartDivID + " " + parentClass + " .yes text.barLabel").classed("leftJustified", true);
         }
 
         // if yellow/pink bar label overlaps the grey label, left-justify the grey label
-        if(diffLabelBoundingRect.x + diffLabelBoundingRect.width > noLabelBoundingRect.x) {
+        if(diffLabelBoundingRect.right > noLabelBoundingRect.left) {
             d3.selectAll(chartDivID + " " + parentClass + " .no text.barLabel").classed("leftJustified", true);
         }
 
