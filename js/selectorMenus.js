@@ -324,14 +324,17 @@ if ($(window).width() >= 768) {
             // console.log("Main bottom:", mainBottom);
             if(($(window).scrollTop() - toolDropdownSelectorTop >= 50)) {
                 $('.toolDropdownSelector').addClass("sticky");
+                $('.tool').addClass("moreMarginTop");
             }
             else {
                 $('.toolDropdownSelector').removeClass("sticky unstick");
+                $('.tool').removeClass("moreMarginTop");
             }
 
             if($(".main")[0].getBoundingClientRect().bottom < 50) {
                 $('.toolDropdownSelector').removeClass("sticky");
                 $('.toolDropdownSelector').addClass("unstick");
+                $('.tool').removeClass("moreMarginTop");
             }
         });
     });

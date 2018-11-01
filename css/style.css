@@ -83,6 +83,10 @@ section.tool {
     -webkit-transition: opacity 300ms;
 }
 
+.moreMarginTop {
+    margin-top: 200px;
+}
+
 .imageDownloadChart {
     width: 1150px;
     padding: 10px;
