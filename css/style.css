@@ -950,6 +950,7 @@ input#customTarget {
         top: 0;
         left: 0;
         transform: none;
+        padding-top: 0;
     }
 
     .selectorGroup {
@@ -978,9 +979,9 @@ input#customTarget {
 
 @media screen and (max-width: 499px) {
     section.toolDropdownSelector {
-        height: 400px;
+        height: 372px;
         position: static;
-        padding: 20px;
+        padding: 5px 20px;
     }
 
     .indicatorSelectorMenus {
@@ -989,6 +990,7 @@ input#customTarget {
         top: 0;
         left: 0;
         transform: none;
+        padding: 0;
     }
 
     .selectorGroup {
