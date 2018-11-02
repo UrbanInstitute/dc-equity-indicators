@@ -598,6 +598,11 @@ button.downArrowBtn {
     padding: 17px 0;
 }
 
+@media screen and (max-width: 767px) {
+    .initialize .barLeft {
+        display: none;
+    }
+}
 /************ STYLES FOR RACIAL DEMO CHARTS **************/
 .demoChart {
     width: 320px;
