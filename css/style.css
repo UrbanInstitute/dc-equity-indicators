@@ -679,11 +679,13 @@ h5 {
 /************ STYLES FOR SELECTORS **************/
 
 .indicatorSelectorMenus {
-    position: absolute;
+    /*position: absolute;*/
     width: 1221px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -60%);*/
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 .selectorGroup {
