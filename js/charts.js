@@ -717,11 +717,11 @@ function populateEquityStatement(chartDivID, indicator, data) {
                 }
             }
             else if(nonbinaryIndicators.indexOf(indicator) === -1) {
-                if(Math.abs(data[0].actual_diff) <= 0.01) {
+                if(Math.abs(data[0].actual_diff) <= 0.005) {
                     d3.select(chartDivID + " .equitySentence").text(addAnd(data[0].geo) + " has no equity gap with " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
-                else if(data[0].actual_diff < -0.01) {
+                else if(data[0].actual_diff < -0.005) {
                     d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
