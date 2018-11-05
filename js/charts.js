@@ -545,7 +545,6 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
     if(nonbinaryIndicators.indexOf(indicator) > -1) {
         xScale.domain([0, d3.max(equityData, function(d) { return d.indicator === indicator && d.value; })]);
-        console.log(xScale.domain());
     }
     else {
         xScale.domain([0, 1]);
@@ -695,11 +694,11 @@ function populateEquityStatement(chartDivID, indicator, data) {
             d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
         }
         else if(data[0].diff <= 0) {
-            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has met or exceeded that goal.");
+            d3.select(chartDivID + " .equitySentence").text(addAnd(data[0].geo) + " has met or exceeded that goal.");
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
         }
         else {
-            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If this goal is met, <span class='highlight'>" + data[0].geo + " would have " + diffNumber + " fewer violent crimes.</span>");
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If this goal is met, <span class='highlight'>" + addAnd(data[0].geo) + " would have " + diffNumber + " fewer violent crimes.</span>");
             (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If this goal is met, <span class='highlight'>" + diffNumber + " " + data[0].sentence + "</span>");
             d3.select(chartDivID + " .equitySentence").classed("noGap", false);
         }
@@ -709,28 +708,28 @@ function populateEquityStatement(chartDivID, indicator, data) {
         if(data[0].diff === 0) {
             if(nonbinaryIndicators.indexOf(indicator) > -1) {
                 if(Math.abs(data[0].actual_diff) <= 1) {
-                    d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").text(addAnd(data[0].geo) + " has no equity gap with " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
                 else if(data[0].actual_diff < -1) {
-                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
             }
             else if(nonbinaryIndicators.indexOf(indicator) === -1) {
                 if(Math.abs(data[0].actual_diff) <= 0.01) {
-                    d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").text(addAnd(data[0].geo) + " has no equity gap with " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
                 else if(data[0].actual_diff < -0.01) {
-                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + addAnd(data[0].compareGeo) + ".");
                     d3.select(chartDivID + " .equitySentence").classed("noGap", true);
                 }
             }
         }
         // handle equity gap situation
         else {
-            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + data[0].geo + " would have " + diffNumber + " fewer violent crimes.</span>");
+            (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + addAnd(data[0].geo) + " would have " + diffNumber + " fewer violent crimes.</span>");
             (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + diffNumber + " " + data[0].sentence + "</span>");
             d3.select(chartDivID + " .equitySentence").classed("noGap", false);
         }
@@ -753,6 +752,19 @@ function getParentDivWidth(elementId) {
     var width = document.getElementById(elementId).clientWidth;
     // console.log(width)
     return width;
+}
+
+function addAnd(geo) {
+    var geoArray = geo.split(",");
+    if(geoArray.length === 1) {
+        return geo;
+    }
+    else if(geoArray.length === 2) {
+        return geoArray[0] + " and " + geoArray[1];
+    }
+    else {
+        return geoArray.slice(0, geoArray.length - 1).join(", ") + ", and " + geoArray[geoArray.length - 1];
+    }
 }
 
 // function to save chart to png using saveSvgAsPng and html2canvas
