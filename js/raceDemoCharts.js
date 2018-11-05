@@ -5,7 +5,7 @@ var raceXScale = d3.scaleLinear()
     .range([0, raceChartDimensions.width]);
 
 var raceYScale = d3.scaleBand()
-    .domain(["Other or multiple race", "Asian and Pacific Islander", "Latino", "Black", "White"])
+    .domain(["Other or multiple race", "Asian and Pacific Islander", "Latino", "White", "Black"])
     .range([raceChartDimensions.height, 0])
     .padding(0.1);
 
