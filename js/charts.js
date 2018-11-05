@@ -59,7 +59,8 @@ d3.csv("data/equity_data.csv", function(d) {
         blue_bar_label: d.blue_bar_label,
         diff_bar_label: d.diff_bar_label,
         grey_bar_label: d.grey_bar_label,
-        summary_sentence: d.summary_sentence
+        summary_sentence: d.summary_sentence,
+        reverse_gap_sentence: d.reverse_gap_sentence
     };
 }, function(error, data) {
 
@@ -172,6 +173,7 @@ function getData(parentClass, geo, indicator) {
                     grey_bar_label: "",
                     diff_bar_label: baseData[0].diff_bar_label,
                     sentence: baseData[0].summary_sentence
+                    // reverse_gap_sentence: baseData[0].reverse_gap_sentence
                 }];
         }
         // non-binary indicators that we want less of
@@ -192,6 +194,7 @@ function getData(parentClass, geo, indicator) {
                     grey_bar_label: "",
                     diff_bar_label: baseData[0].diff_bar_label,
                     sentence: baseData[0].summary_sentence
+                    // reverse_gap_sentence: baseData[0].reverse_gap_sentence
                 }];
         }
         // binary indicators that we want less of
@@ -212,6 +215,7 @@ function getData(parentClass, geo, indicator) {
                     grey_bar_label: baseData[0].grey_bar_label,
                     diff_bar_label: baseData[0].diff_bar_label,
                     sentence: baseData[0].summary_sentence
+                    // reverse_gap_sentence: baseData[0].reverse_gap_sentence
                 }];
         }
         // binary indicators that we want more of
@@ -231,12 +235,15 @@ function getData(parentClass, geo, indicator) {
                 grey_bar_label: baseData[0].grey_bar_label,
                 diff_bar_label: baseData[0].diff_bar_label,
                 sentence: baseData[0].summary_sentence
+                // reverse_gap_sentence: baseData[0].reverse_gap_sentence
             }];
         }
 
         // if there's no equity gap, then set diff = 0 so d3 doesn't complain when trying to draw the bars (which will be hidden anyways)
         if(data[0].diff < 0) {
+            data[0].actual_diff = data[0].diff;
             data[0].diff = 0;
+            data[0].sentence = baseData[0].reverse_gap_sentence;
             if(nonbinaryIndicators.indexOf(indicator) === -1 && negativeIndicators.indexOf(indicator) > -1) {
                 data[0].no = 1 - compareValue;
             }
@@ -698,10 +705,30 @@ function populateEquityStatement(chartDivID, indicator, data) {
         }
     }
     else if(customGoal === 0) {
-        if(data[0].diff <= 0) {
-            d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
-            d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+        // handle no gap or reverse-gap situation
+        if(data[0].diff === 0) {
+            if(nonbinaryIndicators.indexOf(indicator) > -1) {
+                if(Math.abs(data[0].actual_diff) <= 1) {
+                    d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+                }
+                else if(data[0].actual_diff < -1) {
+                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+                }
+            }
+            else if(nonbinaryIndicators.indexOf(indicator) === -1) {
+                if(Math.abs(data[0].actual_diff) <= 0.01) {
+                    d3.select(chartDivID + " .equitySentence").text(data[0].geo + " has no equity gap with " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+                }
+                else if(data[0].actual_diff < -0.01) {
+                    d3.select(chartDivID + " .equitySentence").text(data[0].sentence + " " + data[0].compareGeo + ".");
+                    d3.select(chartDivID + " .equitySentence").classed("noGap", true);
+                }
+            }
         }
+        // handle equity gap situation
         else {
             (indicator === "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + data[0].geo + " would have " + diffNumber + " fewer violent crimes.</span>");
             (indicator !== "Violent crime") && d3.select(chartDivID + " .equitySentence").html("If we closed this equity gap, <span class='highlight'>" + diffNumber + " " + data[0].sentence + "</span>");

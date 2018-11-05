@@ -45,6 +45,7 @@ dat <- bind_rows(city_dat, ward_dat, cluster_dat_clean) %>%
   left_join(name_mapping, by = c("indicator" = "data_name")) %>%
   left_join(labels, by=c("text_name" = "Full name of indicator")) %>%
   mutate(summary_sentence = str_c(`Summary sentence-pt 1`, map_chr(geo, addAnd), `Summary sentence-pt 2`, sep=" "))  %>%
+  mutate(reverse_gap_sentence = str_c(`Opposite gap sentence`, map_chr(geo, addAnd), "than in", sep = " ")) %>%
   # mutate(value = case_when(
   #   indicator %in% c("Small business lending per employee", "Age-adjusted premature mortality rate", "Violent Crime Rate per 1000 people") ~ round(equityvariable, digits = 0),
   #   indicator == "unemployment" ~ round(equityvariable, digits = 3),
@@ -53,7 +54,7 @@ dat <- bind_rows(city_dat, ward_dat, cluster_dat_clean) %>%
   select(indicator_full_name = text_name, indicator = `Abberviated name of indicator`,
          year = `Year`, geo, numerator, denom, value = equityvariable,
          blue_bar_label = `Blue bar label`, diff_bar_label = `Yellow/pink bar label`,
-         grey_bar_label = `Gray bar label`, summary_sentence)
+         grey_bar_label = `Gray bar label`, summary_sentence, reverse_gap_sentence)
 
 # add a row with [fake] data to initialize the bar chart with
 dat <- add_row(dat, indicator_full_name = "Initial",
@@ -66,7 +67,8 @@ dat <- add_row(dat, indicator_full_name = "Initial",
                     blue_bar_label = "",
                     diff_bar_label = "",
                     grey_bar_label = "",
-                    summary_sentence = NA)
+                    summary_sentence = NA,
+                    reverse_gap_sentence = NA)
 
 write_csv(dat, "equity_data.csv")
 # NOTE: manually edit this CSV to remove the extra space in front of the period for 
