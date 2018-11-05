@@ -88,7 +88,7 @@ function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo, dimensio
 function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     // fade opacity of chart for 1 second while it transitions
     // code from: https://stackoverflow.com/questions/2510115/jquery-can-i-call-delay-between-addclass-and-such
-    $("section.tool").addClass("sectionFade").delay(1000).queue(function() {
+    $("section.tool").addClass("sectionFade").delay(700).queue(function() {
         $(this).removeClass("sectionFade").dequeue();
         convertSvgToPng();  // also, update downloadable chart after bars have finished transitioning
     });
