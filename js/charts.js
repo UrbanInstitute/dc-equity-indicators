@@ -808,6 +808,7 @@ function convertSvgToPng() {
 }
 
 // event handler to trigger file download on IE since doesn't support download attribute on anchor tag
+// source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
 if(navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Trident") !== -1) {
     d3.select(".saveImageBtn").on("click", function() {
         window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
