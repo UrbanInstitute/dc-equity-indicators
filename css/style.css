@@ -901,7 +901,7 @@ input#customTarget {
 
 @media screen and (max-width: 350px) {
     .selectorTooltip {
-        width: 300px;
+        width: 90vw;
     }
 }
 
@@ -1119,6 +1119,7 @@ p.clusterNote {
 
     .selectorMenuModal .closeButton {
         right: 20px;
+        top: 20px;
     }
 
     .modalGroup.twoColumns,
