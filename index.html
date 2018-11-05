@@ -753,6 +753,13 @@
             <div class="logo"><span class="urban">Urban</span> Institute</div>
         </div>
 
+        <script>
+            if (!String.prototype.startsWith) {
+                String.prototype.startsWith = function(search, pos) {
+                    return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+                };
+            }
+        </script>
         <script type="text/javascript" src="js/jquery.2.1.4.min.js"></script>
     	<script type="text/javascript" src="js/d3.v4.min.js"></script>
         <script type="text/javascript" src="js/topojson.v1.min.js"></script>
