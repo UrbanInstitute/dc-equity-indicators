@@ -844,7 +844,7 @@ input#customTarget {
     padding: 5px 15px 15px 15px;
     position: absolute;
     transform: translateY(95%);
-    z-index: 100;
+    z-index: 90;
 }
 
 .comparisonToggle .selectorTooltip {
