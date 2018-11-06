@@ -796,7 +796,7 @@ function convertSvgToPng() {
             // if on IE, save canvas to a blob so that it can be downloaded
             // (IE doesn't support download attribute for anchor tags)
             if(canvas.msToBlob) {
-                ieBlob = canvas;
+                ieBlob = canvas.msToBlob();
             }
             else {
                 var imageData = canvas.toDataURL();
