@@ -46,6 +46,8 @@ var customGoal = 0; // to keep track of whether comparing geographies or using u
 
 var equityData;
 
+var ieBlob; // for image download on IE
+
 
 d3.csv("data/equity_data.csv", function(d) {
     return {
@@ -774,27 +776,42 @@ function convertSvgToPng() {
     // (was having issues using html2canvas to convert the svg directly - didn't preserve fonts)
     // (instead, convert svg -> png -> write into saveImageDownload div -> use html2canvas)
     // saveSvgAsPng(d3.select("#equityChart .baseLocation .equityBar svg").node(), 'equity_chart.png', {canvg: canvg, backgroundColor: "#FFFFFF"});
-    svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+    svgAsPngUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var baseBarImg = document.getElementById("baseBarPng");
         baseBarImg.src = uri;
     });
 
-    svgAsDataUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+    svgAsPngUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var comparisonBarImg = document.getElementById("comparisonBarPng");
         comparisonBarImg.src = uri;
     });
 
-    svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
+    svgAsPngUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
         var equityBarImg = document.getElementById("equityBarPng");
         equityBarImg.src = uri;
 
         // use html2canvas to save turn html into downloadable png after svgs rendered into png
         html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
             // document.body.appendChild(canvas);
-            var imageData = canvas.toDataURL();
-            var link = document.getElementById("saveImageLink");
-            link.setAttribute("href", imageData);
+            // if on IE, save canvas to a blob so that it can be downloaded
+            // (IE doesn't support download attribute for anchor tags)
+            if(canvas.msToBlob) {
+                ieBlob = canvas.msToBlob();
+            }
+            else {
+                var imageData = canvas.toDataURL();
+                var link = document.getElementById("saveImageLink");
+                link.setAttribute("href", imageData);
+            }
         });
+    });
+}
+
+// event handler to trigger file download on IE since doesn't support download attribute on anchor tag
+// source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
+if(navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Trident") !== -1) {
+    d3.select(".saveImageBtn").on("click", function() {
+        window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
     });
 }
 // })();

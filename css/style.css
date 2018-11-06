@@ -406,6 +406,10 @@ text.barLabel.line2 {
     background: rgba(253, 191, 17, 0.75);
 }
 
+.imageDownloadChart .highlight {
+    background: none;
+}
+
 p.exampleParagraph {
     padding-top: 18px;
     border-top: 1px solid #0a4c6a;
