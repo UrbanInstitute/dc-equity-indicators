@@ -949,6 +949,10 @@ input#customTarget {
     .selectorBox {
         width: calc(100% - 50px);
     }
+
+    input#customTarget {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 500px) and (max-width: 767px) {
@@ -988,6 +992,7 @@ input#customTarget {
 
     input#customTarget {
         width: 460px;
+        max-width: none;
     }
 }
 
