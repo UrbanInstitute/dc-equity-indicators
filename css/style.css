@@ -707,7 +707,7 @@ h5 {
     width: 325px;
     height: 75px;
     /*background-color: #1696d2;*/
-    margin: auto 10px;
+    margin: 3px 10px 0 10px;
     overflow: auto;
 }
 
