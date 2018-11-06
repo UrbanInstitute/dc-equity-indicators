@@ -454,6 +454,7 @@ p.exampleParagraph {
     border: none;
     padding: 0;
     margin: 4px 0;
+    cursor: pointer;
 }
 
 button.upArrowBtn {
@@ -1153,6 +1154,7 @@ p.clusterNote {
     max-width: 380px;
     margin-bottom: 12px;
     padding: 4px 10px;
+    cursor: pointer;
 }
 
 .twoColumns .menuItem,
