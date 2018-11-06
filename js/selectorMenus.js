@@ -98,10 +98,10 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               d3.select(this).classed("selected", true);
                               hideTooltip(".indicatorSelector .selectorTooltip");
                               showTooltip(".baseGeographySelector .selectorTooltip");
-                              activateElement(".baseGeographySelector");
                               updatePlaceholderText();
                               scrollMenuDivToTop();
-                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector"); });
+                              showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector");
+                            activateElement(".baseGeographySelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -170,59 +170,59 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     // reset custom goal every time user makes a new menu selection
     d3.select("#customTarget").node().value = '';
 
-    var indicator = getIndicatorSelected();
-    var baseGeo = getBaseGeography();
-    var compareGeo = getComparisonGeography();
+    if(!d3.select(".baseGeographySelector").classed("inactive")) {
+        var indicator = getIndicatorSelected();
+        var baseGeo = getBaseGeography();
+        var compareGeo = getComparisonGeography();
 
-    console.log("Indicator:", indicator);
-    console.log("Base geo:", baseGeo);
-    console.log("Comparison geo:", compareGeo);
+        console.log("Indicator:", indicator);
+        console.log("Base geo:", baseGeo);
+        console.log("Comparison geo:", compareGeo);
 
-    d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
-    d3.selectAll("#baseGeographyMenu .map .geography").classed("disabled", false);
-    d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
-    d3.selectAll("#comparisonGeographyMenu .map .geography").classed("disabled", false);
+        d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+        d3.selectAll("#baseGeographyMenu .map .geography").classed("disabled", false);
+        d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+        d3.selectAll("#comparisonGeographyMenu .map .geography").classed("disabled", false);
 
-    // disable Clusters 40 and 43 if indicator is prenatal care and disable clusters 41, 43 and 44 if indicator is affordable housing
-    // due to small sample sizes
-    if(indicator === "Prenatal care") {
-        d3.selectAll("#baseGeographyMenu .cluster_40,.cluster_43").classed("disabled", true);
-        d3.selectAll("#baseGeographyMenu .map .cluster_40,.cluster_43").classed("disabled", true);
-        d3.selectAll("#comparisonGeographyMenu .cluster_40,.cluster_43").classed("disabled", true);
-        d3.selectAll("#comparisonGeographyMenu .map .cluster_40,.cluster_43").classed("disabled", true);
-    }
-    if(indicator === "Affordable home sales") {
-        d3.selectAll("#baseGeographyMenu .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
-        d3.selectAll("#baseGeographyMenu .map .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
-        d3.selectAll("#comparisonGeographyMenu .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
-        d3.selectAll("#comparisonGeographyMenu .map .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
-    }
+        // disable Clusters 40 and 43 if indicator is prenatal care and disable clusters 41, 43 and 44 if indicator is affordable housing
+        // due to small sample sizes
+        if(indicator === "Prenatal care") {
+            d3.selectAll("#baseGeographyMenu .cluster_40,.cluster_43").classed("disabled", true);
+            d3.selectAll("#baseGeographyMenu .map .cluster_40,.cluster_43").classed("disabled", true);
+            d3.selectAll("#comparisonGeographyMenu .cluster_40,.cluster_43").classed("disabled", true);
+            d3.selectAll("#comparisonGeographyMenu .map .cluster_40,.cluster_43").classed("disabled", true);
+        }
+        if(indicator === "Affordable home sales") {
+            d3.selectAll("#baseGeographyMenu .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
+            d3.selectAll("#baseGeographyMenu .map .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
+            d3.selectAll("#comparisonGeographyMenu .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
+            d3.selectAll("#comparisonGeographyMenu .map .cluster_40,.cluster_41,.cluster_43,.cluster_44").classed("disabled", true);
+        }
 
-    // disable link in comparison geography selection modal so that users can't choose to compare a geography against itself
-    d3.selectAll("#comparisonGeographyMenu .map .cluster_42,.cluster_45,.cluster_46").classed("disabled", true)
-    var selectedBaseGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
-    d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedBaseGeoClassname).classed("disabled", true);
-    d3.select("#comparisonGeographyMenu .map ." + selectedBaseGeoClassname).classed("disabled", true);
+        // disable link in comparison geography selection modal so that users can't choose to compare a geography against itself
+        d3.selectAll("#comparisonGeographyMenu .map .cluster_42,.cluster_45,.cluster_46").classed("disabled", true)
+        var selectedBaseGeoClassname = d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+        d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem." + selectedBaseGeoClassname).classed("disabled", true);
+        d3.select("#comparisonGeographyMenu .map ." + selectedBaseGeoClassname).classed("disabled", true);
 
-    // disable link in base geography selection modal so that users can't choose to compare a geography against itself
-    // d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
-    // var selectedCompareGeoClassname = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
-    // d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem." + selectedCompareGeoClassname).classed("disabled", true);
+        // disable link in base geography selection modal so that users can't choose to compare a geography against itself
+        // d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+        // var selectedCompareGeoClassname = d3.select("#comparisonGeographyMenu .dcEquityIndicators.menuItem.selected").attr("class").split(" ")[2];
+        // d3.select("#baseGeographyMenu .dcEquityIndicators.menuItem." + selectedCompareGeoClassname).classed("disabled", true);
 
-    // if user selects same base geo as the comparison geo, force the user to select a new comparison geo
-    // if(baseGeo === compareGeo) {
-    //     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("selected", false);
-    //     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
+        // if user selects same base geo as the comparison geo, force the user to select a new comparison geo
+        // if(baseGeo === compareGeo) {
+        //     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("selected", false);
+        //     d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
 
-    //     d3.select(".comparisonGeographySelector .selectorBox").text("Select a location");
-    //     updateEquityBarChart("#equityChart", "Initial", baseGeo, "Initial");
-    // }
+        //     d3.select(".comparisonGeographySelector .selectorBox").text("Select a location");
+        //     updateEquityBarChart("#equityChart", "Initial", baseGeo, "Initial");
+        // }
 
 
 
-    // only show graph once an indicator and a base geography have been selected
-    indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
-    if(indicator !== "Select an indicator" && baseGeo !== "Select a location") {
+        // only show graph once an indicator and a base geography have been selected
+        indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
         updateEquityBarChart("#equityChart", indicator, baseGeo, compareGeo);
         updateEquityBarChart("#downloadChart", indicator, baseGeo, compareGeo);
     }
