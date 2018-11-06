@@ -561,13 +561,22 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         .style("fill", function(d) { return colorScale(d.key); })
         .style("stroke", function(d) { return colorScale(d.key); });
 
-    slices.selectAll("rect")
-        .data(function(d) { return d; })
-        .transition()
-        .delay(300)
-        .duration(500)
-        .attr("x", function(d) { return xScale(d[0]); })
-        .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+    // remove transition for download chart image so that IE doesn't capture the canvas mid-transition
+    if(chartDivID === "#downloadChart") {
+        slices.selectAll("rect")
+            .data(function(d) { return d; })
+            .attr("x", function(d) { return xScale(d[0]); })
+            .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+    }
+    else {
+        slices.selectAll("rect")
+            .data(function(d) { return d; })
+            .transition()
+            .delay(300)
+            .duration(500)
+            .attr("x", function(d) { return xScale(d[0]); })
+            .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+    }
 
     // finally, adjust label positions based on type of indicator:
     // postive indicators will have all labels be at the end of the bar
@@ -585,18 +594,15 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
             slices.selectAll(".barLabel.line1")
                 .data(function(d) { return d; })
-                // .transition()
                 .attr("x", function(d) { return xScale(d[0]); });
 
             slices.selectAll(".barLabel.line2")
                 .data(function(d) { return d; })
-                // .transition()
                 .attr("x", function(d) { return xScale(d[0]); });
         }
         else {
             slices.selectAll("line")
                 .data(function(d) { return d; })
-                // .transition()
                 .attr("x1", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } })
@@ -606,14 +612,12 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
 
             slices.selectAll(".barLabel.line1")
                 .data(function(d) { return d; })
-                // .transition()
                 .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } });
 
             slices.selectAll(".barLabel.line2")
                 .data(function(d) { return d; })
-                // .transition()
                 .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
                                           else if(d[1] === 1) { return xScale(d[1]) - 1; }
                                           else { return xScale(d[0]); } });
@@ -622,20 +626,16 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     else {
         slices.selectAll("line")
             .data(function(d) { return d; })
-            // .transition()
             .attr("x1", function(d) { return xScale(d[1]) - 1; })
             .attr("x2", function(d) { return xScale(d[1]) - 1; });
 
         slices.selectAll(".barLabel.line1")
             .data(function(d) { return d; })
-            // .transition()
             .attr("x", function(d) { return xScale(d[1]) - 1; });
 
         slices.selectAll(".barLabel.line2")
             .data(function(d) { return d; })
-            // .transition()
             .attr("x", function(d) { return xScale(d[1]) - 1; });
-            // .on("end", adjustLabels(chartDivID, parentClass) );
     }
 
     // reset height of labels and text-alignment so it doesn't throw off the collision detection calculations
