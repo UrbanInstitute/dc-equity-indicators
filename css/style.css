@@ -764,6 +764,11 @@ h5 {
     float: left;
 }
 
+.dividerImage img {
+    height: 65px;
+    margin-top: 7px;
+}
+
 .comparisonToggle {
     width: 120px;
     display: inline-block;
