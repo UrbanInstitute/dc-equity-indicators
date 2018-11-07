@@ -101,7 +101,7 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               updatePlaceholderText();
                               scrollMenuDivToTop();
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector");
-                            activateElement(".baseGeographySelector"); });
+                              activateElement(".baseGeographySelector"); });
 
 d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
     .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -167,9 +167,6 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
     d3.select(selectorBoxClass + " .selectorBox").text(selectedItemName);
     closeMenu(menuElementID);
 
-    // reset custom goal every time user makes a new menu selection
-    d3.select("#customTarget").node().value = '';
-
     if(!d3.select(".baseGeographySelector").classed("inactive")) {
         var indicator = getIndicatorSelected();
         var baseGeo = getBaseGeography();
@@ -218,8 +215,6 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
         //     d3.select(".comparisonGeographySelector .selectorBox").text("Select a location");
         //     updateEquityBarChart("#equityChart", "Initial", baseGeo, "Initial");
         // }
-
-
 
         // only show graph once an indicator and a base geography have been selected
         indicator !== "Select an indicator" && baseGeo !== "Select a location" && d3.select("#equityChart").classed("initialize", false);
@@ -273,7 +268,7 @@ function toggleMenu() {
         d3.select("#equityChart .comparisonLocation").classed("noShow", true);  // hide comparison location bar
         d3.select("#downloadChart .comparisonLocation").classed("noShow", true);
         customGoal = 1;
-        d3.select("#customTarget").node().value = '';  // reset custom goal
+        initializeCustomTargetValue();
     }
 }
 
@@ -291,14 +286,20 @@ function updatePlaceholderText() {
     }
 }
 
-
+// set default user-entered goal to be equal to base geo's value
+function initializeCustomTargetValue() {
+    var NODECIMALFORMAT = d3.format(".0f");  // can't display commas in the input box
+    var indicator = getIndicatorSelected();
+    var data = equityData.filter(function(d) { return d.geo === getComparisonGeography() && d.indicator === indicator; });
+    d3.select("#customTarget").node().value = nonbinaryIndicators.indexOf(indicator) > -1 ? NODECIMALFORMAT(data[0].value) : NODECIMALFORMAT(data[0].value*100);
+}
 
 
 // event listeners to detect user-entered goal
 d3.select("#customTarget")
     .on("input", function() { if(d3.select("#customTarget").node().value !== "") {
-                              updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget");
-                              updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); }});
+                                updateEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), "customTarget");
+                                updateEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), "customTarget"); }});
 
 
 // event listeners to handle initial tooltip popups and making the selector menus active
