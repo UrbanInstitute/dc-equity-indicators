@@ -854,7 +854,7 @@ input#customTarget {
     background-color: #fff;
     border: 1px solid #1696d2;
     font-size: 14px;
-    padding: 5px 15px 15px 15px;
+    padding: 5px 20px 15px 15px;
     position: absolute;
     transform: translateY(95%);
     z-index: 90;
