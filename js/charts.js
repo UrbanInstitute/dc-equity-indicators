@@ -445,19 +445,21 @@ function labelBars(chartDivID, parentClass, data) {
 }
 
 function adjustLabels(chartDivID, parentClass, indicator) {
-    // reset label heights and text-alignment so it doesn't throw off the collision detection calculations
-    d3.selectAll(chartDivID + " " + parentClass + " line")
-        .attr("y2", toolChartDimensions.height + 4);
+    if(chartDivID !== "#exampleEquityChart") {
+        // reset label heights and text-alignment so it doesn't throw off the collision detection calculations
+        d3.selectAll(chartDivID + " " + parentClass + " line")
+            .attr("y2", toolChartDimensions.height + 4);
 
-    d3.selectAll(chartDivID + " " + parentClass + " .barLabel.line1")
-        .attr("y", toolChartDimensions.height + 19)
-        .classed("rightJustified", false)
-        .classed("leftJustified", false);
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel.line1")
+            .attr("y", toolChartDimensions.height + 19)
+            .classed("rightJustified", false)
+            .classed("leftJustified", false);
 
-    d3.selectAll(chartDivID + " " + parentClass + " .barLabel.line2")
-        .attr("y", toolChartDimensions.height + 33)
-        .classed("rightJustified", false)
-        .classed("leftJustified", false);
+        d3.selectAll(chartDivID + " " + parentClass + " .barLabel.line2")
+            .attr("y", toolChartDimensions.height + 33)
+            .classed("rightJustified", false)
+            .classed("leftJustified", false);
+    }
 
     // only need to do collision detection for binary indicators since the non-binary ones only have one label per chart
     if(nonbinaryIndicators.indexOf(indicator) === -1){
