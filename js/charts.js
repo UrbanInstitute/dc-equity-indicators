@@ -588,6 +588,26 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
             .data(function(d) { return d; })
             .attr("x", function(d) { return xScale(d[0]); })
             .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
+
+        if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
+            if(nonbinaryIndicators.indexOf(indicator) > -1) {
+                slices.selectAll(".labelTextGrp")
+                    .data(function(d) { return d; })
+                    .attr("transform", function(d) { return "translate(" + (xScale(d[0])) + ",0)"; });
+            }
+            else {
+                slices.selectAll(".labelTextGrp")
+                    .data(function(d) { return d; })
+                    .attr("transform", function(d) { if(d[0] === 0 ) { return "translate(" + (xScale(d.data.yes + d.data.diff) - 1) + ",0)"; }
+                                              else if(d[1] === 1) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; }
+                                              else { return "translate(" + (xScale(d[0])) + ",0)"; } });
+            }
+        }
+        else {
+            slices.selectAll(".labelTextGrp")
+                .data(function(d) { return d; })
+                .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; });
+        }
     }
     else {
         slices.selectAll("rect")
@@ -597,23 +617,34 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
             .duration(500)
             .attr("x", function(d) { return xScale(d[0]); })
             .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); });
-    }
 
-    // finally, adjust label positions based on type of indicator:
-    // postive indicators will have all labels be at the end of the bar
-    // negative binary indicators should have the blue label be positioned where the base geo's value is, the pink label should be at the start of the pink bar,
-    //      and the grey label should be at the end
-    // negative non-binary indicators only need to have a label for the pink bar at the start of the pink bar so can transition all of the labels
-    //      to be at the start of the bars since the others will be hidden anyways
-    if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
-        if(nonbinaryIndicators.indexOf(indicator) > -1) {
-            slices.selectAll(".labelTextGrp")
-                .data(function(d) { return d; })
-                .transition()  // collision detection doesn't work well with transitions
-                .delay(300)
-                .duration(500)
-                .attr("transform", function(d) { return "translate(" + (xScale(d[0])) + ",0)"; })
-                .on("end", function() { adjustLabels(chartDivID, parentClass, indicator); });
+        // finally, adjust label positions based on type of indicator:
+        // postive indicators will have all labels be at the end of the bar
+        // negative binary indicators should have the blue label be positioned where the base geo's value is, the pink label should be at the start of the pink bar,
+        //      and the grey label should be at the end
+        // negative non-binary indicators only need to have a label for the pink bar at the start of the pink bar so can transition all of the labels
+        //      to be at the start of the bars since the others will be hidden anyways
+        if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
+            if(nonbinaryIndicators.indexOf(indicator) > -1) {
+                slices.selectAll(".labelTextGrp")
+                    .data(function(d) { return d; })
+                    .transition()  // collision detection doesn't work well with transitions
+                    .delay(300)
+                    .duration(500)
+                    .attr("transform", function(d) { return "translate(" + (xScale(d[0])) + ",0)"; })
+                    .on("end", function() { adjustLabels(chartDivID, parentClass, indicator); });
+            }
+            else {
+                slices.selectAll(".labelTextGrp")
+                    .data(function(d) { return d; })
+                    .transition()
+                    .delay(300)
+                    .duration(500)
+                    .attr("transform", function(d) { if(d[0] === 0 ) { return "translate(" + (xScale(d.data.yes + d.data.diff) - 1) + ",0)"; }
+                                              else if(d[1] === 1) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; }
+                                              else { return "translate(" + (xScale(d[0])) + ",0)"; } })
+                    .on("end", function() { adjustLabels(chartDivID, parentClass, indicator); });
+            }
         }
         else {
             slices.selectAll(".labelTextGrp")
@@ -621,20 +652,9 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
                 .transition()
                 .delay(300)
                 .duration(500)
-                .attr("transform", function(d) { if(d[0] === 0 ) { return "translate(" + (xScale(d.data.yes + d.data.diff) - 1) + ",0)"; }
-                                          else if(d[1] === 1) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; }
-                                          else { return "translate(" + (xScale(d[0])) + ",0)"; } })
+                .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; })
                 .on("end", function() { adjustLabels(chartDivID, parentClass, indicator); });
         }
-    }
-    else {
-        slices.selectAll(".labelTextGrp")
-            .data(function(d) { return d; })
-            .transition()
-            .delay(300)
-            .duration(500)
-            .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; })
-            .on("end", function() { adjustLabels(chartDivID, parentClass, indicator); });
     }
 
     // if there is no equity gap, hide the third bar chart
