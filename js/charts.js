@@ -316,33 +316,31 @@ function drawBars(svg, data, colorScale, barHeight) {
         .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]); })
         .style("stroke-width", 0);
 
-    // add in labels for each segment
-    slices.selectAll("line")
-        .data(function(d) { return d; })
-        .enter()
-        .append("line")
-        .attr("class", "barLabel")
-        .attr("x1", function(d) { return xScale(d[1]) - 1; })
-        .attr("x2", function(d) { return xScale(d[1]) - 1; })
-        .attr("y1", barHeight)
-        .attr("y2", barHeight + 4);
-
-    // add in placeholder text elements for the labels - these will get filled in with labelBars()
     var labelTextGrp = slices.selectAll(".labelTextGrp")
         .data(function(d) { return d; })
         .enter()
         .append("g")
-        .attr("class", "labelTextGrp");
+        .attr("class", "labelTextGrp")
+        .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; });
 
+    // add in labels for each segment
+    labelTextGrp.append("line")
+        .attr("class", "barLabel")
+        .attr("x1", 0)
+        .attr("x2", 0)
+        .attr("y1", barHeight)
+        .attr("y2", barHeight + 4);
+
+    // add in placeholder text elements for the labels - these will get filled in with labelBars()
     labelTextGrp.append("text")
         .attr("class", "barLabel line1")
-        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("x", 0)
         .attr("y", barHeight + 19)
         .text("test");
 
     labelTextGrp.append("text")
         .attr("class", "barLabel line2")
-        .attr("x", function(d) { return xScale(d[1]) - 1; })
+        .attr("x", 0)
         .attr("y", barHeight + 33)
         .text("test");
 }
@@ -541,7 +539,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
 
 function updateBars(chartDivID, parentClass, geo, indicator) {
     var data = getData(parentClass, geo, indicator);
-console.log(data);
+
     // update scales
     if(negativeIndicators.indexOf(indicator) > -1) {
         colorScale.range(["#1696d2", "#d2d2d2", "#ec008b"]);
@@ -591,56 +589,23 @@ console.log(data);
     //      to be at the start of the bars since the others will be hidden anyways
     if(negativeIndicators.indexOf(indicator) > -1 && parentClass === ".withEquity") {
         if(nonbinaryIndicators.indexOf(indicator) > -1) {
-            slices.selectAll("line")
+            slices.selectAll(".labelTextGrp")
                 .data(function(d) { return d; })
                 // .transition()   collision detection doesn't work well with transitions
-                .attr("x1", function(d) { return xScale(d[0]); })
-                .attr("x2", function(d) { return xScale(d[0]); });
-
-            slices.selectAll(".barLabel.line1")
-                .data(function(d) { return d; })
-                .attr("x", function(d) { return xScale(d[0]); });
-
-            slices.selectAll(".barLabel.line2")
-                .data(function(d) { return d; })
-                .attr("x", function(d) { return xScale(d[0]); });
+                .attr("transform", function(d) { return "translate(" + (xScale(d[0])) + ",0)"; });
         }
         else {
-            slices.selectAll("line")
+            slices.selectAll(".labelTextGrp")
                 .data(function(d) { return d; })
-                .attr("x1", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
-                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
-                                          else { return xScale(d[0]); } })
-                .attr("x2", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
-                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
-                                          else { return xScale(d[0]); } });
-
-            slices.selectAll(".barLabel.line1")
-                .data(function(d) { return d; })
-                .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
-                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
-                                          else { return xScale(d[0]); } });
-
-            slices.selectAll(".barLabel.line2")
-                .data(function(d) { return d; })
-                .attr("x", function(d) { if(d[0] === 0 ) { return xScale(d.data.yes + d.data.diff) - 1; }
-                                          else if(d[1] === 1) { return xScale(d[1]) - 1; }
-                                          else { return xScale(d[0]); } });
+                .attr("transform", function(d) { if(d[0] === 0 ) { return "translate(" + (xScale(d.data.yes + d.data.diff) - 1) + ",0)"; }
+                                          else if(d[1] === 1) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; }
+                                          else { return "translate(" + (xScale(d[0])) + ",0)"; } });
         }
     }
     else {
-        slices.selectAll("line")
+        slices.selectAll(".labelTextGrp")
             .data(function(d) { return d; })
-            .attr("x1", function(d) { return xScale(d[1]) - 1; })
-            .attr("x2", function(d) { return xScale(d[1]) - 1; });
-
-        slices.selectAll(".barLabel.line1")
-            .data(function(d) { return d; })
-            .attr("x", function(d) { return xScale(d[1]) - 1; });
-
-        slices.selectAll(".barLabel.line2")
-            .data(function(d) { return d; })
-            .attr("x", function(d) { return xScale(d[1]) - 1; });
+            .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; });
     }
 
     // reset height of labels and text-alignment so it doesn't throw off the collision detection calculations
