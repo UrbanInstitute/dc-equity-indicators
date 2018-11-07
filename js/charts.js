@@ -46,6 +46,7 @@ var customGoal = 0; // to keep track of whether comparing geographies or using u
 
 var equityData;
 
+var isIE = navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Trident") !== -1;
 var ieBlob; // for image download on IE
 
 
@@ -591,12 +592,13 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
         if(nonbinaryIndicators.indexOf(indicator) > -1) {
             slices.selectAll(".labelTextGrp")
                 .data(function(d) { return d; })
-                // .transition()   collision detection doesn't work well with transitions
+                .transition()  // collision detection doesn't work well with transitions
                 .attr("transform", function(d) { return "translate(" + (xScale(d[0])) + ",0)"; });
         }
         else {
             slices.selectAll(".labelTextGrp")
                 .data(function(d) { return d; })
+                .transition()
                 .attr("transform", function(d) { if(d[0] === 0 ) { return "translate(" + (xScale(d.data.yes + d.data.diff) - 1) + ",0)"; }
                                           else if(d[1] === 1) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; }
                                           else { return "translate(" + (xScale(d[0])) + ",0)"; } });
@@ -605,6 +607,7 @@ function updateBars(chartDivID, parentClass, geo, indicator) {
     else {
         slices.selectAll(".labelTextGrp")
             .data(function(d) { return d; })
+            .transition()
             .attr("transform", function(d) { return "translate(" + (xScale(d[1]) - 1) + ",0)"; });
     }
 
@@ -745,41 +748,59 @@ function convertSvgToPng() {
     // first convert each bar svg into a png so we can use html2canvas to capture the entire area
     // (was having issues using html2canvas to convert the svg directly - didn't preserve fonts)
     // (instead, convert svg -> png -> write into saveImageDownload div -> use html2canvas)
-    // saveSvgAsPng(d3.select("#equityChart .baseLocation .equityBar svg").node(), 'equity_chart.png', {canvg: canvg, backgroundColor: "#FFFFFF"});
-    svgAsPngUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
-        var baseBarImg = document.getElementById("baseBarPng");
-        baseBarImg.src = uri;
-    });
 
-    svgAsPngUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
-        var comparisonBarImg = document.getElementById("comparisonBarPng");
-        comparisonBarImg.src = uri;
-    });
+    if(isIE) {
+        svgAsPngUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var baseBarImg = document.getElementById("baseBarPng");
+            baseBarImg.src = uri;
+        });
 
-    svgAsPngUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
-        var equityBarImg = document.getElementById("equityBarPng");
-        equityBarImg.src = uri;
+        svgAsPngUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var comparisonBarImg = document.getElementById("comparisonBarPng");
+            comparisonBarImg.src = uri;
+        });
 
-        // use html2canvas to save turn html into downloadable png after svgs rendered into png
-        html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
-            // document.body.appendChild(canvas);
-            // if on IE, save canvas to a blob so that it can be downloaded
-            // (IE doesn't support download attribute for anchor tags)
-            if(canvas.msToBlob) {
+        svgAsPngUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var equityBarImg = document.getElementById("equityBarPng");
+            equityBarImg.src = uri;
+
+            // use html2canvas to save turn html into downloadable png after svgs rendered into png
+            html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+                // if on IE, save canvas to a blob so that it can be downloaded
+                // (IE doesn't support download attribute for anchor tags)
                 ieBlob = canvas.msToBlob();
-            }
-            else {
+            });
+        });
+    }
+    else {
+        svgAsDataUri(d3.select("#equityChart .baseLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var baseBarImg = document.getElementById("baseBarPng");
+            baseBarImg.src = uri;
+        });
+
+        svgAsDataUri(d3.select("#equityChart .comparisonLocation .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var comparisonBarImg = document.getElementById("comparisonBarPng");
+            comparisonBarImg.src = uri;
+        });
+
+        svgAsDataUri(d3.select("#equityChart .withEquity .equityBar svg").node(), {canvg: canvg}, function(uri) {
+            var equityBarImg = document.getElementById("equityBarPng");
+            equityBarImg.src = uri;
+
+            // use html2canvas to save turn html into downloadable png after svgs rendered into png
+            html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+                // document.body.appendChild(canvas);
                 var imageData = canvas.toDataURL();
                 var link = document.getElementById("saveImageLink");
                 link.setAttribute("href", imageData);
-            }
+            });
         });
-    });
+    }
 }
 
 // event handler to trigger file download on IE since doesn't support download attribute on anchor tag
 // source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
-if(navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Trident") !== -1) {
+if(isIE) {
     d3.select(".saveImageBtn").on("click", function() {
         window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
     });
