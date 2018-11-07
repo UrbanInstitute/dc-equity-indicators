@@ -942,7 +942,7 @@ input#customTarget {
 }
 
 .comparisonToggle.inactive .sliderButton:before {
-    background-color: #d2d2d2;
+    opacity: 0.5;
 }
 
 .comparisonToggle.inactive .switch {
