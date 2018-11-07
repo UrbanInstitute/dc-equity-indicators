@@ -683,15 +683,15 @@ function populateEquityStatement(chartDivID, indicator, data) {
     if(indicator === "Initial") {
         d3.select(chartDivID + " .equitySentence").text();
     }
-    else if(customGoal === 1  && getUserGoal() >= 0) {
+    else if(customGoal === 1) {
         // error handling to catch invalid user-entered goals
-        if(nonbinaryIndicators.indexOf(indicator) === -1 && getUserGoal() > 100) {  // user can't enter > 100% for binary indicators
-            d3.select(chartDivID + " .equitySentence").text("Invalid entry.");
+        if(nonbinaryIndicators.indexOf(indicator) === -1 && (getUserGoal() > 100 || getUserGoal() < 0)) {  // user can't enter > 100% for binary indicators
+            d3.select(chartDivID + " .equitySentence").text("Invalid entry. Please enter a number between 0 and 100.");
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
             d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
         }
-        else if(["Violent crime", "Premature mortality"].indexOf(indicator) > -1 && getUserGoal() > 1000) {  // user can't enter > 1000 b/c these are per 1,000
-            d3.select(chartDivID + " .equitySentence").text("Invalid entry.");
+        else if(nonbinaryIndicators.indexOf(indicator) > -1 && getUserGoal() < 0) {
+            d3.select(chartDivID + " .equitySentence").text("Invalid entry. Please enter a number above 0.");
             d3.select(chartDivID + " .equitySentence").classed("noGap", true);
             d3.select(chartDivID + " .withEquity").classed("noEquityGap", true);
         }
