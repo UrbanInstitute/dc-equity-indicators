@@ -154,6 +154,11 @@ function getData(parentClass, geo, indicator) {
             compareGeo = compareData[0].geo;
             compareValue = compareData[0].value;
         }
+        else {
+            if(compareValue < 0 || (nonbinaryIndicators.indexOf(indicator) === -1 && compareValue > 1)) {
+                compareValue = 0;
+            }
+        }
 
         var data;
 
@@ -536,7 +541,7 @@ function adjustLabels(chartDivID, parentClass, indicator) {
 
 function updateBars(chartDivID, parentClass, geo, indicator) {
     var data = getData(parentClass, geo, indicator);
-
+console.log(data);
     // update scales
     if(negativeIndicators.indexOf(indicator) > -1) {
         colorScale.range(["#1696d2", "#d2d2d2", "#ec008b"]);
