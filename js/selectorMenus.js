@@ -81,6 +81,13 @@ d3.select(".comparisonGeographySelector .selectorItem")
 d3.select("#comparisonGeographyMenu .closeButton")
     .on("click", function() { closeMenu("#comparisonGeographyMenu"); });
 
+// close menu modals using escape key
+$(document).keyup(function(e) {
+    if(e.key === "Escape") {
+        d3.selectAll(".selectorMenuModal").classed("closed", true);
+    }
+})
+
 function showMenu(menuElementID) {
     d3.select(menuElementID).classed("closed", false);
 }
