@@ -1191,8 +1191,10 @@ p.clusterNote {
 
 .dcEquityIndicators.menuItem.hovered {
     background-color: #007897;
+    color: #fff;
 }
 
+.dcEquityIndicators.menuItem.hovered span.clusterNumber,
 .dcEquityIndicators.menuItem.hovered span.menuItemLink {
     color: #fff;
 }
