@@ -627,6 +627,8 @@ button.downArrowBtn {
     border: 1px solid #1696d2;
     background-color: #fff;
     padding: 10px;
+    border-collapse: separate;
+    box-shadow: 0px 2px 0px rgba(22,150,210, 0.25);
 }
 
 .demoChart:after, .demoChart:before {
