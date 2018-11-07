@@ -77,6 +77,8 @@ d3.csv("data/equity_data.csv", function(d) {
     // initialize bottom and image download charts as grey rectangles
     makeEquityBarChart("#equityChart", "Initial", "Initial", "Initial", toolChartDimensions);
     makeEquityBarChart("#downloadChart", "Initial", "Initial", "Initial", toolChartDimensions);
+
+    window.addEventListener("resize", redraw);
 });
 
 function makeEquityBarChart(chartDivID, indicator, baseGeo, compareGeo, dimensions) {
@@ -757,6 +759,39 @@ function getParentDivWidth(elementId) {
     var width = document.getElementById(elementId).clientWidth;
     // console.log(width)
     return width;
+}
+
+function redraw() {
+    exampleChartDimensions.width = Math.min(getParentDivWidth("exampleEquityChart") - 70, 575);
+
+    if(getParentDivWidth("equityChart") >= 1150) {
+        toolChartDimensions.width = 870;
+    }
+    else if(getParentDivWidth("equityChart") >= 1024 && getParentDivWidth("equityChart") < 1150) {
+        toolChartDimensions.width = 770;
+    }
+    else if(getParentDivWidth("equityChart") >= 768 && getParentDivWidth("equityChart") < 1024) {
+        toolChartDimensions.width = getParentDivWidth("equityChart") * 0.7;
+    }
+    else if(getParentDivWidth("equityChart") <= 767) {
+        toolChartDimensions.width = getParentDivWidth("equityChart") * 0.95;
+    }
+
+    $("#exampleEquityChart .baseBar").empty();
+    $("#exampleEquityChart .comparisonBar").empty();
+    $("#exampleEquityChart .withEquityBar").empty();
+
+    makeEquityBarChart("#exampleEquityChart", "Postsecondary education", "Ward 7", "DC", exampleChartDimensions);
+
+    $("#equityChart .baseBar").empty();
+    $("#equityChart .comparisonBar").empty();
+    $("#equityChart .withEquityBar").empty();
+    makeEquityBarChart("#equityChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography(), toolChartDimensions);
+
+    $("#downloadChart .baseBar").empty();
+    $("#downloadChart .comparisonBar").empty();
+    $("#downloadChart .withEquityBar").empty();
+    makeEquityBarChart("#downloadChart", getIndicatorSelected(), getBaseGeography(), getComparisonGeography(), toolChartDimensions);
 }
 
 function addAnd(geo) {
