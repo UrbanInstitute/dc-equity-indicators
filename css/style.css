@@ -843,6 +843,7 @@ input#customTarget {
     height: 45px;
     font-size: 18px;
     font-family: 'Lato';
+    padding-left: 10px;
 }
 
 .selectorTooltip {
@@ -1038,6 +1039,7 @@ input#customTarget {
     .comparisonToggle {
         margin: 0;
         display: block;
+        margin-bottom: 15px;
     }
 
     input#customTarget {
