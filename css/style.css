@@ -437,8 +437,12 @@ p.exampleParagraph {
     margin-top: 0;
     margin-left: 18px;
     /*font-size: 32px;*/
-    font-weight: lighter;
+    font-weight: normal;
     max-width: 100%;
+}
+
+.imageDownloadChart .equitySentence.noGap {
+    margin-left: 0;
 }
 
 .adjustTargetBtns {
