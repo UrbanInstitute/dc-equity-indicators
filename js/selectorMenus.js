@@ -325,13 +325,13 @@ d3.select(".comparisonToggle .selectorTooltip button.closeButton")
 // function to make selector menus section stick to top of viewport (since IE doesn't support position: sticky) if browser more than 768px wide
 if ($(window).width() >= 768) {
     $(function() {
-        var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top; //get the offset top of the element
+        var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top + $(window).scrollTop(); //get the offset top of the element
         // var mainBottom = $("main")[0].getBoundingClientRect().bottom;
 
         $(window).scroll(function() { //when window is scrolled
-            // console.log("Window top:", $(window).scrollTop());
-            // console.log("Main bottom:", mainBottom);
-            if(($(window).scrollTop() - toolDropdownSelectorTop >= 50)) {
+            console.log($(window).scrollTop() - toolDropdownSelectorTop);
+            // console.log("Main bottom:", toolDropdownSelectorTop);
+            if(($(window).scrollTop() - toolDropdownSelectorTop >= 40)) {
                 $('.toolDropdownSelector').addClass("sticky");
                 $('.tool').addClass("moreMarginTop");
             }
@@ -340,7 +340,7 @@ if ($(window).width() >= 768) {
                 $('.tool').removeClass("moreMarginTop");
             }
 
-            if($(".main")[0].getBoundingClientRect().bottom < 50) {
+            if($(".main")[0].getBoundingClientRect().bottom < 40) {
                 $('.toolDropdownSelector').removeClass("sticky");
                 $('.toolDropdownSelector').addClass("unstick");
                 $('.tool').removeClass("moreMarginTop");
