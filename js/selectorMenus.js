@@ -99,8 +99,9 @@ function closeMenu(menuElementID) {
 
 // event listeners to handle selection of indicator or geography via either list or map
 d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
-    .on("mouseover", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("hovered", false);
+    .on("mouseenter", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("hovered", false);
                                   d3.select(this).classed("hovered", true); })
+    .on("mouseout", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("hovered", false); })
     .on("click", function() { d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem").classed("selected", false);
                               d3.select(this).classed("selected", true);
                               hideTooltip(".indicatorSelector .selectorTooltip");
@@ -110,8 +111,8 @@ d3.selectAll("#equityIndicatorMenu .dcEquityIndicators.menuItem")
                               showSelectionInMenu("#equityIndicatorMenu", ".indicatorSelector");
                               activateElement(".baseGeographySelector"); });
 
-d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
-    .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
+d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem")
+    .on("mouseenter", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                                   mouseoverGeography("#baseGeographyMenu", selectedGeoClassname); })
     .on("mouseout", function() { mouseoutGeography("#baseGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
@@ -124,7 +125,7 @@ d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem,.geography")
                               scrollMenuDivToTop(); });
 
 d3.selectAll("#comparisonGeographyMenu .dcEquityIndicators.menuItem")
-    .on("mouseover", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
+    .on("mouseenter", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
                                   mouseoverGeography("#comparisonGeographyMenu", selectedGeoClassname); })
     .on("mouseout", function() { mouseoutGeography("#comparisonGeographyMenu"); })
     .on("click", function() { var selectedGeoClassname = d3.select(this).attr("class").split(" ")[2];
