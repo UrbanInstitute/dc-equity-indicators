@@ -326,10 +326,9 @@ d3.select(".comparisonToggle .selectorTooltip button.closeButton")
 if ($(window).width() >= 768) {
     $(function() {
         var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top + $(window).scrollTop(); //get the offset top of the element
-        // var mainBottom = $("main")[0].getBoundingClientRect().bottom;
 
         $(window).scroll(function() { //when window is scrolled
-            console.log($(window).scrollTop() - toolDropdownSelectorTop);
+            // console.log($(window).scrollTop() - toolDropdownSelectorTop);
             // console.log("Main bottom:", toolDropdownSelectorTop);
             if(($(window).scrollTop() - toolDropdownSelectorTop >= 40)) {
                 $('.toolDropdownSelector').addClass("sticky");
