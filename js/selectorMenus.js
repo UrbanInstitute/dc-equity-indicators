@@ -339,7 +339,7 @@ if ($(window).width() >= 768) {
                 $('.tool').removeClass("moreMarginTop");
             }
 
-            if($(".main")[0].getBoundingClientRect().bottom < 122) {
+            if($(".main")[0].getBoundingClientRect().bottom < 40) {
                 $('.toolDropdownSelector').removeClass("sticky");
                 $('.toolDropdownSelector').addClass("unstick");
                 $('.tool').removeClass("moreMarginTop");
