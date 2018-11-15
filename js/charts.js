@@ -855,19 +855,24 @@ function convertSvgToPng() {
             // use html2canvas to save turn html into downloadable png after svgs rendered into png
             html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
                 // document.body.appendChild(canvas);
-                var imageData = canvas.toDataURL();
-                var link = document.getElementById("saveImageLink");
-                link.setAttribute("href", imageData);
+                ieBlob = canvas;
+                // var imageData = canvas.toDataURL();
+                // var link = document.getElementById("saveImageLink");
+                // link.setAttribute("href", imageData);
             });
         });
     }
 }
 
-// event handler to trigger file download on IE since doesn't support download attribute on anchor tag
-// source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
-if(isIE) {
-    d3.select(".saveImageBtn").on("click", function() {
+d3.select(".saveImageBtn").on("click", function() {
+    if(isIE) {
+        // source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
         window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
-    });
-}
+    }
+    else {
+        ieBlob.toBlob(function(blob) {
+            saveAs(blob, "equity_chart.png");
+        });
+    }
+});
 // })();
