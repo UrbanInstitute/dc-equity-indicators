@@ -323,30 +323,36 @@ d3.select(".comparisonToggle .selectorTooltip button.closeButton")
 
 
 // function to make selector menus section stick to top of viewport (since IE doesn't support position: sticky) if browser more than 768px wide
-if ($(window).width() >= 768) {
-    $(function() {
-        var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top + $(window).scrollTop(); //get the offset top of the element
+$(window).on("load", function() {  // perform calculations only after DOM is fully rendered
+    if ($(window).width() >= 768) {
+        $(function() {
+            var toolDropdownSelectorTop = $(".toolDropdownSelector")[0].getBoundingClientRect().top + $(window).scrollTop(); //get the offset top of the element
 
-        $(window).scroll(function() { //when window is scrolled
-            // console.log($(window).scrollTop() - toolDropdownSelectorTop);
-            // console.log("Main bottom:", toolDropdownSelectorTop);
-            if(($(window).scrollTop() - toolDropdownSelectorTop >= 40)) {
-                $('.toolDropdownSelector').addClass("sticky");
-                $('.tool').addClass("moreMarginTop");
-            }
-            else {
-                $('.toolDropdownSelector').removeClass("sticky unstick");
-                $('.tool').removeClass("moreMarginTop");
-            }
+            $(window).scroll(function() {
+                // console.log($(window).scrollTop() - toolDropdownSelectorTop, $(".main")[0].getBoundingClientRect().bottom);
 
-            // if($(".main")[0].getBoundingClientRect().bottom < 180) {
-            //     $('.toolDropdownSelector').removeClass("sticky");
-            //     $('.toolDropdownSelector').addClass("unstick");
-            //     $('.tool').removeClass("moreMarginTop");
-            // }
+                if($(window).scrollTop() - toolDropdownSelectorTop >= -50) {
+                    // if main div is at the top, unstick toolDropdownSelector so it scrolls away instead
+                    // of remaining fixed over the footer
+                    if($(".main")[0].getBoundingClientRect().bottom < 181) {
+                        $('.toolDropdownSelector').removeClass("sticky");
+                        $('.toolDropdownSelector').addClass("unstick");
+                        $('.tool').removeClass("moreMarginTop");
+                    }
+                    // if toolDropdownSelector is at the top but bottom of main div isn't, make toolDropdownSelector sticky
+                    else {
+                        $('.toolDropdownSelector').addClass("sticky");
+                        $('.tool').addClass("moreMarginTop");
+                    }
+                }
+                else {
+                    $('.toolDropdownSelector').removeClass("sticky unstick");
+                    $('.tool').removeClass("moreMarginTop");
+                }
+            });
         });
-    });
-}
+    }
+})
 
 function activateElement(classname) {
     d3.select(classname).classed("inactive", false);
