@@ -95,7 +95,7 @@ function updateEquityBarChart(chartDivID, indicator, baseGeo, compareGeo) {
     // code from: https://stackoverflow.com/questions/2510115/jquery-can-i-call-delay-between-addclass-and-such
     $("section.tool").addClass("sectionFade").delay(700).queue(function() {
         $(this).removeClass("sectionFade").dequeue();
-        convertSvgToPng();  // also, update downloadable chart after bars have finished transitioning
+        // convertSvgToPng();  // also, update downloadable chart after bars have finished transitioning
     });
 
     populateChartTitle(chartDivID, indicator);
@@ -834,6 +834,7 @@ function convertSvgToPng() {
                 // if on IE, save canvas to a blob so that it can be downloaded
                 // (IE doesn't support download attribute for anchor tags)
                 ieBlob = canvas.msToBlob();
+                window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
             });
         });
     }
@@ -855,7 +856,9 @@ function convertSvgToPng() {
             // use html2canvas to save turn html into downloadable png after svgs rendered into png
             html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
                 // document.body.appendChild(canvas);
-                ieBlob = canvas;
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, "equity_chart.png");
+                });
                 // var imageData = canvas.toDataURL();
                 // var link = document.getElementById("saveImageLink");
                 // link.setAttribute("href", imageData);
@@ -865,14 +868,6 @@ function convertSvgToPng() {
 }
 
 d3.select(".saveImageBtn").on("click", function() {
-    if(isIE) {
-        // source: https://stackoverflow.com/questions/37991846/png-file-not-downloading-in-internet-explorer-when-using-html2canvas-js-in-jquer
-        window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
-    }
-    else {
-        ieBlob.toBlob(function(blob) {
-            saveAs(blob, "equity_chart.png");
-        });
-    }
+    convertSvgToPng();
 });
 // })();
