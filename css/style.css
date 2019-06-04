@@ -140,12 +140,17 @@ section.toolDropdownSelector:before {
 }
 */
 
-p.publishedDate {
+p.publishedDate,
+p.updateDate {
     top: 0;
     font-size: 12px;
     font-style: italic;
     margin-bottom: 15px;
     position: relative;
+}
+
+p.publishedDate {
+    margin-bottom: 10px;
 }
 
 #equityChart {
