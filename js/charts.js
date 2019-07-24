@@ -829,13 +829,15 @@ function convertSvgToPng() {
             var equityBarImg = document.getElementById("equityBarPng");
             equityBarImg.src = uri;
 
-            // use html2canvas to save turn html into downloadable png after svgs rendered into png
-            html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
-                // if on IE, save canvas to a blob so that it can be downloaded
-                // (IE doesn't support download attribute for anchor tags)
-                ieBlob = canvas.msToBlob();
-                window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
-            });
+            setTimeout(function() {
+                // use html2canvas to save turn html into downloadable png after svgs rendered into png
+                html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+                    // if on IE, save canvas to a blob so that it can be downloaded
+                    // (IE doesn't support download attribute for anchor tags)
+                    ieBlob = canvas.msToBlob();
+                    window.navigator.msSaveBlob(ieBlob, "equity_chart.png");
+                });
+            }, 500);
         });
     }
     else {
@@ -853,16 +855,18 @@ function convertSvgToPng() {
             var equityBarImg = document.getElementById("equityBarPng");
             equityBarImg.src = uri;
 
-            // use html2canvas to save turn html into downloadable png after svgs rendered into png
-            html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
-                // document.body.appendChild(canvas);
-                canvas.toBlob(function(blob) {
-                    saveAs(blob, "equity_chart.png");
+            setTimeout(function() {
+                // use html2canvas to save turn html into downloadable png after svgs rendered into png
+                html2canvas(document.querySelector(".imageDownloadChart")).then(function(canvas) {
+                    // document.body.appendChild(canvas);
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, "equity_chart.png");
+                    });
+                    // var imageData = canvas.toDataURL();
+                    // var link = document.getElementById("saveImageLink");
+                    // link.setAttribute("href", imageData);
                 });
-                // var imageData = canvas.toDataURL();
-                // var link = document.getElementById("saveImageLink");
-                // link.setAttribute("href", imageData);
-            });
+            }, 500);
         });
     }
 }

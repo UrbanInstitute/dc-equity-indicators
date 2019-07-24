@@ -4,11 +4,11 @@ library(readxl)
 name_mapping <- read_excel("Indicator_name_mapping.xlsx", sheet = "mapping")
 labels <- read_excel("source/DC equity text spreadsheet.xlsx")
 
-data_sheets <- excel_sheets("source/Updated data for equity feature_10.25.xlsx")
+data_sheets <- excel_sheets("source/Updated data for equity feature_May2019.xlsx")
 
-city_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[1])
-ward_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[2])
-cluster_dat <- read_excel("source/Updated data for equity feature_10.25.xlsx", sheet = data_sheets[3])
+city_dat <- read_excel("source/Updated data for equity feature_May2019.xlsx", sheet = data_sheets[1])
+ward_dat <- read_excel("source/Updated data for equity feature_May2019.xlsx", sheet = data_sheets[2])
+cluster_dat <- read_excel("source/Updated data for equity feature_May2019.xlsx", sheet = data_sheets[3])
 
 # function for adding "and" as appropriate to cluster names
 addAnd <- function(cluster_name) {
@@ -77,11 +77,11 @@ write_csv(dat, "equity_data.csv")
 
 
 ##### Racial demo data ##############
-race_data_sheets <- excel_sheets("source/Equity feature_racial composition.xlsx")
+race_data_sheets <- excel_sheets("source/Equity feature_2019update_racial composition.xlsx")
 
-race_city_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[1])
-race_ward_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[2])
-race_cluster_dat <- read_excel("source/Equity feature_racial composition.xlsx", sheet = race_data_sheets[3])
+race_city_dat <- read_excel("source/Equity feature_2019update_racial composition.xlsx", sheet = race_data_sheets[1])
+race_ward_dat <- read_excel("source/Equity feature_2019update_racial composition.xlsx", sheet = race_data_sheets[2])
+race_cluster_dat <- read_excel("source/Equity feature_2019update_racial composition.xlsx", sheet = race_data_sheets[3])
 
 race_cluster_dat_clean <- race_cluster_dat %>%
   filter(!(geo %in% c("Cluster 42 (Observatory Circle)", "Cluster 45 (National Mall, Potomac River)", "Cluster 46 (Arboretum, Anacostia River)"))) %>%

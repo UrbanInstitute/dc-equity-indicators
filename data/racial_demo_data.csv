@@ -1,261 +1,261 @@
 race,geo,n,total_population,pct_population
-Black,DC,312557,659009,0.4742833558
-White,DC,235722,659009,0.3576916248
-Latino,DC,69106,659009,0.1048635148
-Asian and Pacific Islander,DC,23914,659009,0.03628782
-Other or multiple race,DC,17710,659009,0.0268736846
-Black,Ward 1,23729.537253,83256.092193,0.285018629
-Black,Ward 2,6766.3375299,76458.505194,0.0884968587
-Black,Ward 3,5548.8922241,82929.666531,0.0669108228
-Black,Ward 4,44313.016167,84120.03955,0.5267831114
-Black,Ward 5,57273.989246,85504.059,0.6698394195
-Black,Ward 6,29253.203057,87793.187942,0.3332058414
-Black,Ward 7,70625.661263,75828.75361,0.9313836493
-Black,Ward 8,75046.363261,83118.695982,0.9028818652
-White,Ward 1,37219.815096,83256.092193,0.447052151
-White,Ward 2,51213.979857,76458.505194,0.6698271138
-White,Ward 3,60432.085215,82929.666531,0.72871491880000006
-White,Ward 4,18391.051637,84120.03955,0.2186286613
-White,Ward 5,16595.278977,85504.059,0.1940876161
-White,Ward 6,46431.031724,87793.187942,0.5288682734
-White,Ward 7,1364.2070914,75828.75361,0.0179906306
-White,Ward 8,4074.5504018,83118.695982,0.0490208653
-Latino,Ward 1,16232.438705,83256.092193,0.1949699809
-Latino,Ward 2,8697.4775407,76458.505194,0.113754219
-Latino,Ward 3,8673.9728443,82929.666531,0.1045943292
-Latino,Ward 4,17189.813134,84120.03955,0.2043486097
-Latino,Ward 5,7871.0752375,85504.059,0.0920549893
-Latino,Ward 6,5581.9664079,87793.187942,0.0635808602
-Latino,Ward 7,2686.5624454,75828.75361,0.0354293367
-Latino,Ward 8,2172.6936854,83118.695982,0.0261396508
-Asian and Pacific Islander,Ward 1,3878.4893643,83256.092193,0.0465850518
-Asian and Pacific Islander,Ward 2,6814.7646005,76458.505194,0.0891302358
-Asian and Pacific Islander,Ward 3,5186.4754925,82929.666531,0.0625406529
-Asian and Pacific Islander,Ward 4,1802.3170632,84120.03955,0.0214255375
-Asian and Pacific Islander,Ward 5,1807.959405,85504.059,0.0211447202
-Asian and Pacific Islander,Ward 6,3845.9940745,87793.187942,0.0438074316
-Asian and Pacific Islander,Ward 7,196.3347876,75828.75361,0.0025891865
-Asian and Pacific Islander,Ward 8,381.6652124,83118.695982,0.0045918094
-Other or multiple race,Ward 1,2195.8117736,83256.092193,0.0263741874
-Other or multiple race,Ward 2,2965.9456652,76458.505194,0.0387915727
-Other or multiple race,Ward 3,3088.240755,82929.666531,0.0372392762
-Other or multiple race,Ward 4,2423.8415489,84120.03955,0.02881408
-Other or multiple race,Ward 5,1955.7561344,85504.059,0.0228732549
-Other or multiple race,Ward 6,2680.9926787,87793.187942,0.0305375934
-Other or multiple race,Ward 7,955.98802279,75828.75361,0.0126071968
-Other or multiple race,Ward 8,1443.4234214,83118.695982,0.0173658093
-Black,"Kalorama Heights, Adams Morgan, Lanier Heights",1713.8080734,19593.339646,0.0874689106
-Black,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",16481.386217,51220.209456,0.3217750648
-Black,"Howard University, Le Droit Park, Cardozo/Shaw",5582.8200793,14043.059006,0.3975501404
-Black,"Georgetown, Burleith/Hillandale",825.22228402,14990.898214,0.0550482214
-Black,"West End, Foggy Bottom, GWU",1415.4760518,16778.533722,0.0843623212
-Black,"Dupont Circle, Connecticut Avenue/K Street",1388.560152,20130.495196,0.0689779431
-Black,"Shaw, Logan Circle",4901.541622,20697.334741,0.2368199424
-Black,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",6434.1974565,19188.30289,0.3353187352
-Black,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",5270,12194.878788,0.4321486168
-Black,"Hawthorne, Barnaby Woods, Chevy Chase",1522.7369743,15329.789077,0.0993318934
-Black,"Friendship Heights, American University Park, Tenleytown",582.8719565,12493.59304,0.0466536692
-Black,"North Cleveland Park, Forest Hills, Van Ness",1026.0274966,10658.407717,0.0962646132
-Black,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",1117.9427635,16630.961693,0.0672205723
-Black,"Cathedral Heights, McLean Gardens, Glover Park",1363.6321391,20607.987114,0.0661700792
-Black,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",808.70790343,15732.793567,0.0514026895
-Black,"Colonial Village, Shepherd Park, North Portal Estates",2755.2180945,4331.1561789,0.6361391695
-Black,"Takoma, Brightwood, Manor Park",14102.372351,22900.770782,0.6158033931
-Black,"Brightwood Park, Crestwood, Petworth",21379.456507,40772.571611,0.5243587947
-Black,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",9530.1162556,14944.654322,0.6376939908
-Black,"North Michigan Park, Michigan Park, University Heights",8880.6584835,13377.501882,0.6638502885
-Black,"Edgewood, Bloomingdale, Truxton Circle, Eckington",13248.816131,24101.466946,0.5497099475
-Black,"Brookland, Brentwood, Langdon",11012.348134,14848.674336,0.7416384712
-Black,"Ivy City, Arboretum, Trinidad, Carver Langston",12477.07162,16840.830006,0.7408822258
-Black,"Woodridge, Fort Lincoln, Gateway",6594.7300534,7810.7153834,0.8443183152
-Black,"Union Station, Stanton Park, Kingman Park",9440.407665,28493.700856,0.3313156024
-Black,"Capitol Hill, Lincoln Park",8781.3566663,29578.772152,0.2968803648
-Black,"Near Southeast, Navy Yard",1268,4664,0.2718696398
-Black,Historic Anacostia,5500.2924786,5674.6040473,0.9692821619
-Black,"Eastland Gardens, Kenilworth",2168.2306748,2230.9558282,0.9718841796
-Black,"Mayfair, Hillbrook, Mahaning Heights",6616.6006532,7176.3958256,0.921994942
-Black,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",12427.181821,13097.963742,0.9487873127
-Black,"River Terrace, Benning, Greenway, Dupont Park",12992.578004,13535.485125,0.9598900877
-Black,"Capitol View, Marshall Heights, Benning Heights",18432.166146,19382.341631,0.9509772605
-Black,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",16583.681304,18368.381152,0.9028384792
-Black,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",5297.5613975,6168.4766967,0.8588119333
-Black,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",8436.235023,8762.6889401,0.9627450068
-Black,"Sheridan, Barry Farm, Buena Vista",7589.4724984,8053.7070126,0.9423576604
-Black,"Douglas, Shipley Terrace",12292.160373,13028.398353,0.9434897552
-Black,"Congress Heights, Bellevue, Washington Highlands",29570.628604,31118.154782,0.9502693464
-Black,Walter Reed,200.39064951,363.68842171,0.5509954058
-Black,Rock Creek Park,352.07513956,980.19453256,0.3591890465
-Black,Saint Elizabeths,767.23565785,835.55246796,0.9182375581
-Black,Joint Base Anacostia-Bolling,3143.9753654,6834.8943976,0.4599888722
-White,"Kalorama Heights, Adams Morgan, Lanier Heights",13829.489827,19593.339646,0.7058260652
-White,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",18295.846627,51220.209456,0.357199762
-White,"Howard University, Le Droit Park, Cardozo/Shaw",6318.9235857,14043.059006,0.4499677444
-White,"Georgetown, Burleith/Hillandale",11335.310387,14990.898214,0.7561461779
-White,"West End, Foggy Bottom, GWU",11070.517741,16778.533722,0.659802455
-White,"Dupont Circle, Connecticut Avenue/K Street",14726.814732,20130.495196,0.7315674348
-White,"Shaw, Logan Circle",10028.323694,20697.334741,0.4845224672
-White,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",8037.3800071,19188.30289,0.4188687271
-White,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",5255.8787879,12194.878788,0.4309906543
-White,"Hawthorne, Barnaby Woods, Chevy Chase",11364.681105,15329.789077,0.7413462147
-White,"Friendship Heights, American University Park, Tenleytown",9273.4812449,12493.59304,0.7422589495
-White,"North Cleveland Park, Forest Hills, Van Ness",7754.8236607,10658.407717,0.7275780648
-White,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",11772.682963,16630.961693,0.7078774626
-White,"Cathedral Heights, McLean Gardens, Glover Park",15402.469733,20607.987114,0.7474029194
-White,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",11334.17596,15732.793567,0.7204172553
-White,"Colonial Village, Shepherd Park, North Portal Estates",1166.641395,4331.1561789,0.2693602694
-White,"Takoma, Brightwood, Manor Park",2540.2851559,22900.770782,0.1109257492
-White,"Brightwood Park, Crestwood, Petworth",7326.7447044,40772.571611,0.1796978806
-White,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",2123.1485941,14944.654322,0.1420674275
-White,"North Michigan Park, Michigan Park, University Heights",2303.9570217,13377.501882,0.1722262529
-White,"Edgewood, Bloomingdale, Truxton Circle, Eckington",7559.9035794,24101.466946,0.3136698524
-White,"Brookland, Brentwood, Langdon",2412.8986524,14848.674336,0.1624992641
-White,"Ivy City, Arboretum, Trinidad, Carver Langston",2284.2200041,16840.830006,0.1356358329
-White,"Woodridge, Fort Lincoln, Gateway",666.48544442,7810.7153834,0.0853296288
-White,"Union Station, Stanton Park, Kingman Park",15750.890254,28493.700856,0.5527849939
-White,"Capitol Hill, Lincoln Park",17354.782471,29578.772152,0.5867309969
-White,"Near Southeast, Navy Yard",2876,4664,0.6166380789
-White,Historic Anacostia,128.49671434,5674.6040473,0.0226441728
-White,"Eastland Gardens, Kenilworth",20.596319018,2230.9558282,0.0092320604
-White,"Mayfair, Hillbrook, Mahaning Heights",52.179993652,7176.3958256,0.0072710585
-White,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",104.76250097,13097.963742,0.0079983807
-White,"River Terrace, Benning, Greenway, Dupont Park",58.163511188,13535.485125,0.0042971132
-White,"Capitol View, Marshall Heights, Benning Heights",146.46118636,19382.341631,0.0075564237
-White,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",633.28700035,18368.381152,0.0344770176
-White,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",298.54948846,6168.4766967,0.0483992245
-White,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",108.88018433,8762.6889401,0.0124254307
-White,"Sheridan, Barry Farm, Buena Vista",45.623101327,8053.7070126,0.0056648573
-White,"Douglas, Shipley Terrace",196.06991393,13028.398353,0.0150494258
-White,"Congress Heights, Bellevue, Washington Highlands",412.05613909,31118.154782,0.0132416637
-White,Walter Reed,65.497332915,363.68842171,0.1800918836
-White,Rock Creek Park,377.56735251,980.19453256,0.3851963462
-White,Saint Elizabeths,35.636489101,835.55246796,0.042650211
-White,Joint Base Anacostia-Bolling,2746.2374579,6834.8943976,0.4017966187
-Latino,"Kalorama Heights, Adams Morgan, Lanier Heights",2405.4385271,19593.339646,0.1227681738
-Latino,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",12916.224263,51220.209456,0.2521704694
-Latino,"Howard University, Le Droit Park, Cardozo/Shaw",1056.5908315,14043.059006,0.0752393642
-Latino,"Georgetown, Burleith/Hillandale",1241.9011387,14990.898214,0.0828436776
-Latino,"West End, Foggy Bottom, GWU",1640.6862795,16778.533722,0.0977848426
-Latino,"Dupont Circle, Connecticut Avenue/K Street",1883.5597295,20130.495196,0.0935674811
-Latino,"Shaw, Logan Circle",3373.7949444,20697.334741,0.1630062511
-Latino,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",2020.6484979,19188.30289,0.1053062644
-Latino,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",672,12194.878788,0.0551050988
-Latino,"Hawthorne, Barnaby Woods, Chevy Chase",1166.2423101,15329.789077,0.076076866
-Latino,"Friendship Heights, American University Park, Tenleytown",1253.3366892,12493.59304,0.100318354
-Latino,"North Cleveland Park, Forest Hills, Van Ness",898.90037742,10658.407717,0.0843372107
-Latino,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",2070.924877,16630.961693,0.1245222565
-Latino,"Cathedral Heights, McLean Gardens, Glover Park",1665.0634251,20607.987114,0.0807969947
-Latino,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",2198.5718523,15732.793567,0.1397445306
-Latino,"Colonial Village, Shepherd Park, North Portal Estates",284.85494061000003,4331.1561789,0.0657687991
-Latino,"Takoma, Brightwood, Manor Park",5296.5963911,22900.770782,0.2312846341
-Latino,"Brightwood Park, Crestwood, Petworth",9793.9810299,40772.571611,0.2402100393
-Latino,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",2837.6645732,14944.654322,0.1898782342
-Latino,"North Michigan Park, Michigan Park, University Heights",1800.2981553,13377.501882,0.1345765578
-Latino,"Edgewood, Bloomingdale, Truxton Circle, Eckington",1819.5225346,24101.466946,0.0754942651
-Latino,"Brookland, Brentwood, Langdon",798.068407,14848.674336,0.0537467783
-Latino,"Ivy City, Arboretum, Trinidad, Carver Langston",1242.2586952,16840.830006,0.0737646954
-Latino,"Woodridge, Fort Lincoln, Gateway",387.09809952,7810.7153834,0.0495598777
-Latino,"Union Station, Stanton Park, Kingman Park",1399.6753327,28493.700856,0.0491222723
-Latino,"Capitol Hill, Lincoln Park",1838.6323595,29578.772152,0.062160537
-Latino,"Near Southeast, Navy Yard",247,4664,0.0529588336
-Latino,Historic Anacostia,18.644634171,5674.6040473,0.0032856273
-Latino,"Eastland Gardens, Kenilworth",16.851533742,2230.9558282,0.007553504
-Latino,"Mayfair, Hillbrook, Mahaning Heights",403.6264471,7176.3958256,0.0562436154
-Latino,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",402.79811101,13097.963742,0.0307527276
-Latino,"River Terrace, Benning, Greenway, Dupont Park",393.3883058,13535.485125,0.0290634803
-Latino,"Capitol View, Marshall Heights, Benning Heights",572.47983643,19382.341631,0.0295361545
-Latino,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",551.29686068,18368.381152,0.0300133613
-Latino,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",434.55890524,6168.4766967,0.0704483338
-Latino,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",58.894009217,8762.6889401,0.0067209974
-Latino,"Sheridan, Barry Farm, Buena Vista",292.46135661,8053.7070126,0.0363138808
-Latino,"Douglas, Shipley Terrace",349.79117,13028.398353,0.0268483631
-Latino,"Congress Heights, Bellevue, Washington Highlands",553.48452423,31118.154782,0.0177865471
-Latino,Walter Reed,82.094446188,363.68842171,0.2257274119
-Latino,Rock Creek Park,170.37952094,980.19453256,0.1738221499
-Latino,Saint Elizabeths,25.799690618,835.55246796,0.0308774034
-Latino,Joint Base Anacostia-Bolling,554.92461515,6834.8943976,0.0811899326
-Asian and Pacific Islander,"Kalorama Heights, Adams Morgan, Lanier Heights",1160.1210648,19593.339646,0.0592099706
-Asian and Pacific Islander,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",2330.2360319,51220.209456,0.0454944651
-Asian and Pacific Islander,"Howard University, Le Droit Park, Cardozo/Shaw",542.48279634,14043.059006,0.0386299592
-Asian and Pacific Islander,"Georgetown, Burleith/Hillandale",1142.6792234,14990.898214,0.0762248671
-Asian and Pacific Islander,"West End, Foggy Bottom, GWU",1845.8214331,16778.533722,0.1100108903
-Asian and Pacific Islander,"Dupont Circle, Connecticut Avenue/K Street",1402.7847536,20130.495196,0.0696845626
-Asian and Pacific Islander,"Shaw, Logan Circle",1566.1296207,20697.334741,0.0756681785
-Asian and Pacific Islander,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",2080.8512509,19188.30289,0.1084437359
-Asian and Pacific Islander,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",615,12194.878788,0.0504310056
-Asian and Pacific Islander,"Hawthorne, Barnaby Woods, Chevy Chase",676.86315129,15329.789077,0.0441534549
-Asian and Pacific Islander,"Friendship Heights, American University Park, Tenleytown",682.97099104,12493.59304,0.0546656986
-Asian and Pacific Islander,"North Cleveland Park, Forest Hills, Van Ness",709.18419015,10658.407717,0.0665375363
-Asian and Pacific Islander,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",1080.9953793,16630.961693,0.06499897
-Asian and Pacific Islander,"Cathedral Heights, McLean Gardens, Glover Park",1339.1627391,20607.987114,0.0649827046
-Asian and Pacific Islander,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",959.38774079,15732.793567,0.0609801264
-Asian and Pacific Islander,"Colonial Village, Shepherd Park, North Portal Estates",25.277230225,4331.1561789,0.0058361392
-Asian and Pacific Islander,"Takoma, Brightwood, Manor Park",390.27053728,22900.770782,0.0170418079
-Asian and Pacific Islander,"Brightwood Park, Crestwood, Petworth",996.78821144,40772.571611,0.0244475188
-Asian and Pacific Islander,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",279.09604083,14944.654322,0.0186753092
-Asian and Pacific Islander,"North Michigan Park, Michigan Park, University Heights",156.83348575,13377.501882,0.0117236751
-Asian and Pacific Islander,"Edgewood, Bloomingdale, Truxton Circle, Eckington",651.97856354,24101.466946,0.0270514058
-Asian and Pacific Islander,"Brookland, Brentwood, Langdon",291.58394541,14848.674336,0.0196370355
-Asian and Pacific Islander,"Ivy City, Arboretum, Trinidad, Carver Langston",434.17946079,16840.830006,0.0257813576
-Asian and Pacific Islander,"Woodridge, Fort Lincoln, Gateway",84.216418074,7810.7153834,0.0107821645
-Asian and Pacific Islander,"Union Station, Stanton Park, Kingman Park",1005.8681428,28493.700856,0.0353014215
-Asian and Pacific Islander,"Capitol Hill, Lincoln Park",688.04279758,29578.772152,0.0232613712
-Asian and Pacific Islander,"Near Southeast, Navy Yard",166,4664,0.0355917667
-Asian and Pacific Islander,Historic Anacostia,6.1292460646,5674.6040473,0.0010801187
-Asian and Pacific Islander,"Eastland Gardens, Kenilworth",0,2230.9558282,0
-Asian and Pacific Islander,"Mayfair, Hillbrook, Mahaning Heights",1.6227510157,7176.3958256,2.261234e-4
-Asian and Pacific Islander,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",44.631996075000004,13097.963742,0.0034075523
-Asian and Pacific Islander,"River Terrace, Benning, Greenway, Dupont Park",24.018642993,13535.485125,0.0017744944
-Asian and Pacific Islander,"Capitol View, Marshall Heights, Benning Heights",26.46705742,19382.341631,0.0013655242
-Asian and Pacific Islander,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",190.82279892,18368.381152,0.0103886563
-Asian and Pacific Islander,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",59.436753575,6168.4766967,0.0096355643
-Asian and Pacific Islander,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",0,8762.6889401,0
-Asian and Pacific Islander,"Sheridan, Barry Farm, Buena Vista",24.870753935,8053.7070126,0.0030881126
-Asian and Pacific Islander,"Douglas, Shipley Terrace",54.78429003,13028.398353,0.0042049904
-Asian and Pacific Islander,"Congress Heights, Bellevue, Washington Highlands",17.615073186,31118.154782,5.660706e-4
-Asian and Pacific Islander,Walter Reed,8.5770316912,363.68842171,0.0235834609
-Asian and Pacific Islander,Rock Creek Park,40.006635391,980.19453256,0.0408149955
-Asian and Pacific Islander,Saint Elizabeths,0.2157099698,835.55246796,2.581645e-4
-Asian and Pacific Islander,Joint Base Anacostia-Bolling,98.384926814,6834.8943976,0.0143945058
-Other or multiple race,"Kalorama Heights, Adams Morgan, Lanier Heights",484.48215391,19593.339646,0.0247268798
-Other or multiple race,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",1196.5163175,51220.209456,0.0233602387
-Other or multiple race,"Howard University, Le Droit Park, Cardozo/Shaw",542.24171349,14043.059006,0.0386127918
-Other or multiple race,"Georgetown, Burleith/Hillandale",445.7851808,14990.898214,0.0297370561
-Other or multiple race,"West End, Foggy Bottom, GWU",806.0322174,16778.533722,0.0480394909
-Other or multiple race,"Dupont Circle, Connecticut Avenue/K Street",728.77582876,20130.495196,0.0362025783
-Other or multiple race,"Shaw, Logan Circle",827.54486009,20697.334741,0.0399831607
-Other or multiple race,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",615.22567757,19188.30289,0.0320625373
-Other or multiple race,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",382,12194.878788,0.0313246246
-Other or multiple race,"Hawthorne, Barnaby Woods, Chevy Chase",599.26553672,15329.789077,0.0390915709
-Other or multiple race,"Friendship Heights, American University Park, Tenleytown",700.93215807,12493.59304,0.0561033288
-Other or multiple race,"North Cleveland Park, Forest Hills, Van Ness",269.47199196,10658.407717,0.025282575
-Other or multiple race,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",588.41571024,16630.961693,0.0353807387
-Other or multiple race,"Cathedral Heights, McLean Gardens, Glover Park",837.65907862,20607.987114,0.0406473021
-Other or multiple race,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",431.95011063,15732.793567,0.0274553981
-Other or multiple race,"Colonial Village, Shepherd Park, North Portal Estates",99.164518575,4331.1561789,0.0228956229
-Other or multiple race,"Takoma, Brightwood, Manor Park",571.24634643,22900.770782,0.0249444157
-Other or multiple race,"Brightwood Park, Crestwood, Petworth",1275.6011576,40772.571611,0.0312857666
-Other or multiple race,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",174.62885823,14944.654322,0.0116850383
-Other or multiple race,"North Michigan Park, Michigan Park, University Heights",235.75473568,13377.501882,0.0176232258
-Other or multiple race,"Edgewood, Bloomingdale, Truxton Circle, Eckington",821.24613807,24101.466946,0.0340745292
-Other or multiple race,"Brookland, Brentwood, Langdon",333.7751973,14848.674336,0.0224784509
-Other or multiple race,"Ivy City, Arboretum, Trinidad, Carver Langston",403.10022638,16840.830006,0.0239358883
-Other or multiple race,"Woodridge, Fort Lincoln, Gateway",78.185367988,7810.7153834,0.0100100137
-Other or multiple race,"Union Station, Stanton Park, Kingman Park",896.85946066,28493.700856,0.0314757098
-Other or multiple race,"Capitol Hill, Lincoln Park",915.95785794,29578.772152,0.0309667302
-Other or multiple race,"Near Southeast, Navy Yard",107,4664,0.022941681
-Other or multiple race,Historic Anacostia,21.040974101,5674.6040473,0.0037079193
-Other or multiple race,"Eastland Gardens, Kenilworth",25.277300613,2230.9558282,0.011330256
-Other or multiple race,"Mayfair, Hillbrook, Mahaning Heights",102.3659806,7176.3958256,0.0142642607
-Other or multiple race,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",118.58931348,13097.963742,0.0090540267
-Other or multiple race,"River Terrace, Benning, Greenway, Dupont Park",67.336660929,13535.485125,0.0049748243
-Other or multiple race,"Capitol View, Marshall Heights, Benning Heights",204.76740531,19382.341631,0.0105646371
-Other or multiple race,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",409.29318718,18368.381152,0.0222824855
-Other or multiple race,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",78.370151888,6168.4766967,0.0127049441
-Other or multiple race,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",158.6797235,8762.6889401,0.0181085651
-Other or multiple race,"Sheridan, Barry Farm, Buena Vista",101.2793024,8053.7070126,0.0125754888
-Other or multiple race,"Douglas, Shipley Terrace",135.59260628,13028.398353,0.0104074655
-Other or multiple race,"Congress Heights, Bellevue, Washington Highlands",564.37044095,31118.154782,0.0181363723
-Other or multiple race,Walter Reed,7.1289614057,363.68842171,0.0196018377
-Other or multiple race,Rock Creek Park,40.165884148,980.19453256,0.0409774619
-Other or multiple race,Saint Elizabeths,6.6649204223,835.55246796,0.007976663
-Other or multiple race,Joint Base Anacostia-Bolling,291.37203235,6834.8943976,0.0426300708
+Black,DC,315159,672391,0.4687138882
+White,DC,241901,672391,0.3597624002
+Latino,DC,71829,672391,0.1068262365
+Asian and Pacific Islander,DC,25304,672391,0.0376328654
+Other or multiple race,DC,18198,672391,0.0270646097
+Black,Ward 1,23140.921951,84284.610416,0.2745569071
+Black,Ward 2,7023.1270727,77041.512914,0.0911602954
+Black,Ward 3,5389.4272693,84068.669989,0.0641074406
+Black,Ward 4,44116.118054,84539.770891,0.521838628
+Black,Ward 5,56084.597265,86112.670569,0.6512932057
+Black,Ward 6,28781.530459,91297.552687,0.3152497478
+Black,Ward 7,73699.106173,79859.51219,0.9228594585
+Black,Ward 8,76924.171757,85186.700344,0.9030068244
+White,Ward 1,38051.207281,84284.610416,0.4514609143
+White,Ward 2,50466.225853,77041.512914,0.655052373
+White,Ward 3,60548.034039,84068.669989,0.7202211483
+White,Ward 4,19792.396733,84539.770891,0.2341193562
+White,Ward 5,17919.778413,86112.670569,0.2080968839
+White,Ward 6,49455.090651,91297.552687,0.5416913071
+White,Ward 7,1662.0514157,79859.51219,0.0208121909
+White,Ward 8,4006.2156142,85186.700344,0.0470286512
+Latino,Ward 1,16788.202902,84284.610416,0.199184677
+Latino,Ward 2,9307.2532591,77041.512914,0.1208082877
+Latino,Ward 3,9558.1833982,84068.669989,0.113694952
+Latino,Ward 4,16444.036881,84539.770891,0.1945124373
+Latino,Ward 5,8135.7357257,86112.670569,0.0944778007
+Latino,Ward 6,6007.1464168,91297.552687,0.0657974528
+Latino,Ward 7,2931.1240805,79859.51219,0.0367035059
+Latino,Ward 8,2657.3173364,85186.700344,0.03119404
+Asian and Pacific Islander,Ward 1,3846.0854148,84284.610416,0.0456321195
+Asian and Pacific Islander,Ward 2,7303.5063788,77041.512914,0.094799623
+Asian and Pacific Islander,Ward 3,5611.2022889,84068.669989,0.0667454628
+Asian and Pacific Islander,Ward 4,1929.8485694,84539.770891,0.0228277005
+Asian and Pacific Islander,Ward 5,1959.2177203,86112.670569,0.0227517938
+Asian and Pacific Islander,Ward 6,3960.1396278,91297.552687,0.043376186
+Asian and Pacific Islander,Ward 7,381.24179104,79859.51219,0.0047739058
+Asian and Pacific Islander,Ward 8,312.75820896,85186.700344,0.0036714441
+Other or multiple race,Ward 1,2458.1928668,84284.610416,0.0291653821
+Other or multiple race,Ward 2,2941.4003507,77041.512914,0.0381794209
+Other or multiple race,Ward 3,2961.8229937,84068.669989,0.0352309962
+Other or multiple race,Ward 4,2257.370653,84539.770891,0.0267018781
+Other or multiple race,Ward 5,2013.341445,86112.670569,0.0233803159
+Other or multiple race,Ward 6,3093.6455327,91297.552687,0.0338853062
+Other or multiple race,Ward 7,1185.9887298,79859.51219,0.0148509388
+Other or multiple race,Ward 8,1286.2374282,85186.700344,0.0150990404
+Black,"Kalorama Heights, Adams Morgan, Lanier Heights",1754.5924377,20033.672591,0.087582166
+Black,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",15805.753328,51621.513879,0.3061853894
+Black,"Howard University, Le Droit Park, Cardozo/Shaw",5633.4610427,14144.453901,0.3982805616
+Black,"Georgetown, Burleith/Hillandale",815.58535157,15233.117403,0.0535402787
+Black,"West End, Foggy Bottom, GWU",1338.4671796,16635.35608,0.0804591842
+Black,"Dupont Circle, Connecticut Avenue/K Street",1552.1854446,20267.58591,0.0765846239
+Black,"Shaw, Logan Circle",4792.7442156,20903.035814,0.2292846005
+Black,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",6003.6673196,19838.82322,0.3026221492
+Black,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",5638,12585.727273,0.4479677557
+Black,"Hawthorne, Barnaby Woods, Chevy Chase",1239.3433773,15223.787194,0.0814083488
+Black,"Friendship Heights, American University Park, Tenleytown",617.56250201,12415.794303,0.049740072
+Black,"North Cleveland Park, Forest Hills, Van Ness",995.96569761,11127.245686,0.0895069387
+Black,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",973.68281413,16883.675212,0.0576700749
+Black,"Cathedral Heights, McLean Gardens, Glover Park",1311.7865843,20489.743277,0.0640216213
+Black,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",890.73103014,16327.504501,0.0545540214
+Black,"Colonial Village, Shepherd Park, North Portal Estates",2850.4938084,4568.3732626,0.6239625452
+Black,"Takoma, Brightwood, Manor Park",14437.736181,23686.00044,0.6095472394
+Black,"Brightwood Park, Crestwood, Petworth",20677.841763,39839.540657,0.5190281168
+Black,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",9755.1925075,15375.510138,0.6344630142
+Black,"North Michigan Park, Michigan Park, University Heights",8508.7614613,13059.473061,0.6515394167
+Black,"Edgewood, Bloomingdale, Truxton Circle, Eckington",13091.652698,24838.079714,0.5270799051
+Black,"Brookland, Brentwood, Langdon",10534.131872,14878.588575,0.708006127
+Black,"Ivy City, Arboretum, Trinidad, Carver Langston",12336.074501,16688.136448,0.7392122266
+Black,"Woodridge, Fort Lincoln, Gateway",6634.0483748,8100.0410881,0.8190141633
+Black,"Union Station, Stanton Park, Kingman Park",9359.5443974,29882.593488,0.3132105786
+Black,"Capitol Hill, Lincoln Park",8634.8735547,30363.831376,0.2843802367
+Black,"Near Southeast, Navy Yard",1296,5154,0.2514551804
+Black,Historic Anacostia,5282.0191702,5496.51441,0.9609761343
+Black,"Eastland Gardens, Kenilworth",2337.6822086,2403.2159509,0.9727308142
+Black,"Mayfair, Hillbrook, Mahaning Heights",7005.8151807,7598.2269355,0.9220328953
+Black,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",13335.797241,13938.569085,0.956755113
+Black,"River Terrace, Benning, Greenway, Dupont Park",13683.195135,14308.587642,0.9562925061
+Black,"Capitol View, Marshall Heights, Benning Heights",18716.495422,20163.510874,0.9282359376
+Black,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",16925.14008,18980.37211,0.8917180328
+Black,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",5557.8747334,6513.5174018,0.8532831634
+Black,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",8613.2211982,8937.6313364,0.9637028955
+Black,"Sheridan, Barry Farm, Buena Vista",8065.7596317,8684.8542535,0.9287156003
+Black,"Douglas, Shipley Terrace",12913.114542,13744.800708,0.939490853
+Black,"Congress Heights, Bellevue, Washington Highlands",30560.164419,32066.385529,0.9530280359
+Black,Walter Reed,198.49701914,391.5359272,0.506970128
+Black,Rock Creek Park,354.07787562,1012.2278318,0.3498005731
+Black,Saint Elizabeths,756.1924191,836.27423649,0.904239765
+Black,Joint Base Anacostia-Bolling,3103.5286207,6699.5395264,0.4632450646
+White,"Kalorama Heights, Adams Morgan, Lanier Heights",14042.328137,20033.672591,0.7009362898
+White,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",18732.679657,51621.513879,0.3628851277
+White,"Howard University, Le Droit Park, Cardozo/Shaw",6397.5549414,14144.453901,0.4523013038
+White,"Georgetown, Burleith/Hillandale",11354.755118,15233.117403,0.7453993045
+White,"West End, Foggy Bottom, GWU",10851.797903,16635.35608,0.6523333706
+White,"Dupont Circle, Connecticut Avenue/K Street",14286.912707,20267.58591,0.7049143776
+White,"Shaw, Logan Circle",10172.677342,20903.035814,0.4866602838
+White,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",8662.5957868,19838.82322,0.4366486707
+White,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",5278.7272727,12585.727273,0.4194217115
+White,"Hawthorne, Barnaby Woods, Chevy Chase",11264.536723,15223.787194,0.7399299911
+White,"Friendship Heights, American University Park, Tenleytown",9264.2810321,12415.794303,0.7461690171
+White,"North Cleveland Park, Forest Hills, Van Ness",7793.4491333,11127.245686,0.7003933725
+White,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",11971.347444000001,16883.675212,0.7090486694
+White,"Cathedral Heights, McLean Gardens, Glover Park",15018.676743,20489.743277,0.7329851106
+White,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",11735.545319,16327.504501,0.7187592763
+White,"Colonial Village, Shepherd Park, North Portal Estates",1219.1402578,4568.3732626,0.2668652905
+White,"Takoma, Brightwood, Manor Park",3058.1041072,23686.00044,0.1291101938
+White,"Brightwood Park, Crestwood, Petworth",8019.1821677,39839.540657,0.2012870137
+White,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",2233.6847355,15375.510138,0.1452754878
+White,"North Michigan Park, Michigan Park, University Heights",2549.337496,13059.473061,0.1952098285
+White,"Edgewood, Bloomingdale, Truxton Circle, Eckington",8182.1817399,24838.079714,0.3294208664
+White,"Brookland, Brentwood, Langdon",2603.2870531,14878.588575,0.1749686834
+White,"Ivy City, Arboretum, Trinidad, Carver Langston",2490.6295534,16688.136448,0.1492455171
+White,"Woodridge, Fort Lincoln, Gateway",728.71682057,8100.0410881,0.0899645832
+White,"Union Station, Stanton Park, Kingman Park",17057.3294,29882.593488,0.5708115464
+White,"Capitol Hill, Lincoln Park",17951.963187,30363.831376,0.5912285233
+White,"Near Southeast, Navy Yard",3291,5154,0.6385331781
+White,Historic Anacostia,152.11298863,5496.51441,0.0276744455
+White,"Eastland Gardens, Kenilworth",41.192638037,2403.2159509,0.0171406311
+White,"Mayfair, Hillbrook, Mahaning Heights",98.68079549,7598.2269355,0.0129873451
+White,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",99.238006188,13938.569085,0.0071196696
+White,"River Terrace, Benning, Greenway, Dupont Park",59.221342513,14308.587642,0.0041388671
+White,"Capitol View, Marshall Heights, Benning Heights",199.88856029,20163.510874,0.0099133807
+White,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",664.95890331,18980.37211,0.0350340288
+White,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",377.81975418,6513.5174018,0.0580054878
+White,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",109.85483871,8937.6313364,0.0122912699
+White,"Sheridan, Barry Farm, Buena Vista",124.03217266,8684.8542535,0.014281434
+White,"Douglas, Shipley Terrace",217.68440982,13744.800708,0.0158375821
+White,"Congress Heights, Bellevue, Washington Highlands",482.58093258,32066.385529,0.0150494334
+White,Walter Reed,65.720112959,391.5359272,0.1678520626
+White,Rock Creek Park,380.16588793,1012.2278318,0.3755734391
+White,Saint Elizabeths,43.277180123,836.27423649,0.0517499861
+White,Joint Base Anacostia-Bolling,2443.4574775,6699.5395264,0.3647202122
+Latino,"Kalorama Heights, Adams Morgan, Lanier Heights",2635.4647156,20033.672591,0.1315517514
+Latino,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",13193.525069,51621.513879,0.2555819091
+Latino,"Howard University, Le Droit Park, Cardozo/Shaw",1104.8050642,14144.453901,0.0781087112
+Latino,"Georgetown, Burleith/Hillandale",1484.1508865,15233.117403,0.0974292292
+Latino,"West End, Foggy Bottom, GWU",1799.053551,16635.35608,0.1081463807
+Latino,"Dupont Circle, Connecticut Avenue/K Street",2050.4502276,20267.58591,0.1011689422
+Latino,"Shaw, Logan Circle",3343.8004067,20903.035814,0.1599672142
+Latino,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",2179.1666089,19838.82322,0.1098435419
+Latino,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",729,12585.727273,0.0579227552
+Latino,"Hawthorne, Barnaby Woods, Chevy Chase",1606.7225361,15223.787194,0.1055402651
+Latino,"Friendship Heights, American University Park, Tenleytown",1178.709215,12415.794303,0.0949362712
+Latino,"North Cleveland Park, Forest Hills, Van Ness",1174.3634148,11127.245686,0.1055394523
+Latino,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",2325.9596065,16883.675212,0.1377638208
+Latino,"Cathedral Heights, McLean Gardens, Glover Park",1736.2622996,20489.743277,0.0847381188
+Latino,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",2361.0012251,16327.504501,0.1446026994
+Latino,"Colonial Village, Shepherd Park, North Portal Estates",316.93757897,4568.3732626,0.0693764631
+Latino,"Takoma, Brightwood, Manor Park",5280.5322778,23686.00044,0.2229389589
+Latino,"Brightwood Park, Crestwood, Petworth",8735.1828608,39839.540657,0.2192591259
+Latino,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",2799.0418455,15375.510138,0.1820454619
+Latino,"North Michigan Park, Michigan Park, University Heights",1554.401833,13059.473061,0.1190248508
+Latino,"Edgewood, Bloomingdale, Truxton Circle, Eckington",1913.8913868,24838.079714,0.0770547244
+Latino,"Brookland, Brentwood, Langdon",1156.704613,14878.588575,0.0777428993
+Latino,"Ivy City, Arboretum, Trinidad, Carver Langston",1143.6968512,16688.136448,0.0685335271
+Latino,"Woodridge, Fort Lincoln, Gateway",582.7340197,8100.0410881,0.0719421066
+Latino,"Union Station, Stanton Park, Kingman Park",1409.770521,29882.593488,0.0471769802
+Latino,"Capitol Hill, Lincoln Park",2018.7079662,30363.831376,0.0664839671
+Latino,"Near Southeast, Navy Yard",290,5154,0.0562669771
+Latino,Historic Anacostia,44.21779601,5496.51441,0.0080446976
+Latino,"Eastland Gardens, Kenilworth",19.660122699,2403.2159509,0.0081807557
+Latino,"Mayfair, Hillbrook, Mahaning Heights",377.27641285,7598.2269355,0.0496532173
+Latino,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",293.36667616,13938.569085,0.0210471157
+Latino,"River Terrace, Benning, Greenway, Dupont Park",470.6383814,14308.587642,0.0328920221
+Latino,"Capitol View, Marshall Heights, Benning Heights",890.34687505,20163.510874,0.0441563417
+Latino,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",631.97941779,18980.37211,0.0332964714
+Latino,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",461.73211405,6513.5174018,0.0708882905
+Latino,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",46.891705069,8937.6313364,0.0052465472
+Latino,"Sheridan, Barry Farm, Buena Vista",387.89049892,8684.8542535,0.044662868
+Latino,"Douglas, Shipley Terrace",414.34944067,13744.800708,0.0301459039
+Latino,"Congress Heights, Bellevue, Washington Highlands",580.09270592,32066.385529,0.0180903677
+Latino,Walter Reed,112.61531221,391.5359272,0.2876244666
+Latino,Rock Creek Park,183.77769451,1012.2278318,0.1815576383
+Latino,Saint Elizabeths,29.009332683,836.27423649,0.0346887796
+Latino,Joint Base Anacostia-Bolling,746.54852072,6699.5395264,0.1114328108
+Asian and Pacific Islander,"Kalorama Heights, Adams Morgan, Lanier Heights",1122.7467911,20033.672591,0.0560429839
+Asian and Pacific Islander,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",2300.2976618,51621.513879,0.0445608331
+Asian and Pacific Islander,"Howard University, Le Droit Park, Cardozo/Shaw",585.39290585,14144.453901,0.0413867449
+Asian and Pacific Islander,"Georgetown, Burleith/Hillandale",1147.3393257,15233.117403,0.0753187477
+Asian and Pacific Islander,"West End, Foggy Bottom, GWU",1897.7196335,16635.35608,0.114077488
+Asian and Pacific Islander,"Dupont Circle, Connecticut Avenue/K Street",1653.124408,20267.58591,0.081564939
+Asian and Pacific Islander,"Shaw, Logan Circle",1687.512794,20903.035814,0.0807305125
+Asian and Pacific Islander,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",2247.4507676,19838.82322,0.1132854879
+Asian and Pacific Islander,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",498,12585.727273,0.0395686311
+Asian and Pacific Islander,"Hawthorne, Barnaby Woods, Chevy Chase",643.93345888,15223.787194,0.0422978495
+Asian and Pacific Islander,"Friendship Heights, American University Park, Tenleytown",726.41447268,12415.794303,0.0585072896
+Asian and Pacific Islander,"North Cleveland Park, Forest Hills, Van Ness",862.90809053,11127.245686,0.0775491182
+Asian and Pacific Islander,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",1072.6133552,16883.675212,0.0635296132
+Asian and Pacific Islander,"Cathedral Heights, McLean Gardens, Glover Park",1588.5418223,20489.743277,0.0775286347
+Asian and Pacific Islander,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",936.33705883,16327.504501,0.0573472241
+Asian and Pacific Islander,"Colonial Village, Shepherd Park, North Portal Estates",60.276472075,4568.3732626,0.0131942967
+Asian and Pacific Islander,"Takoma, Brightwood, Manor Park",467.4230302,23686.00044,0.0197341477
+Asian and Pacific Islander,"Brightwood Park, Crestwood, Petworth",1095.6862606,39839.540657,0.0275024823
+Asian and Pacific Islander,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",287.80604799,15375.510138,0.0187184715
+Asian and Pacific Islander,"North Michigan Park, Michigan Park, University Heights",232.00403872,13059.473061,0.0177651914
+Asian and Pacific Islander,"Edgewood, Bloomingdale, Truxton Circle, Eckington",758.06000626,24838.079714,0.030520073000000002
+Asian and Pacific Islander,"Brookland, Brentwood, Langdon",247.32971141,14878.588575,0.0166231972
+Asian and Pacific Islander,"Ivy City, Arboretum, Trinidad, Carver Langston",439.66968512,16688.136448,0.0263462422
+Asian and Pacific Islander,"Woodridge, Fort Lincoln, Gateway",52.638237277,8100.0410881,0.0064985148
+Asian and Pacific Islander,"Union Station, Stanton Park, Kingman Park",1088.9893018,29882.593488,0.036442262
+Asian and Pacific Islander,"Capitol Hill, Lincoln Park",720.10734744,30363.831376,0.0237159579
+Asian and Pacific Islander,"Near Southeast, Navy Yard",160,5154,0.0310438494
+Asian and Pacific Islander,Historic Anacostia,0.28003314,5496.51441,5.09474e-5
+Asian and Pacific Islander,"Eastland Gardens, Kenilworth",0,2403.2159509,0
+Asian and Pacific Islander,"Mayfair, Hillbrook, Mahaning Heights",8.5844773706,7598.2269355,0.0011298001
+Asian and Pacific Islander,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",51.376245173,13938.569085,0.0036859053
+Asian and Pacific Islander,"River Terrace, Benning, Greenway, Dupont Park",20.409593957,14308.587642,0.0014263877
+Asian and Pacific Islander,"Capitol View, Marshall Heights, Benning Heights",32.21625837,20163.510874,0.0015977504
+Asian and Pacific Islander,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",281.43607428,18980.37211,0.0148277427
+Asian and Pacific Islander,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",38.977350849,6513.5174018,0.005984071
+Asian and Pacific Islander,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",0,8937.6313364,0
+Asian and Pacific Islander,"Sheridan, Barry Farm, Buena Vista",41.71996686,8684.8542535,0.0048037613
+Asian and Pacific Islander,"Douglas, Shipley Terrace",62.75347432,13744.800708,0.0045656154
+Asian and Pacific Islander,"Congress Heights, Bellevue, Washington Highlands",17.741824977,32066.385529,5.532842e-4
+Asian and Pacific Islander,Walter Reed,7.5745214936,391.5359272,0.0193456615
+Asian and Pacific Islander,Rock Creek Park,45.737730269,1012.2278318,0.0451852131
+Asian and Pacific Islander,Saint Elizabeths,0.2465256798,836.27423649,2.947905e-4
+Asian and Pacific Islander,Joint Base Anacostia-Bolling,108.25817502,6699.5395264,0.0161590471
+Other or multiple race,"Kalorama Heights, Adams Morgan, Lanier Heights",478.54050962,20033.672591,0.0238868089
+Other or multiple race,"Columbia Heights, Mt. Pleasant, Pleasant Plains, Park View",1589.2581631,51621.513879,0.0307867407
+Other or multiple race,"Howard University, Le Droit Park, Cardozo/Shaw",423.23994706,14144.453901,0.0299226785
+Other or multiple race,"Georgetown, Burleith/Hillandale",431.28672138,15233.117403,0.0283124399
+Other or multiple race,"West End, Foggy Bottom, GWU",748.31781294,16635.35608,0.0449835765
+Other or multiple race,"Dupont Circle, Connecticut Avenue/K Street",724.91312283,20267.58591,0.0357671173
+Other or multiple race,"Shaw, Logan Circle",906.30105527,20903.035814,0.043357389
+Other or multiple race,"Downtown, Chinatown, Penn Quarters, Mount Vernon Square, North Capitol Street",745.94273675,19838.82322,0.0376001504
+Other or multiple race,"Southwest Employment Area, Southwest/Waterfront, Fort McNair, Buzzard Point",442,12585.727273,0.0351191465
+Other or multiple race,"Hawthorne, Barnaby Woods, Chevy Chase",469.25109856,15223.787194,0.0308235456
+Other or multiple race,"Friendship Heights, American University Park, Tenleytown",628.82708142,12415.794303,0.0506473501
+Other or multiple race,"North Cleveland Park, Forest Hills, Van Ness",300.55935014,11127.245686,0.0270111184
+Other or multiple race,"Spring Valley, Palisades, Wesley Heights, Foxhall Crescent, Foxhall Village, Georgetown Reservoir",540.07199285,16883.675212,0.0319878217
+Other or multiple race,"Cathedral Heights, McLean Gardens, Glover Park",834.4758278,20489.743277,0.0407265146
+Other or multiple race,"Cleveland Park, Woodley Park, Massachusetts Avenue Heights, Woodland-Normanstone Terrace",403.88986778,16327.504501,0.0247367788
+Other or multiple race,"Colonial Village, Shepherd Park, North Portal Estates",121.52514531,4568.3732626,0.0266014046
+Other or multiple race,"Takoma, Brightwood, Manor Park",442.20484401,23686.00044,0.0186694603
+Other or multiple race,"Brightwood Park, Crestwood, Petworth",1311.6476049,39839.540657,0.0329232612
+Other or multiple race,"Lamont Riggs, Queens Chapel, Fort Totten, Pleasant Hill",299.78500154,15375.510138,0.0194975646
+Other or multiple race,"North Michigan Park, Michigan Park, University Heights",214.96823239,13059.473061,0.0164607126
+Other or multiple race,"Edgewood, Bloomingdale, Truxton Circle, Eckington",892.29388262,24838.079714,0.0359244311
+Other or multiple race,"Brookland, Brentwood, Langdon",337.13532572,14878.588575,0.0226590932
+Other or multiple race,"Ivy City, Arboretum, Trinidad, Carver Langston",278.06585717,16688.136448,0.016662487
+Other or multiple race,"Woodridge, Fort Lincoln, Gateway",101.90363577,8100.0410881,0.012580632
+Other or multiple race,"Union Station, Stanton Park, Kingman Park",966.95986764,29882.593488,0.0323586327
+Other or multiple race,"Capitol Hill, Lincoln Park",1038.1793205,30363.831376,0.0341913149
+Other or multiple race,"Near Southeast, Navy Yard",117,5154,0.0227008149
+Other or multiple race,Historic Anacostia,17.884422111,5496.51441,0.0032537752
+Other or multiple race,"Eastland Gardens, Kenilworth",4.6809815951,2403.2159509,0.001947799
+Other or multiple race,"Mayfair, Hillbrook, Mahaning Heights",107.8700691,7598.2269355,0.0141967422
+Other or multiple race,"Deanwood, Burrville, Grant Park, Lincoln Heights, Fairmont Heights",158.79091726,13938.569085,0.0113921965
+Other or multiple race,"River Terrace, Benning, Greenway, Dupont Park",75.12318981,14308.587642,0.005250217
+Other or multiple race,"Capitol View, Marshall Heights, Benning Heights",324.56375789,20163.510874,0.0160965895
+Other or multiple race,"Twining, Fairlawn, Randle Highlands, Penn Branch, Fort Davis Park, Fort Dupont",476.85763501,18980.37211,0.0251237242
+Other or multiple race,"Fairfax Village, Naylor Gardens, Hillcrest, Summit Park",77.113449325,6513.5174018,0.0118389872
+Other or multiple race,"Woodland/Fort Stanton, Garfield Heights, Knox Hill",167.66359447,8937.6313364,0.0187592874
+Other or multiple race,"Sheridan, Barry Farm, Buena Vista",65.451983419,8684.8542535,0.0075363364
+Other or multiple race,"Douglas, Shipley Terrace",136.89884147,13744.800708,0.0099600456
+Other or multiple race,"Congress Heights, Bellevue, Washington Highlands",425.80564709,32066.385529,0.0132788788
+Other or multiple race,Walter Reed,7.1289614057,391.5359272,0.018207681399999998
+Other or multiple race,Rock Creek Park,48.468643427,1012.2278318,0.0478831365
+Other or multiple race,Saint Elizabeths,7.5487789094,836.27423649,0.0090266788
+Other or multiple race,Joint Base Anacostia-Bolling,297.74673253,6699.5395264,0.0444428653
