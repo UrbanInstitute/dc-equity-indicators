@@ -180,9 +180,9 @@ function showSelectionInMenu(menuElementID, selectorBoxClass) {
         var baseGeo = getBaseGeography();
         var compareGeo = getComparisonGeography();
 
-        console.log("Indicator:", indicator);
-        console.log("Base geo:", baseGeo);
-        console.log("Comparison geo:", compareGeo);
+        // console.log("Indicator:", indicator);
+        // console.log("Base geo:", baseGeo);
+        // console.log("Comparison geo:", compareGeo);
 
         d3.selectAll("#baseGeographyMenu .dcEquityIndicators.menuItem").classed("disabled", false);
         d3.selectAll("#baseGeographyMenu .map .geography").classed("disabled", false);
